@@ -4,25 +4,28 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#080e00] text-white pt-16 pb-10 border-t border-white/10 overflow-hidden">
-      <div className="max-w-[1360px] mx-auto px-6 md:px-12">
+    <footer className="relative bg-[#070b05] text-white pt-20 pb-12 border-t border-white/10 overflow-hidden">
+      {/* Background Subtle Gradient */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[350px] pointer-events-none opacity-20"
+        style={{
+          background: 'radial-gradient(ellipse at bottom, rgba(182, 82, 52, 0.25) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="max-w-[1360px] mx-auto px-6 md:px-12 relative z-10">
         {/* Main Multi-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 pb-12 border-b border-white/10">
-          {/* Col 1: Brand Wordmark & Mission */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 pb-16 border-b border-white/10">
+          {/* Col 1: Brand Typography & Mission */}
           <div className="md:col-span-5 flex flex-col justify-between">
             <div>
-              <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-                <div className="w-6 h-6 rounded-sm border border-white flex items-center justify-center p-1">
-                  <div className="w-2 h-2 border border-white rotate-45" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-serif-luxury text-xl tracking-[0.2em] font-medium uppercase text-white">
-                    PRANGON
-                  </span>
-                  <span className="text-[9px] font-mono tracking-[0.35em] text-white/50 uppercase">
-                    Studios • Dhaka
-                  </span>
-                </div>
+              <Link href="/" className="inline-block mb-4 group">
+                <span className="font-serif-luxury text-2xl tracking-[0.24em] font-medium uppercase text-white group-hover:text-white/80 transition-colors">
+                  PRANGON
+                </span>
+                <span className="text-[9px] font-mono tracking-[0.35em] text-[#b65234] uppercase block mt-1">
+                  Studios • Dhaka
+                </span>
               </Link>
               <p className="text-xs md:text-sm text-white/60 font-light max-w-sm leading-relaxed mb-6">
                 We turn architectural visions into bespoke interior masterpieces crafted by Bengal’s finest master artisans.
@@ -47,7 +50,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/services" className="hover:text-white transition-colors">
-                  Services & Methodology
+                  Services &amp; Methodology
                 </Link>
               </li>
               <li>
@@ -57,7 +60,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
-                  Atelier & Story
+                  Atelier &amp; Story
                 </Link>
               </li>
               <li>
@@ -107,8 +110,75 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Original-Style Massive Debossed Letterpress Wordmark Carved into Base */}
+        <div className="py-12 md:py-16 overflow-hidden select-none">
+          <svg
+            width="100%"
+            height="auto"
+            viewBox="0 0 1360 210"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-auto drop-shadow-sm select-none pointer-events-none"
+          >
+            <defs>
+              <filter id="prangon_deboss_filter" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                
+                {/* Drop shadow bottom-right */}
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset dx="-2" dy="3" />
+                <feGaussianBlur stdDeviation="2.5" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+
+                {/* Bevel highlight top-left */}
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset dx="2" dy="-2" />
+                <feGaussianBlur stdDeviation="1" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0" />
+                <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
+
+                <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+
+                {/* Inner shadow top-left */}
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset dx="3" dy="-2" />
+                <feGaussianBlur stdDeviation="1.5" />
+                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="shape" result="effect3_innerShadow" />
+
+                {/* Inner highlight bottom-right */}
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset dx="-2" dy="2" />
+                <feGaussianBlur stdDeviation="1" />
+                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0" />
+                <feBlend mode="normal" in2="effect3_innerShadow" result="effect4_innerShadow" />
+              </filter>
+            </defs>
+
+            <g filter="url(#prangon_deboss_filter)">
+              <text
+                x="50%"
+                y="68%"
+                textAnchor="middle"
+                className="font-serif-luxury uppercase"
+                fontSize="175"
+                fontWeight="400"
+                letterSpacing="0.16em"
+                fill="#0a0f07"
+              >
+                PRANGON
+              </text>
+            </g>
+          </svg>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
           <div>2026 © PRANGON Studios Ltd. All rights reserved.</div>
           <div>Crafted in Bangladesh</div>
         </div>

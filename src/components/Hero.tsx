@@ -6,44 +6,46 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
+  const [hasMovedCursor, setHasMovedCursor] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
+      if (!hasMovedCursor) setHasMovedCursor(true);
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [hasMovedCursor]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  // Phase 1 (Scroll 0 -> 0.16): Brand statement fades out and blurs early on scroll
-  const textOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.16], [0, -45]);
-  const textScale = useTransform(scrollYProgress, [0, 0.16], [1, 0.96]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.16], ['blur(0px)', 'blur(8px)']);
-  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.12 ? 'none' : 'auto'));
+  // Phase 1 (Scroll 0 -> 0.08): Brand statement dissolves early and fast on initial scroll
+  const textOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.08], [0, -35]);
+  const textScale = useTransform(scrollYProgress, [0, 0.08], [1, 0.96]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.08], ['blur(0px)', 'blur(8px)']);
+  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.06 ? 'none' : 'auto'));
 
-  // Phase 2 (Scroll 0.06 -> 0.28): 3 Living Cards glide up from bottom (100vh) to dead center
-  // They stay centered and 100% unobstructed from 0.28 to 0.48!
-  const cardsOpacity = useTransform(scrollYProgress, [0.06, 0.18], [0, 1]);
-  const cardCommercialY = useTransform(scrollYProgress, [0.06, 0.28], ['100vh', '0vh']);
-  const cardResidentialY = useTransform(scrollYProgress, [0.06, 0.28], ['115vh', '-5vh']);
-  const cardMarineY = useTransform(scrollYProgress, [0.06, 0.28], ['105vh', '3vh']);
+  // Phase 2 (Scroll 0.02 -> 0.12): 3 Living Cards glide up to dead center on much shorter scroll!
+  // Stay centered, interactive, and completely unobstructed from 0.12 to 0.38
+  const cardsOpacity = useTransform(scrollYProgress, [0.02, 0.08], [0, 1]);
+  const cardCommercialY = useTransform(scrollYProgress, [0.02, 0.12], ['100vh', '0vh']);
+  const cardResidentialY = useTransform(scrollYProgress, [0.02, 0.12], ['115vh', '-5vh']);
+  const cardMarineY = useTransform(scrollYProgress, [0.02, 0.12], ['105vh', '3vh']);
 
-  // Phase 3 (Scroll 0.44 -> 0.92): Hero stays pinned at top: 0, progressively fading away as bottom content stacks over
-  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.44, 0.88], [1, 0.15]);
-  const heroOverlayDark = useTransform(scrollYProgress, [0.08, 0.88], [0.25, 0.92]);
-  const heroRecedeScale = useTransform(scrollYProgress, [0.44, 0.95], [1, 0.93]);
+  // Phase 3 (Scroll 0.38 -> 0.85): Hero stays pinned at top: 0, progressively fading away as bottom content stacks over
+  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.38, 0.82], [1, 0.15]);
+  const heroOverlayDark = useTransform(scrollYProgress, [0.05, 0.82], [0.25, 0.92]);
+  const heroRecedeScale = useTransform(scrollYProgress, [0.38, 0.90], [1, 0.93]);
 
   return (
     <section
       ref={containerRef}
-      className="section_hero hp_section_hero relative min-h-[280vh] bg-[#080e00] text-white"
+      className="section_hero hp_section_hero relative min-h-[220vh] bg-[#080e00] text-white"
     >
       {/* Pinned 100vh Viewport that stays completely still while next section stacks over */}
       <motion.div
@@ -64,15 +66,23 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Layer 1: Architectural Blueprint Line Art (Full bleed, copper glow, fades on scroll) */}
+        {/* Layer 1: Architectural Blueprint Line Art - 100% hidden by default, revealed ONLY directly under cursor */}
         <motion.div
-          style={{ opacity: heroBackgroundOpacity }}
-          className="absolute inset-0 z-1 pointer-events-none overflow-hidden"
+          style={{
+            opacity: heroBackgroundOpacity,
+            WebkitMaskImage: hasMovedCursor
+              ? `radial-gradient(280px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.5) 60%, transparent 100%)`
+              : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
+            maskImage: hasMovedCursor
+              ? `radial-gradient(280px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.5) 60%, transparent 100%)`
+              : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
+          }}
+          className="absolute inset-0 z-1 pointer-events-none overflow-hidden transition-[opacity] duration-300"
         >
           <img
             src="/assets/hero_line_bg.webp"
             alt=""
-            className="w-full h-full object-cover object-center opacity-75 mix-blend-screen animate-hero-pulse select-none"
+            className="w-full h-full object-cover object-center opacity-85 mix-blend-screen select-none"
           />
         </motion.div>
 
@@ -86,15 +96,7 @@ export default function Hero() {
           className="absolute inset-0 z-2 pointer-events-none"
         />
 
-        {/* Layer 3: Interactive Cursor Spotlight */}
-        <div
-          className="absolute inset-0 z-3 pointer-events-none opacity-50 transition-opacity duration-300 hidden md:block"
-          style={{
-            background: `radial-gradient(550px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,220,180,0.14), transparent 70%)`,
-          }}
-        />
-
-        {/* Layer 4: Progressive Fade / Darkening Overlay (stays still in background) */}
+        {/* Layer 3: Progressive Fade / Darkening Overlay (stays still in background) */}
         <motion.div
           className="absolute inset-0 z-4 pointer-events-none bg-[#080e00]"
           style={{
@@ -102,7 +104,7 @@ export default function Hero() {
           }}
         />
 
-        {/* Layer 5: Central Brand Statement (Dissolves on Initial Scroll) */}
+        {/* Layer 4: Central Brand Statement (Dissolves quickly on Initial Scroll) */}
         <motion.div
           className="relative z-10 max-w-[1360px] w-full mx-auto px-6 md:px-12 text-center flex flex-col items-center justify-center my-auto pt-12 md:pt-16"
           style={{
@@ -188,8 +190,8 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Layer 6: Parallax Floating Living Categories Cards */}
-        {/* On page load (scroll = 0), cards are 100vh down (offscreen). As user scrolls, they glide up into view! */}
+        {/* Layer 5: Parallax Floating Living Categories Cards */}
+        {/* On page load (scroll = 0), cards are 100vh down (offscreen). As user scrolls, they glide up into view on short scroll! */}
         <motion.div
           style={{ opacity: cardsOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
@@ -198,9 +200,9 @@ export default function Hero() {
             {/* Card 1: Commercial Living (Left) */}
             <motion.div
               style={{ y: cardCommercialY }}
-              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35"
+              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#111111]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
             >
-              <Link href="/work?category=Commercial" className="block w-full h-full relative">
+              <Link href="/work/?category=Commercial" className="block w-full h-full relative">
                 <img
                   src="/assets/feat-commercial.avif"
                   alt="Interior view of luxury commercial boutique space"
@@ -208,9 +210,9 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
 
-                {/* Original Interactive Hover Tag */}
+                {/* Original Interactive Hover Tag with Glassmorphism */}
                 <div className="for_living_feat_tag_container">
-                  <div className="for_living_feat_tag_container_inner">
+                  <div className="for_living_feat_tag_container_inner backdrop-blur-md bg-black/50 border border-white/15 shadow-xl">
                     <span className="for-living-display-text for-prefix">For</span>
                     <div className="for_living_feat_tag">Commercial</div>
                     <span className="for-living-display-text living-suffix">Living</span>
@@ -222,9 +224,9 @@ export default function Hero() {
             {/* Card 2: Residential Living (Center - Offset) */}
             <motion.div
               style={{ y: cardResidentialY }}
-              className="section_hero_followup_content_card card-1 group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35"
+              className="section_hero_followup_content_card card-1 group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#111111]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
             >
-              <Link href="/work?category=Residential" className="block w-full h-full relative">
+              <Link href="/work/?category=Residential" className="block w-full h-full relative">
                 <img
                   src="/assets/feat-residential.avif"
                   alt="Modern luxury residence with illuminated waters at dusk"
@@ -232,9 +234,9 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
 
-                {/* Original Interactive Hover Tag */}
+                {/* Original Interactive Hover Tag with Glassmorphism */}
                 <div className="for_living_feat_tag_container">
-                  <div className="for_living_feat_tag_container_inner">
+                  <div className="for_living_feat_tag_container_inner backdrop-blur-md bg-black/50 border border-white/15 shadow-xl">
                     <span className="for-living-display-text for-prefix">For</span>
                     <div className="for_living_feat_tag">Residential</div>
                     <span className="for-living-display-text living-suffix">Living</span>
@@ -246,9 +248,9 @@ export default function Hero() {
             {/* Card 3: Marine Living (Right) */}
             <motion.div
               style={{ y: cardMarineY }}
-              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35"
+              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#111111]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
             >
-              <Link href="/work?category=Marine" className="block w-full h-full relative">
+              <Link href="/work/?category=Marine" className="block w-full h-full relative">
                 <img
                   src="/assets/feat-marine.avif"
                   alt="Aerial view of luxury expedition yacht floating at night"
@@ -256,9 +258,9 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
 
-                {/* Original Interactive Hover Tag */}
+                {/* Original Interactive Hover Tag with Glassmorphism */}
                 <div className="for_living_feat_tag_container">
-                  <div className="for_living_feat_tag_container_inner">
+                  <div className="for_living_feat_tag_container_inner backdrop-blur-md bg-black/50 border border-white/15 shadow-xl">
                     <span className="for-living-display-text for-prefix">For</span>
                     <div className="for_living_feat_tag">Marine</div>
                     <span className="for-living-display-text living-suffix">Living</span>
