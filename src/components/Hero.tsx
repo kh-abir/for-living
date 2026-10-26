@@ -21,28 +21,29 @@ export default function Hero() {
     offset: ['start start', 'end end'],
   });
 
-  // Phase 1: Brand statement fades out and blurs early on scroll
-  const textOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.22], [0, -50]);
-  const textScale = useTransform(scrollYProgress, [0, 0.22], [1, 0.96]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.22], ['blur(0px)', 'blur(8px)']);
-  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.15 ? 'none' : 'auto'));
+  // Phase 1 (Scroll 0 -> 0.16): Brand statement fades out and blurs early on scroll
+  const textOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.16], [0, -45]);
+  const textScale = useTransform(scrollYProgress, [0, 0.16], [1, 0.96]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.16], ['blur(0px)', 'blur(8px)']);
+  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.12 ? 'none' : 'auto'));
 
-  // Phase 2: 3 Living Cards glide up from bottom (100vh) to center
-  const cardsOpacity = useTransform(scrollYProgress, [0.08, 0.24], [0, 1]);
-  const cardCommercialY = useTransform(scrollYProgress, [0.08, 0.45], ['100vh', '0vh']);
-  const cardResidentialY = useTransform(scrollYProgress, [0.08, 0.45], ['115vh', '-5vh']);
-  const cardMarineY = useTransform(scrollYProgress, [0.08, 0.45], ['105vh', '3vh']);
+  // Phase 2 (Scroll 0.06 -> 0.28): 3 Living Cards glide up from bottom (100vh) to dead center
+  // They stay centered and 100% unobstructed from 0.28 to 0.48!
+  const cardsOpacity = useTransform(scrollYProgress, [0.06, 0.18], [0, 1]);
+  const cardCommercialY = useTransform(scrollYProgress, [0.06, 0.28], ['100vh', '0vh']);
+  const cardResidentialY = useTransform(scrollYProgress, [0.06, 0.28], ['115vh', '-5vh']);
+  const cardMarineY = useTransform(scrollYProgress, [0.06, 0.28], ['105vh', '3vh']);
 
-  // Phase 3: Hero stays still in background, but progressively fades away as bottom content stacks over
-  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.3, 0.85], [1, 0.2]);
-  const heroOverlayDark = useTransform(scrollYProgress, [0.05, 0.85], [0.25, 0.88]);
-  const heroRecedeScale = useTransform(scrollYProgress, [0.35, 0.95], [1, 0.94]);
+  // Phase 3 (Scroll 0.44 -> 0.92): Hero stays pinned at top: 0, progressively fading away as bottom content stacks over
+  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.44, 0.88], [1, 0.15]);
+  const heroOverlayDark = useTransform(scrollYProgress, [0.08, 0.88], [0.25, 0.92]);
+  const heroRecedeScale = useTransform(scrollYProgress, [0.44, 0.95], [1, 0.93]);
 
   return (
     <section
       ref={containerRef}
-      className="section_hero hp_section_hero relative min-h-[200vh] bg-[#080e00] text-white"
+      className="section_hero hp_section_hero relative min-h-[280vh] bg-[#080e00] text-white"
     >
       {/* Pinned 100vh Viewport that stays completely still while next section stacks over */}
       <motion.div
@@ -103,7 +104,7 @@ export default function Hero() {
 
         {/* Layer 5: Central Brand Statement (Dissolves on Initial Scroll) */}
         <motion.div
-          className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 text-center flex flex-col items-center justify-center my-auto pt-12 md:pt-16"
+          className="relative z-10 max-w-[1360px] w-full mx-auto px-6 md:px-12 text-center flex flex-col items-center justify-center my-auto pt-12 md:pt-16"
           style={{
             opacity: textOpacity,
             y: textY,
@@ -151,15 +152,15 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Core Brand Headline */}
+          {/* Core Brand Headline: Exactly 2 Lines Guaranteed */}
           <motion.h1
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="font-serif-luxury uppercase text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal leading-[1.1] tracking-[0.04em] text-center max-w-5xl mb-6 bg-gradient-to-br from-white via-white to-[#f8e7c3]/60 bg-clip-text text-transparent drop-shadow-sm"
+            className="font-serif-luxury uppercase text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-normal leading-[1.08] tracking-normal text-center w-full max-w-[1360px] mb-6 bg-gradient-to-br from-white via-white to-[#f8e7c3]/60 bg-clip-text text-transparent drop-shadow-sm"
           >
-            THE POETRY OF DESIGN &amp; <br className="hidden sm:inline" />
-            THE ENGINEERING OF CRAFT
+            <span className="block whitespace-nowrap">THE POETRY OF DESIGN &amp;</span>
+            <span className="block whitespace-nowrap">THE ENGINEERING OF CRAFT</span>
           </motion.h1>
 
           {/* Subtitle */}
