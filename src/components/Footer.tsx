@@ -52,7 +52,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/work" className="hover:text-white transition-colors">
-                  Portfolio (48 Projects)
+                  Portfolio (10 Selected Projects)
                 </Link>
               </li>
               <li>

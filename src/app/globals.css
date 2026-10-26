@@ -138,3 +138,67 @@ body {
 .theme-light .rp_ruler_markers.center {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+/* Original Hero Card Tag Slide Interactions */
+.for_living_feat_tag_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.for_living_feat_tag_container_inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate(0, 0);
+}
+
+.section_hero_followup_content_card:hover .for_living_feat_tag_container_inner,
+.section_hero_followup_content_card.active .for_living_feat_tag_container_inner {
+  transform: translate(-1.25rem, 0);
+}
+
+.for-living-display-text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.for-living-display-text.for-prefix {
+  transform: translate(1rem, 0);
+}
+
+.for-living-display-text.living-suffix {
+  transform: translate(-1rem, 0);
+}
+
+.section_hero_followup_content_card:hover .for-living-display-text,
+.section_hero_followup_content_card.active .for-living-display-text {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.for_living_feat_tag {
+  background-color: #ffffff;
+  color: #111111;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}

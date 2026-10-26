@@ -33,7 +33,7 @@ export default function WorkPage() {
             Work that speaks for us
           </h1>
           <p className="text-sm md:text-base text-white/70 font-light max-w-xl leading-relaxed">
-            A curated archive of 48 turnkey architectural and interior commissions crafted across Dhaka, Sylhet, Chittagong, and coastal Bangladesh.
+            A curated archive of 10 turnkey architectural and interior commissions crafted across Dhaka, Sylhet, Chittagong, and coastal Bangladesh.
           </p>
         </motion.div>
 

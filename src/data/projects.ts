@@ -41,10 +41,30 @@ const detailedDescriptions: Record<string, { description: string, services: stri
     services: 'Naval Interior Fitout, Commercial FF&E, Maritime Acoustic Wall Panels',
     quote: 'A tribute to Bengal\'s riverine civilization, built with shipyard precision.'
   },
+  'dhanmondi-courtyard-haven': {
+    description: 'Centering around a tranquil inner open-sky courtyard, this Dhaka family sanctuary integrates exposed terracotta brickwork with kiln-dried teak sliding partitions, bringing natural cross-ventilation and gentle water reflections into daily living.',
+    services: 'Courtyard Architecture, Exposed Brick Finishing, Teak Partitions',
+    quote: 'Rediscovering the tranquility of the traditional Bengal prangon in the urban core.'
+  },
+  'jamdani-couture-lounge': {
+    description: 'A flagship haute-couture salon on Gulshan Avenue. Custom hand-loomed Jamdani sheer panels create semi-private fitting pavilions, framed in patinated bronze extrusions and set upon dark honed Jaflong river basalt floors.',
+    services: 'Commercial Retail Fitout, Jamdani Architectural Panels, Precision Lighting',
+    quote: 'Woven heritage meets contemporary luxury retail.'
+  },
   'bay-of-bengal-yacht-suite': {
     description: 'A 48-meter custom expedition yacht interior engineered with honeycomb carbon panels clad in honey-toned sustainable Sundari veneers, hand-woven jute composite wall linings, and titanium-reinforced marine cabinetry.',
     services: 'Superyacht Interior Engineering, Lightweight Joinery, Maritime Certification',
     quote: 'Navigating open ocean waters wrapped in Bengal craftsmanship.'
+  },
+  'surma-river-retreat': {
+    description: 'Perched high on the riverbanks of the Surma in Sylhet, this pavilion balances monsoon flood resilience with floor-to-ceiling panoramic glass and bespoke rattan-and-teak lounge furniture.',
+    services: 'Riverfront Structural Woodwork, Loose Furniture Package, Landscape Integration',
+    quote: 'Monsoon vistas framed in seasoned hardwood and river stone.'
+  },
+  'dhaka-modernist-atelier': {
+    description: 'A 16,000 sq ft creative studio and gallery in Tejgaon Arts District. Exposed board-marked architectural concrete paired with 4-meter-tall pivot doors in scorched teak and hand-hammered Dhamrai bronze pulls.',
+    services: 'Large-Scale Architectural Millwork, Pivot Door Engineering, Acoustic Ceilings',
+    quote: 'Raw delta materials sculpted into an uncompromising creative temple.'
   }
 };
 

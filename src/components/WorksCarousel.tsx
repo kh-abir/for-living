@@ -55,7 +55,7 @@ export default function WorksCarousel() {
             href="/work"
             className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors"
           >
-            Archive (48 Works) →
+            Archive (10 Selected Works) →
           </Link>
 
           <div className="flex items-center gap-2">
