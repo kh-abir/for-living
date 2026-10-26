@@ -21,77 +21,88 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  // Smooth scroll-driven transitions matching the original Webflow GSAP scrub
-  const textOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.35], [0, -50]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.35], ['blur(0px)', 'blur(8px)']);
-  const overlayDarken = useTransform(scrollYProgress, [0, 0.45], [0.35, 0.85]);
+  // Main text dissolves on scroll
+  const textOpacity = useTransform(scrollYProgress, [0, 0.32], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.32], [0, -60]);
+  const textScale = useTransform(scrollYProgress, [0, 0.32], [1, 0.96]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.32], ['blur(0px)', 'blur(8px)']);
+  const overlayDarken = useTransform(scrollYProgress, [0.08, 0.5], [0.25, 0.8]);
 
-  // Staggered parallax translation of the 3 living cards
-  const cardCommercialY = useTransform(scrollYProgress, [0.1, 0.75], [180, -35]);
-  const cardResidentialY = useTransform(scrollYProgress, [0.1, 0.75], [260, -65]);
-  const cardMarineY = useTransform(scrollYProgress, [0.1, 0.75], [210, -20]);
+  // 3 Living Cards enter from below the viewport (120vh) on scroll
+  const cardsOpacity = useTransform(scrollYProgress, [0.12, 0.3], [0, 1]);
+  const cardCommercialY = useTransform(scrollYProgress, [0.12, 0.75], ['120vh', '0vh']);
+  const cardResidentialY = useTransform(scrollYProgress, [0.12, 0.75], ['135vh', '-5vh']);
+  const cardMarineY = useTransform(scrollYProgress, [0.12, 0.75], ['125vh', '3vh']);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[140vh] md:min-h-[165vh] bg-[#080e00] text-white overflow-hidden"
+      className="section_hero hp_section_hero relative min-h-[220vh] bg-[#080e00] text-white overflow-visible"
     >
-      {/* Pinned Cinematic Background Container */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
-        {/* Base Layer: High-Res Handcrafted Fabric / Chair Image */}
+      {/* Pinned 100vh Viewport */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center">
+        {/* Layer 0: Handcrafted Chair Fabric Texture (Full 100vw x 100vh unclipped) */}
         <div className="absolute inset-0 z-0">
           <img
             src="/assets/hero-chair.avif"
             alt="Craftsmanship shadow on textured architectural fabric"
-            className="w-full h-full object-cover object-center scale-105"
+            className="w-full h-full object-cover object-center scale-105 select-none"
           />
         </div>
 
-        {/* Breathing / Pulsing Geometric Line Pattern Layer */}
+        {/* Layer 1: Architectural Blueprint Line Art (Full bleed, warm copper glow) */}
+        <div className="absolute inset-0 z-1 pointer-events-none overflow-hidden">
+          <img
+            src="/assets/hero_line_bg.webp"
+            alt=""
+            className="w-full h-full object-cover object-center opacity-75 mix-blend-screen animate-hero-pulse select-none"
+          />
+        </div>
+
+        {/* Layer 2: Warm Amber / Terracotta Central Glow */}
         <div
-          className="absolute inset-0 z-1 pointer-events-none mix-blend-screen opacity-25 animate-hero-pulse"
+          className="absolute inset-0 z-2 pointer-events-none"
           style={{
-            backgroundImage: `url('/assets/hero_line_bg.webp')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            background:
+              'radial-gradient(ellipse at 50% 50%, rgba(205, 105, 55, 0.42) 0%, rgba(182, 82, 52, 0.2) 38%, transparent 72%)',
           }}
         />
 
-        {/* Interactive Radial Spotlight Mask that follows cursor */}
+        {/* Layer 3: Interactive Cursor Spotlight */}
         <div
-          className="absolute inset-0 z-2 pointer-events-none opacity-40 transition-opacity duration-300 hidden md:block"
+          className="absolute inset-0 z-3 pointer-events-none opacity-50 transition-opacity duration-300 hidden md:block"
           style={{
-            background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.08), transparent 70%)`,
+            background: `radial-gradient(550px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,220,180,0.14), transparent 70%)`,
           }}
         />
 
-        {/* Scroll-driven Dark Dimmer Overlay */}
+        {/* Layer 4: Vignette & Scroll Darkener */}
         <motion.div
-          className="absolute inset-0 z-3 bg-[#080e00]"
-          style={{ opacity: overlayDarken }}
+          className="absolute inset-0 z-4 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse at center, transparent 35%, rgba(8, 14, 0, 0.55) 75%, #080e00 100%)',
+            opacity: overlayDarken,
+          }}
         />
 
-        {/* Top Spacer for floating navigation */}
-        <div className="h-24 w-full z-10" />
-
-        {/* Central Brand Statement (Exactly like reference site) */}
+        {/* Layer 5: Central Brand Statement (Dissolves on Scroll) */}
         <motion.div
-          className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 text-center flex flex-col items-center justify-center my-auto"
+          className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 text-center flex flex-col items-center justify-center my-auto pt-12 md:pt-16"
           style={{
             opacity: textOpacity,
             y: textY,
+            scale: textScale,
             filter: textBlur,
           }}
         >
-          {/* Top Emblem SVG + Cursive Script Tag */}
+          {/* Authentic Architectural Emblem SVG */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center gap-2.5 mb-6"
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="flex flex-col items-center gap-2 mb-5"
           >
-            {/* Authentic Architectural Emblem SVG */}
             <svg
               fill="none"
               height="48"
@@ -99,7 +110,7 @@ export default function Hero() {
               viewBox="0 0 36 48"
               width="36"
               xmlns="http://www.w3.org/2000/svg"
-              className="drop-shadow-sm opacity-90"
+              className="drop-shadow-md opacity-95"
             >
               <path
                 d="M4.25715 39.8555C4.36497 40.0194 4.47722 40.1826 4.5939 40.3458C4.5939 40.3458 3.26983 38.2523 4.25715 39.8555Z"
@@ -119,132 +130,127 @@ export default function Hero() {
               />
             </svg>
 
-            <span className="font-cursive-luxury text-2xl md:text-3xl text-white/60 tracking-wide">
+            <span className="font-cursive-luxury text-2xl md:text-3xl text-white/75 tracking-wide -mt-1">
               Crafted in Bangladesh
             </span>
           </motion.div>
 
-          {/* Core Brand Headline (Serif Editorial) */}
+          {/* Core Brand Headline (Uppercase 2-lines with subtle luxury gradient) */}
           <motion.h1
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.35 }}
-            className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.08] tracking-tight max-w-4xl text-white drop-shadow-sm mb-6"
+            transition={{ duration: 1, delay: 0.3 }}
+            className="font-serif-luxury uppercase text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal leading-[1.1] tracking-[0.04em] text-center max-w-5xl mb-6 bg-gradient-to-br from-white via-white to-[#f8e7c3]/60 bg-clip-text text-transparent drop-shadow-sm"
           >
-            The poetry of design & <br className="hidden sm:inline" />
-            The engineering of craft
+            THE POETRY OF DESIGN &amp; <br className="hidden sm:inline" />
+            THE ENGINEERING OF CRAFT
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.5 }}
+            transition={{ duration: 0.9, delay: 0.45 }}
             className="text-sm md:text-base text-white/75 font-light max-w-xl mx-auto leading-relaxed mb-8"
           >
             We turn architectural designs into masterpiece interiors crafted by genius artisans.
           </motion.p>
 
-          {/* Start a project Button */}
+          {/* Start a project Button (Solid White Pill) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-white/40 text-xs uppercase tracking-[0.22em] text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-[#080e00] hover:scale-105 active:scale-95 shadow-xl"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-[#111111] font-sans text-xs uppercase font-medium tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-white/90 hover:scale-105 active:scale-95"
             >
-              Start a project
+              START A PROJECT
             </Link>
           </motion.div>
         </motion.div>
 
-        {/* Down Scroll Indicator */}
+        {/* Layer 6: Parallax Floating Living Categories Cards */}
+        {/* On page load (scroll = 0), cards are 120vh down (offscreen). As user scrolls, they glide up into view! */}
         <motion.div
-          className="relative z-10 pb-6 flex flex-col items-center gap-2 text-white/40 text-[10px] uppercase tracking-[0.25em]"
-          style={{ opacity: textOpacity }}
+          style={{ opacity: cardsOpacity }}
+          className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
         >
-          <span>Scroll to explore</span>
-          <div className="w-[1px] h-7 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+          <div className="max-w-[1360px] w-full mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center pointer-events-auto">
+            {/* Card 1: Commercial Living (Left) */}
+            <motion.div
+              style={{ y: cardCommercialY }}
+              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35"
+            >
+              <Link href="/work?category=Commercial" className="block w-full h-full relative">
+                <img
+                  src="/assets/feat-commercial.avif"
+                  alt="Interior view of luxury commercial boutique space"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
+
+                {/* Original Interactive Hover Tag */}
+                <div className="for_living_feat_tag_container">
+                  <div className="for_living_feat_tag_container_inner">
+                    <span className="for-living-display-text for-prefix">For</span>
+                    <div className="for_living_feat_tag">Commercial</div>
+                    <span className="for-living-display-text living-suffix">Living</span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* Card 2: Residential Living (Center - Offset) */}
+            <motion.div
+              style={{ y: cardResidentialY }}
+              className="section_hero_followup_content_card card-1 group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35"
+            >
+              <Link href="/work?category=Residential" className="block w-full h-full relative">
+                <img
+                  src="/assets/feat-residential.avif"
+                  alt="Modern luxury residence with illuminated waters at dusk"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
+
+                {/* Original Interactive Hover Tag */}
+                <div className="for_living_feat_tag_container">
+                  <div className="for_living_feat_tag_container_inner">
+                    <span className="for-living-display-text for-prefix">For</span>
+                    <div className="for_living_feat_tag">Residential</div>
+                    <span className="for-living-display-text living-suffix">Living</span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* Card 3: Marine Living (Right) */}
+            <motion.div
+              style={{ y: cardMarineY }}
+              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35"
+            >
+              <Link href="/work?category=Marine" className="block w-full h-full relative">
+                <img
+                  src="/assets/feat-marine.avif"
+                  alt="Aerial view of luxury expedition yacht floating at night"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
+
+                {/* Original Interactive Hover Tag */}
+                <div className="for_living_feat_tag_container">
+                  <div className="for_living_feat_tag_container_inner">
+                    <span className="for-living-display-text for-prefix">For</span>
+                    <div className="for_living_feat_tag">Marine</div>
+                    <span className="for-living-display-text living-suffix">Living</span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          </div>
         </motion.div>
-      </div>
-
-      {/* Parallax Floating Living Categories Cards (Exact layout & interactive tags as original) */}
-      <div className="relative z-20 max-w-[1360px] mx-auto px-6 md:px-12 -mt-[38vh] md:-mt-[45vh] pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
-          {/* Card 1: Commercial Living (Left) */}
-          <motion.div
-            style={{ y: cardCommercialY }}
-            className="section_hero_followup_content_card group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35"
-          >
-            <Link href="/work?category=Commercial" className="block w-full h-full relative">
-              <img
-                src="/assets/feat-commercial.avif"
-                alt="Interior view of luxury commercial boutique space"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
-
-              {/* Exact Original Interactive Tag */}
-              <div className="for_living_feat_tag_container">
-                <div className="for_living_feat_tag_container_inner">
-                  <span className="for-living-display-text for-prefix">For</span>
-                  <div className="for_living_feat_tag">Commercial</div>
-                  <span className="for-living-display-text living-suffix">Living</span>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-
-          {/* Card 2: Residential Living (Center - Offset) */}
-          <motion.div
-            style={{ y: cardResidentialY }}
-            className="section_hero_followup_content_card card-1 group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35 md:-translate-y-6"
-          >
-            <Link href="/work?category=Residential" className="block w-full h-full relative">
-              <img
-                src="/assets/feat-residential.avif"
-                alt="Modern luxury residence with illuminated waters at dusk"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
-
-              {/* Exact Original Interactive Tag */}
-              <div className="for_living_feat_tag_container">
-                <div className="for_living_feat_tag_container_inner">
-                  <span className="for-living-display-text for-prefix">For</span>
-                  <div className="for_living_feat_tag">Residential</div>
-                  <span className="for-living-display-text living-suffix">Living</span>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-
-          {/* Card 3: Marine Living (Right) */}
-          <motion.div
-            style={{ y: cardMarineY }}
-            className="section_hero_followup_content_card group relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/35"
-          >
-            <Link href="/work?category=Marine" className="block w-full h-full relative">
-              <img
-                src="/assets/feat-marine.avif"
-                alt="Aerial view of luxury expedition yacht floating at night"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
-
-              {/* Exact Original Interactive Tag */}
-              <div className="for_living_feat_tag_container">
-                <div className="for_living_feat_tag_container_inner">
-                  <span className="for-living-display-text for-prefix">For</span>
-                  <div className="for_living_feat_tag">Marine</div>
-                  <span className="for-living-display-text living-suffix">Living</span>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        </div>
       </div>
     </section>
   );
