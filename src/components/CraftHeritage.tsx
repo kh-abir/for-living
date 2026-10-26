@@ -134,32 +134,38 @@ export default function CraftHeritage() {
                     onMouseLeave={() => setActiveId(null)}
                     onClick={() => setActiveId(isActive ? null : m.id)}
                   >
-                    {/* Radar Pulse Trigger */}
+                    {/* Radar Pulse Trigger with Material Texture Dot */}
                     <div className="relative flex items-center justify-center w-8 h-8 cursor-pointer">
                       <span className="radar-ring w-8 h-8" />
                       <span className="radar-ring w-8 h-8" />
                       <span className="radar-ring w-8 h-8" />
-                      <span
-                        className={`w-3 h-3 rounded-full transition-all duration-300 shadow-md ${
+                      <div
+                        className={`w-4 h-4 rounded-full overflow-hidden transition-all duration-300 shadow-md ring-2 ${
                           isActive
-                            ? 'bg-[#b65234] scale-125 ring-4 ring-[#b65234]/30'
-                            : 'bg-[#111111] group-hover:bg-[#b65234] group-hover:scale-110'
+                            ? 'ring-[#b65234] scale-125 shadow-lg'
+                            : 'ring-white/80 group-hover:ring-[#b65234] group-hover:scale-110'
                         }`}
-                      />
+                      >
+                        <img
+                          src={m.img}
+                          alt={m.material}
+                          className="w-full h-full object-cover select-none"
+                        />
+                      </div>
                     </div>
 
-                    {/* Exact Original Popover: Material Thumbnail + Title + Region */}
+                    {/* Popover: Enlarged Material Texture Thumbnail + Title + Region + Description */}
                     <AnimatePresence>
                       {isActive && (
                         <motion.div
-                          initial={{ opacity: 0, x: -12, scale: 0.96 }}
+                          initial={{ opacity: 0, x: -10, scale: 0.95 }}
                           animate={{ opacity: 1, x: 0, scale: 1 }}
-                          exit={{ opacity: 0, x: -8, scale: 0.96 }}
-                          transition={{ duration: 0.25, ease: 'easeOut' }}
-                          className="absolute left-9 top-1/2 -translate-y-1/2 z-30 bg-white/95 backdrop-blur-md rounded-lg py-2.5 px-4 pl-9 shadow-xl border border-black/10 whitespace-nowrap pointer-events-none"
+                          exit={{ opacity: 0, x: -8, scale: 0.95 }}
+                          transition={{ duration: 0.22, ease: 'easeOut' }}
+                          className="absolute left-9 top-1/2 -translate-y-1/2 z-30 bg-white/95 backdrop-blur-xl rounded-xl p-3 pr-4 shadow-[0_15px_35px_rgba(0,0,0,0.18)] border border-black/10 flex items-center gap-3 pointer-events-none min-w-[210px]"
                         >
-                          {/* Round Material Thumbnail on Left Edge */}
-                          <div className="absolute -left-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full overflow-hidden border border-black/15 shadow-md bg-white">
+                          {/* Enlarged Material Texture Thumbnail */}
+                          <div className="w-10 h-10 rounded-lg overflow-hidden border border-black/10 shadow-sm flex-shrink-0 bg-stone-100">
                             <img
                               src={m.img}
                               alt={m.material}
@@ -167,11 +173,16 @@ export default function CraftHeritage() {
                             />
                           </div>
 
-                          <div className="font-serif-luxury text-xs sm:text-sm font-medium text-[#111111]">
-                            {m.material}
-                          </div>
-                          <div className="text-[10px] text-[#111111]/60 font-mono tracking-wider">
-                            {m.region}
+                          <div className="flex flex-col">
+                            <div className="font-serif-luxury text-xs sm:text-sm font-medium text-[#111111] leading-tight">
+                              {m.material}
+                            </div>
+                            <div className="text-[10px] text-[#b65234] font-mono tracking-wider uppercase mt-0.5">
+                              {m.region}
+                            </div>
+                            <div className="text-[9px] text-[#111111]/60 font-sans leading-tight mt-1 max-w-[170px] line-clamp-2">
+                              {m.description}
+                            </div>
                           </div>
                         </motion.div>
                       )}

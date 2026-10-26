@@ -66,15 +66,15 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Layer 1: Architectural Blueprint Line Art - 100% hidden by default, revealed ONLY directly under cursor */}
+        {/* Layer 1: Architectural Blueprint Line Art - Matte muted style, revealed ONLY directly under cursor */}
         <motion.div
           style={{
             opacity: heroBackgroundOpacity,
             WebkitMaskImage: hasMovedCursor
-              ? `radial-gradient(280px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.5) 60%, transparent 100%)`
+              ? `radial-gradient(260px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.35) 60%, transparent 100%)`
               : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
             maskImage: hasMovedCursor
-              ? `radial-gradient(280px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.5) 60%, transparent 100%)`
+              ? `radial-gradient(260px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.35) 60%, transparent 100%)`
               : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
           }}
           className="absolute inset-0 z-1 pointer-events-none overflow-hidden transition-[opacity] duration-300"
@@ -82,7 +82,7 @@ export default function Hero() {
           <img
             src="/assets/hero_line_bg.webp"
             alt=""
-            className="w-full h-full object-cover object-center opacity-85 mix-blend-screen select-none"
+            className="w-full h-full object-cover object-center opacity-30 mix-blend-screen select-none filter contrast-75 brightness-70 sepia-[0.3]"
           />
         </motion.div>
 

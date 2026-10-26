@@ -151,12 +151,12 @@ export default function WorksCarousel() {
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUpOrLeave}
-        className="flex items-center gap-6 md:gap-8 overflow-x-auto no-scrollbar px-6 md:px-12 py-8 cursor-grab active:cursor-grabbing select-none"
+        className="flex items-center gap-6 md:gap-8 overflow-x-auto no-scrollbar px-6 md:px-12 py-14 md:py-20 cursor-grab active:cursor-grabbing select-none"
       >
         {allProjects.map((project, idx) => (
           <div
             key={`${project.slug}-${idx}`}
-            className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[420px] transition-all duration-500 ease-out hover:scale-[1.08] hover:-translate-y-2 hover:z-30 relative group"
+            className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[420px] origin-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.18] hover:z-40 relative group"
           >
             <Link href={`/work/${project.slug}`} className="block">
               {/* Top Architectural Precision Ruler Ticks */}
@@ -168,16 +168,16 @@ export default function WorksCarousel() {
                 <span className="w-1.5 h-[1px] bg-white/40" />
               </div>
 
-              {/* Elevated Glassmorphic Card Image Container */}
-              <div className="relative aspect-[16/11] rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.04] border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7)] group-hover:border-white/50 group-hover:shadow-[0_35px_80px_rgba(0,0,0,0.95)] transition-all duration-500">
+              {/* Elevated Tall Vertical Glassmorphic Card Image Container */}
+              <div className="relative aspect-[9/13] rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.04] border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7)] group-hover:border-white/60 group-hover:shadow-[0_45px_110px_rgba(0,0,0,0.98)] transition-all duration-500">
                 <img
                   src={project.img}
                   alt={project.title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent transition-opacity duration-300" />
 
                 {/* Glassmorphic Category Pill */}
                 <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] uppercase font-mono tracking-widest text-white/90 shadow-md">
@@ -185,7 +185,7 @@ export default function WorksCarousel() {
                 </div>
 
                 {/* Floating Glassmorphic Location & Title Badge */}
-                <div className="absolute bottom-4 left-4 right-4 z-10 backdrop-blur-md bg-black/55 border border-white/15 rounded-xl p-3.5 transition-all duration-300 group-hover:bg-black/75 group-hover:border-white/30">
+                <div className="absolute bottom-4 left-4 right-4 z-10 backdrop-blur-md bg-black/60 border border-white/15 rounded-xl p-4 transition-all duration-300 group-hover:bg-black/80 group-hover:border-white/35">
                   <div className="text-[10px] font-mono text-[#b65234] uppercase tracking-wider mb-1">
                     {project.location} • {project.year}
                   </div>
