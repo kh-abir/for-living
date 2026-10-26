@@ -54,14 +54,14 @@ export default function Hero() {
         }}
         className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center z-0 origin-center"
       >
-        {/* Layer 0: Handcrafted Chair Fabric Texture (Progressively fades) */}
+        {/* Layer 0: Artisanal Fired Terracotta Clay Texture (Progressively fades) */}
         <motion.div
           style={{ opacity: heroBackgroundOpacity }}
           className="absolute inset-0 z-0"
         >
           <img
-            src="/assets/hero-chair.avif"
-            alt="Craftsmanship shadow on textured architectural fabric"
+            src="/assets/hero-terracotta.avif"
+            alt="Artisanal terracotta fired clay architectural texture"
             className="w-full h-full object-cover object-center scale-105 select-none"
           />
         </motion.div>
