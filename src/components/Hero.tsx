@@ -33,6 +33,7 @@ export default function Hero() {
   // Phase 2 (Scroll 0.02 -> 0.12): 3 Living Cards glide up to dead center on much shorter scroll!
   // Stay centered, interactive, and completely unobstructed from 0.12 to 0.38
   const cardsOpacity = useTransform(scrollYProgress, [0.02, 0.08], [0, 1]);
+  const cardsPointerEvents = useTransform(scrollYProgress, (v) => (v < 0.03 ? 'none' : 'auto'));
   const cardCommercialY = useTransform(scrollYProgress, [0.02, 0.12], ['100vh', '0vh']);
   const cardResidentialY = useTransform(scrollYProgress, [0.02, 0.12], ['115vh', '-5vh']);
   const cardMarineY = useTransform(scrollYProgress, [0.02, 0.12], ['105vh', '3vh']);
@@ -54,46 +55,60 @@ export default function Hero() {
         }}
         className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center z-0 origin-center"
       >
-        {/* Layer 0: Artisanal Fired Terracotta Clay Texture (Progressively fades) */}
+        {/* Layer 0: Artisanal Fired Terracotta Clay Texture (Defocused, Darkened, Generous Spatial Depth) */}
         <motion.div
           style={{ opacity: heroBackgroundOpacity }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 overflow-hidden"
         >
           <img
             src="/assets/hero-terracotta.avif"
             alt="Artisanal terracotta fired clay architectural texture"
-            className="w-full h-full object-cover object-center scale-105 select-none"
+            className="w-full h-full object-cover object-center scale-110 select-none filter blur-[2.5px] brightness-[0.58] contrast-[0.92] saturate-[0.85]"
           />
         </motion.div>
 
-        {/* Layer 1: Architectural Blueprint Line Art - Matte muted style, revealed ONLY directly under cursor */}
+        {/* Expansive Atmospheric Spatial Vignette (Deep wide-space sensation) */}
+        <motion.div
+          style={{ opacity: heroBackgroundOpacity }}
+          className="absolute inset-0 z-1 pointer-events-none"
+        >
+          <div
+            className="w-full h-full"
+            style={{
+              background:
+                'radial-gradient(ellipse 95% 80% at 50% 50%, transparent 25%, rgba(18, 16, 14, 0.55) 65%, rgba(18, 16, 14, 0.96) 100%)',
+            }}
+          />
+        </motion.div>
+
+        {/* Layer 1: Architectural Blueprint Line Art - Crisp Matte Linework Revealed Directly Under Cursor */}
         <motion.div
           style={{
             opacity: heroBackgroundOpacity,
             WebkitMaskImage: hasMovedCursor
-              ? `radial-gradient(260px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.35) 60%, transparent 100%)`
+              ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.7) 60%, transparent 100%)`
               : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
             maskImage: hasMovedCursor
-              ? `radial-gradient(260px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.35) 60%, transparent 100%)`
+              ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.7) 60%, transparent 100%)`
               : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
           }}
-          className="absolute inset-0 z-1 pointer-events-none overflow-hidden transition-[opacity] duration-300"
+          className="absolute inset-0 z-2 pointer-events-none overflow-hidden transition-[opacity] duration-300"
         >
           <img
             src="/assets/hero_line_bg.webp"
             alt=""
-            className="w-full h-full object-cover object-center opacity-30 mix-blend-screen select-none filter contrast-75 brightness-70 sepia-[0.3]"
+            className="w-full h-full object-cover object-center opacity-65 mix-blend-screen select-none filter contrast-90 brightness-90 sepia-[0.35]"
           />
         </motion.div>
 
-        {/* Layer 2: Warm Amber / Terracotta Central Glow */}
+        {/* Layer 2: Warm Subtle Terracotta Atmospheric Core Glow */}
         <motion.div
           style={{
             opacity: heroBackgroundOpacity,
             background:
-              'radial-gradient(ellipse at 50% 50%, rgba(189, 123, 88, 0.42) 0%, rgba(189, 123, 88, 0.2) 38%, transparent 72%)',
+              'radial-gradient(ellipse 75% 65% at 50% 50%, rgba(189, 123, 88, 0.3) 0%, rgba(189, 123, 88, 0.08) 50%, transparent 78%)',
           }}
-          className="absolute inset-0 z-2 pointer-events-none"
+          className="absolute inset-0 z-3 pointer-events-none"
         />
 
         {/* Layer 3: Progressive Fade / Darkening Overlay (stays still in background) */}
@@ -175,32 +190,34 @@ export default function Hero() {
             We turn architectural designs into masterpiece interiors crafted by genius artisans.
           </motion.p>
 
-          {/* Start a project Button */}
+          {/* Start a project Button with Concentric Luxury Outline & Tactile Actions */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-[#221d18] font-sans text-xs uppercase font-medium tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-white/90 hover:scale-105 active:scale-95"
-            >
-              START A PROJECT
-            </Link>
+            <div className="button-outline p-[4px] rounded-full border border-white/25 inline-flex transition-all duration-300 hover:border-[#bd7b58] hover:shadow-[0_0_28px_rgba(189,123,88,0.4)]">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-[#12100e] font-sans text-xs uppercase font-medium tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-[#bd7b58] hover:text-white active:scale-95 cursor-pointer"
+              >
+                START A PROJECT
+              </Link>
+            </div>
           </motion.div>
         </motion.div>
 
         {/* Layer 5: Parallax Floating Living Categories Cards */}
         {/* On page load (scroll = 0), cards are 100vh down (offscreen). As user scrolls, they glide up into view on short scroll! */}
         <motion.div
-          style={{ opacity: cardsOpacity }}
+          style={{ opacity: cardsOpacity, pointerEvents: cardsPointerEvents }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
         >
-          <div className="max-w-[1360px] w-full mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center pointer-events-auto">
+          <div className="max-w-[1360px] w-full mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center pointer-events-none">
             {/* Card 1: Commercial Living (Left) */}
             <motion.div
               style={{ y: cardCommercialY }}
-              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
+              className="section_hero_followup_content_card pointer-events-auto group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer"
             >
               <Link href="/work/?category=Commercial" className="block w-full h-full relative">
                 <img
@@ -224,7 +241,7 @@ export default function Hero() {
             {/* Card 2: Residential Living (Center - Offset) */}
             <motion.div
               style={{ y: cardResidentialY }}
-              className="section_hero_followup_content_card card-1 group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
+              className="section_hero_followup_content_card card-1 pointer-events-auto group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer"
             >
               <Link href="/work/?category=Residential" className="block w-full h-full relative">
                 <img
@@ -248,7 +265,7 @@ export default function Hero() {
             {/* Card 3: Marine Living (Right) */}
             <motion.div
               style={{ y: cardMarineY }}
-              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
+              className="section_hero_followup_content_card pointer-events-auto group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer"
             >
               <Link href="/work/?category=Marine" className="block w-full h-full relative">
                 <img

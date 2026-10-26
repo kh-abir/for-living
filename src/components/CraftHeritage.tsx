@@ -194,16 +194,16 @@ export default function CraftHeritage() {
 
             {/* Bottom Quick Material Tags */}
             <div className="mt-4 pt-3 border-t border-black/5 flex flex-wrap gap-1.5 items-center justify-between text-[11px] font-mono text-[#221d18]/60">
-              <span className="uppercase text-[#bd7b58] font-semibold">Hover pins:</span>
+              <span className="uppercase text-[#bd7b58] font-semibold">Explore materials:</span>
               <div className="flex flex-wrap gap-2">
                 {bdMaterials.map((m) => (
                   <button
                     key={m.id}
-                    onClick={() => setActiveId(m.id)}
-                    className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
+                    onClick={() => setActiveId(activeId === m.id ? null : m.id)}
+                    className={`px-2.5 py-0.5 rounded-full text-[11px] transition-all duration-200 cursor-pointer active:scale-95 ${
                       activeId === m.id
-                        ? 'bg-[#221d18] text-white'
-                        : 'bg-black/5 hover:bg-black/10 text-[#221d18]'
+                        ? 'bg-[#bd7b58] text-white shadow-sm'
+                        : 'bg-black/5 hover:bg-[#bd7b58]/15 hover:text-[#bd7b58] text-[#221d18]'
                     }`}
                   >
                     {m.material.split(' ')[0]}

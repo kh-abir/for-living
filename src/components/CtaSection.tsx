@@ -91,10 +91,10 @@ export default function CtaSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-2"
         >
-          <div className="button-outline p-[4px] rounded-[14px] border border-black/25 inline-flex transition-colors duration-300 hover:border-black/50">
+          <div className="button-outline p-[4px] rounded-[14px] border border-black/25 inline-flex transition-all duration-300 hover:border-[#bd7b58] hover:shadow-[0_0_25px_rgba(189,123,88,0.3)]">
             <Link
               href="/contact"
-              className="px-6 py-2.5 rounded-[9px] bg-black text-white font-serif-luxury text-sm md:text-[15.75px] uppercase tracking-normal transition-all duration-300 hover:bg-[#bd7b58] hover:scale-[1.02] active:scale-[0.98]"
+              className="px-7 py-3 rounded-[9px] bg-black text-white font-serif-luxury text-sm md:text-[15.75px] uppercase tracking-normal transition-all duration-300 hover:bg-[#bd7b58] hover:scale-[1.02] active:scale-[0.97] cursor-pointer inline-block"
             >
               start a project
             </Link>

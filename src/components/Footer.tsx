@@ -113,8 +113,6 @@ export default function Footer() {
         {/* Original-Style Massive Debossed Letterpress Wordmark Carved into Base */}
         <div className="py-12 md:py-16 overflow-hidden select-none">
           <svg
-            width="100%"
-            height="auto"
             viewBox="0 0 1360 210"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

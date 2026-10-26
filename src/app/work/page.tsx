@@ -44,9 +44,9 @@ export default function WorkPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer ${
+                className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer active:scale-95 ${
                   selectedCategory === cat
-                    ? 'bg-white text-black font-semibold shadow-md'
+                    ? 'bg-[#bd7b58] text-white font-semibold shadow-md'
                     : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                 }`}
               >

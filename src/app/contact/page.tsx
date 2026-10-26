@@ -236,7 +236,7 @@ export default function ContactPage() {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-full bg-white text-black text-xs uppercase tracking-[0.22em] font-medium transition-all duration-300 hover:bg-[#bd7b58] hover:text-white shadow-xl cursor-pointer"
+                    className="w-full py-3.5 rounded-full bg-white text-black text-xs uppercase tracking-[0.22em] font-medium transition-all duration-300 hover:bg-[#bd7b58] hover:text-white shadow-xl cursor-pointer active:scale-[0.98]"
                   >
                     Submit Project Inquiry
                   </button>

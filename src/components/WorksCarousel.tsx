@@ -106,35 +106,40 @@ export default function WorksCarousel() {
         <div className="flex items-center gap-6">
           <Link
             href="/work"
-            className="text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors"
+            className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#e2c5a7] hover:text-[#bd7b58] transition-colors cursor-pointer"
           >
-            Archive (10 Selected Works) →
+            <span>Archive (10 Selected Works)</span>
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
           </Link>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <button
               onClick={() => scrollByAmount(-450)}
               disabled={!canScrollLeft}
-              className={`w-10 h-10 rounded-full border border-white/15 backdrop-blur-md bg-white/5 flex items-center justify-center transition-all ${
+              className={`w-11 h-11 rounded-full border flex items-center justify-center transition-all duration-300 ${
                 canScrollLeft
-                  ? 'hover:border-white hover:bg-white hover:text-black cursor-pointer text-white shadow-lg'
-                  : 'opacity-30 cursor-not-allowed text-white/40'
+                  ? 'border-white/20 backdrop-blur-xl bg-white/10 hover:border-[#bd7b58] hover:bg-[#bd7b58] hover:text-white cursor-pointer text-white shadow-[0_4px_20px_rgba(0,0,0,0.4)] active:scale-90'
+                  : 'border-white/10 bg-white/[0.02] opacity-30 cursor-not-allowed text-white/30'
               }`}
               aria-label="Previous project"
             >
-              ←
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
             <button
               onClick={() => scrollByAmount(450)}
               disabled={!canScrollRight}
-              className={`w-10 h-10 rounded-full border border-white/15 backdrop-blur-md bg-white/5 flex items-center justify-center transition-all ${
+              className={`w-11 h-11 rounded-full border flex items-center justify-center transition-all duration-300 ${
                 canScrollRight
-                  ? 'hover:border-white hover:bg-white hover:text-black cursor-pointer text-white shadow-lg'
-                  : 'opacity-30 cursor-not-allowed text-white/40'
+                  ? 'border-white/20 backdrop-blur-xl bg-white/10 hover:border-[#bd7b58] hover:bg-[#bd7b58] hover:text-white cursor-pointer text-white shadow-[0_4px_20px_rgba(0,0,0,0.4)] active:scale-90'
+                  : 'border-white/10 bg-white/[0.02] opacity-30 cursor-not-allowed text-white/30'
               }`}
               aria-label="Next project"
             >
-              →
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>

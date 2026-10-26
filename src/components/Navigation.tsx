@@ -115,8 +115,8 @@ export default function Navigation() {
             <div className="flex items-center gap-1.5 text-xs font-mono tracking-wider uppercase">
               <button
                 onClick={() => setLang('En')}
-                className={`transition-opacity cursor-pointer ${
-                  lang === 'En' ? 'font-bold opacity-100' : 'opacity-40 hover:opacity-80'
+                className={`transition-all duration-200 cursor-pointer active:scale-95 px-1 ${
+                  lang === 'En' ? 'font-bold opacity-100 text-[#bd7b58]' : 'opacity-40 hover:opacity-80'
                 }`}
               >
                 EN
@@ -124,8 +124,8 @@ export default function Navigation() {
               <span className="opacity-30">|</span>
               <button
                 onClick={() => setLang('Bn')}
-                className={`transition-opacity cursor-pointer ${
-                  lang === 'Bn' ? 'font-bold opacity-100' : 'opacity-40 hover:opacity-80'
+                className={`transition-all duration-200 cursor-pointer active:scale-95 px-1 ${
+                  lang === 'Bn' ? 'font-bold opacity-100 text-[#bd7b58]' : 'opacity-40 hover:opacity-80'
                 }`}
               >
                 বাং
@@ -134,10 +134,10 @@ export default function Navigation() {
 
             <Link
               href="/contact"
-              className={`text-xs uppercase tracking-[0.2em] px-5 py-2 rounded-full border transition-all duration-300 hover:scale-105 active:scale-95 ${
+              className={`text-xs uppercase tracking-[0.2em] px-5 py-2 rounded-full border transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${
                 isLightSection && scrolled
                   ? 'border-[#221d18] bg-[#221d18] text-white hover:bg-[#bd7b58] hover:border-[#bd7b58]'
-                  : 'border-white/20 bg-white/10 backdrop-blur-md text-white hover:border-white hover:bg-white hover:text-[#12100e]'
+                  : 'border-white/20 bg-white/10 backdrop-blur-md text-white hover:border-[#bd7b58] hover:bg-[#bd7b58] hover:text-white shadow-sm'
               }`}
             >
               Contact
@@ -148,7 +148,7 @@ export default function Navigation() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center gap-2.5 px-2 py-1 focus:outline-none"
+              className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg border border-transparent hover:border-white/10 hover:bg-white/5 active:scale-95 transition-all focus:outline-none cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               <span className="text-xs uppercase tracking-widest font-mono">
