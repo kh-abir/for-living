@@ -18,54 +18,71 @@ export default function Hero() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end start'],
+    offset: ['start start', 'end end'],
   });
 
-  // Main text dissolves on scroll
-  const textOpacity = useTransform(scrollYProgress, [0, 0.32], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.32], [0, -60]);
-  const textScale = useTransform(scrollYProgress, [0, 0.32], [1, 0.96]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.32], ['blur(0px)', 'blur(8px)']);
-  const overlayDarken = useTransform(scrollYProgress, [0.08, 0.5], [0.25, 0.8]);
+  // Phase 1: Brand statement fades out and blurs early on scroll
+  const textOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.22], [0, -50]);
+  const textScale = useTransform(scrollYProgress, [0, 0.22], [1, 0.96]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.22], ['blur(0px)', 'blur(8px)']);
+  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.15 ? 'none' : 'auto'));
 
-  // 3 Living Cards enter from below the viewport (120vh) on scroll
-  const cardsOpacity = useTransform(scrollYProgress, [0.12, 0.3], [0, 1]);
-  const cardCommercialY = useTransform(scrollYProgress, [0.12, 0.75], ['120vh', '0vh']);
-  const cardResidentialY = useTransform(scrollYProgress, [0.12, 0.75], ['135vh', '-5vh']);
-  const cardMarineY = useTransform(scrollYProgress, [0.12, 0.75], ['125vh', '3vh']);
+  // Phase 2: 3 Living Cards glide up from bottom (100vh) to center
+  const cardsOpacity = useTransform(scrollYProgress, [0.08, 0.24], [0, 1]);
+  const cardCommercialY = useTransform(scrollYProgress, [0.08, 0.45], ['100vh', '0vh']);
+  const cardResidentialY = useTransform(scrollYProgress, [0.08, 0.45], ['115vh', '-5vh']);
+  const cardMarineY = useTransform(scrollYProgress, [0.08, 0.45], ['105vh', '3vh']);
+
+  // Phase 3: Hero stays still in background, but progressively fades away as bottom content stacks over
+  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.3, 0.85], [1, 0.2]);
+  const heroOverlayDark = useTransform(scrollYProgress, [0.05, 0.85], [0.25, 0.88]);
+  const heroRecedeScale = useTransform(scrollYProgress, [0.35, 0.95], [1, 0.94]);
 
   return (
     <section
       ref={containerRef}
-      className="section_hero hp_section_hero relative min-h-[220vh] bg-[#080e00] text-white overflow-visible"
+      className="section_hero hp_section_hero relative min-h-[200vh] bg-[#080e00] text-white"
     >
-      {/* Pinned 100vh Viewport */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center">
-        {/* Layer 0: Handcrafted Chair Fabric Texture (Full 100vw x 100vh unclipped) */}
-        <div className="absolute inset-0 z-0">
+      {/* Pinned 100vh Viewport that stays completely still while next section stacks over */}
+      <motion.div
+        style={{
+          scale: heroRecedeScale,
+        }}
+        className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center z-0 origin-center"
+      >
+        {/* Layer 0: Handcrafted Chair Fabric Texture (Progressively fades) */}
+        <motion.div
+          style={{ opacity: heroBackgroundOpacity }}
+          className="absolute inset-0 z-0"
+        >
           <img
             src="/assets/hero-chair.avif"
             alt="Craftsmanship shadow on textured architectural fabric"
             className="w-full h-full object-cover object-center scale-105 select-none"
           />
-        </div>
+        </motion.div>
 
-        {/* Layer 1: Architectural Blueprint Line Art (Full bleed, warm copper glow) */}
-        <div className="absolute inset-0 z-1 pointer-events-none overflow-hidden">
+        {/* Layer 1: Architectural Blueprint Line Art (Full bleed, copper glow, fades on scroll) */}
+        <motion.div
+          style={{ opacity: heroBackgroundOpacity }}
+          className="absolute inset-0 z-1 pointer-events-none overflow-hidden"
+        >
           <img
             src="/assets/hero_line_bg.webp"
             alt=""
             className="w-full h-full object-cover object-center opacity-75 mix-blend-screen animate-hero-pulse select-none"
           />
-        </div>
+        </motion.div>
 
         {/* Layer 2: Warm Amber / Terracotta Central Glow */}
-        <div
-          className="absolute inset-0 z-2 pointer-events-none"
+        <motion.div
           style={{
+            opacity: heroBackgroundOpacity,
             background:
               'radial-gradient(ellipse at 50% 50%, rgba(205, 105, 55, 0.42) 0%, rgba(182, 82, 52, 0.2) 38%, transparent 72%)',
           }}
+          className="absolute inset-0 z-2 pointer-events-none"
         />
 
         {/* Layer 3: Interactive Cursor Spotlight */}
@@ -76,17 +93,15 @@ export default function Hero() {
           }}
         />
 
-        {/* Layer 4: Vignette & Scroll Darkener */}
+        {/* Layer 4: Progressive Fade / Darkening Overlay (stays still in background) */}
         <motion.div
-          className="absolute inset-0 z-4 pointer-events-none"
+          className="absolute inset-0 z-4 pointer-events-none bg-[#080e00]"
           style={{
-            background:
-              'radial-gradient(ellipse at center, transparent 35%, rgba(8, 14, 0, 0.55) 75%, #080e00 100%)',
-            opacity: overlayDarken,
+            opacity: heroOverlayDark,
           }}
         />
 
-        {/* Layer 5: Central Brand Statement (Dissolves on Scroll) */}
+        {/* Layer 5: Central Brand Statement (Dissolves on Initial Scroll) */}
         <motion.div
           className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 text-center flex flex-col items-center justify-center my-auto pt-12 md:pt-16"
           style={{
@@ -94,6 +109,7 @@ export default function Hero() {
             y: textY,
             scale: textScale,
             filter: textBlur,
+            pointerEvents: textPointerEvents,
           }}
         >
           {/* Authentic Architectural Emblem SVG */}
@@ -135,7 +151,7 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Core Brand Headline (Uppercase 2-lines with subtle luxury gradient) */}
+          {/* Core Brand Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
@@ -156,7 +172,7 @@ export default function Hero() {
             We turn architectural designs into masterpiece interiors crafted by genius artisans.
           </motion.p>
 
-          {/* Start a project Button (Solid White Pill) */}
+          {/* Start a project Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -172,7 +188,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Layer 6: Parallax Floating Living Categories Cards */}
-        {/* On page load (scroll = 0), cards are 120vh down (offscreen). As user scrolls, they glide up into view! */}
+        {/* On page load (scroll = 0), cards are 100vh down (offscreen). As user scrolls, they glide up into view! */}
         <motion.div
           style={{ opacity: cardsOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
@@ -251,7 +267,7 @@ export default function Hero() {
             </motion.div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

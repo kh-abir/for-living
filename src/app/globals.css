@@ -52,7 +52,7 @@ html {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
   background-color: var(--color-dark);
   color: #ffffff;

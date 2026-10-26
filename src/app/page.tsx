@@ -9,11 +9,14 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <CraftHeritage />
-      <WorksCarousel />
-      <ProcessWorkflow />
-      <MilanManifesto />
-      <CtaSection />
+      {/* Downstream content stacks directly over the pinned, fading hero */}
+      <div className="-mt-[100vh] relative z-30 shadow-[0_-30px_70px_rgba(0,0,0,0.6)]">
+        <CraftHeritage />
+        <WorksCarousel />
+        <ProcessWorkflow />
+        <MilanManifesto />
+        <CtaSection />
+      </div>
     </>
   );
 }

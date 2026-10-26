@@ -76,7 +76,7 @@ export default function CraftHeritage() {
   return (
     <section
       data-theme="light"
-      className="section_craft-italy relative bg-[#f2e8d4] text-[#111111] py-16 md:py-24 overflow-hidden"
+      className="section_craft-italy relative z-30 bg-[#f2e8d4] text-[#111111] py-16 md:py-24 overflow-hidden"
     >
       {/* Background Wave Texture Overlay (Exact original Webflow asset) */}
       <div
