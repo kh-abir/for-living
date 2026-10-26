@@ -54,6 +54,8 @@ html {
 body {
   overflow-x: hidden;
   min-height: 100vh;
+  background-color: var(--color-dark);
+  color: #ffffff;
 }
 
 /* Custom Typography Utilities */
