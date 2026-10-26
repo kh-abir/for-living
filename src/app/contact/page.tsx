@@ -21,13 +21,13 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#080e00] text-white pt-28 pb-16">
+    <div className="bg-[#12100e] text-white pt-28 pb-16">
       <div className="max-w-[1360px] mx-auto px-6 md:px-12 py-10 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           {/* Left: Contact Info & Philosophy */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-3 font-semibold">
+              <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-3 font-semibold">
                 Initiate Consultation
               </span>
               <h1 className="font-serif-luxury text-3xl sm:text-5xl font-light text-white tracking-tight mb-4">
@@ -55,7 +55,7 @@ export default function ContactPage() {
                   <div className="text-sm text-white font-sans-luxury space-y-0.5">
                     <div>
                       Email:{' '}
-                      <a href="mailto:contact@prangonstudios.com" className="text-[#b65234] hover:underline">
+                      <a href="mailto:contact@prangonstudios.com" className="text-[#bd7b58] hover:underline">
                         contact@prangonstudios.com
                       </a>
                     </div>
@@ -75,7 +75,7 @@ export default function ContactPage() {
             </div>
 
             {/* Dhaka Map Card */}
-            <div className="relative mt-8 rounded-xl overflow-hidden border border-white/10 aspect-[16/9] bg-[#161715]">
+            <div className="relative mt-8 rounded-xl overflow-hidden border border-white/10 aspect-[16/9] bg-[#2a241e]">
               <img
                 src="/assets/milan-cathedral.avif"
                 alt="Dhaka Studio location map"
@@ -83,7 +83,7 @@ export default function ContactPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-3 z-10 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#b65234] animate-ping" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#bd7b58] animate-ping" />
                 <span className="text-xs font-mono text-white tracking-wider">
                   PRANGON Atelier — Gulshan 2 Lakefront, Dhaka
                 </span>
@@ -92,14 +92,14 @@ export default function ContactPage() {
           </div>
 
           {/* Right: Contact Form */}
-          <div className="lg:col-span-7 bg-[#111111] rounded-2xl p-6 md:p-10 border border-white/10 shadow-2xl">
+          <div className="lg:col-span-7 bg-[#221d18] rounded-2xl p-6 md:p-10 border border-white/10 shadow-2xl">
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-12"
               >
-                <div className="w-14 h-14 rounded-full bg-[#b65234]/20 text-[#b65234] border border-[#b65234] mx-auto flex items-center justify-center text-xl mb-4">
+                <div className="w-14 h-14 rounded-full bg-[#bd7b58]/20 text-[#bd7b58] border border-[#bd7b58] mx-auto flex items-center justify-center text-xl mb-4">
                   ✓
                 </div>
                 <h3 className="font-serif-luxury text-2xl text-white mb-2 font-light">
@@ -137,7 +137,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Rafiq Azam"
-                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#b65234] transition-colors"
+                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#bd7b58] transition-colors"
                     />
                   </div>
 
@@ -151,7 +151,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="architect@studio.com"
-                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#b65234] transition-colors"
+                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#bd7b58] transition-colors"
                     />
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+880 1711 000 000"
-                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#b65234] transition-colors"
+                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#bd7b58] transition-colors"
                     />
                   </div>
 
@@ -178,7 +178,7 @@ export default function ContactPage() {
                     <select
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#b65234] transition-colors"
+                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#bd7b58] transition-colors"
                     >
                       <option value="Residential">Residential Living (Villa / Duplex)</option>
                       <option value="Commercial">Commercial Living (Lounge / Retail)</option>
@@ -197,7 +197,7 @@ export default function ContactPage() {
                       value={formData.location}
                       onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                       placeholder="e.g. Gulshan / Sreemangal / Cox's Bazar"
-                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#b65234] transition-colors"
+                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#bd7b58] transition-colors"
                     />
                   </div>
 
@@ -208,7 +208,7 @@ export default function ContactPage() {
                     <select
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#b65234] transition-colors"
+                      className="w-full bg-[#181916] border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#bd7b58] transition-colors"
                     >
                       <option value="">Select Range</option>
                       <option value="25lakh-50lakh">BDT 25 Lakh – 50 Lakh</option>
@@ -229,14 +229,14 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Briefly describe the site area, materials envisioned (teak, terracotta, brass), and target completion date..."
-                    className="w-full bg-[#181916] border border-white/10 rounded-lg p-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#b65234] transition-colors"
+                    className="w-full bg-[#181916] border border-white/10 rounded-lg p-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#bd7b58] transition-colors"
                   />
                 </div>
 
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-full bg-white text-black text-xs uppercase tracking-[0.22em] font-medium transition-all duration-300 hover:bg-[#b65234] hover:text-white shadow-xl cursor-pointer"
+                    className="w-full py-3.5 rounded-full bg-white text-black text-xs uppercase tracking-[0.22em] font-medium transition-all duration-300 hover:bg-[#bd7b58] hover:text-white shadow-xl cursor-pointer"
                   >
                     Submit Project Inquiry
                   </button>

@@ -17,7 +17,7 @@ export default function WorkPage() {
       : projects.filter((p) => p.category === selectedCategory);
 
   return (
-    <div className="bg-[#080e00] text-white pt-28">
+    <div className="bg-[#12100e] text-white pt-28">
       {/* Work Hero */}
       <section className="px-6 md:px-12 py-12 md:py-16 max-w-[1440px] mx-auto">
         <motion.div
@@ -26,7 +26,7 @@ export default function WorkPage() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-2 font-semibold">
             PRANGON Portfolio Archive
           </span>
           <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-white mb-4">
@@ -91,7 +91,7 @@ export default function WorkPage() {
                 </div>
 
                 {/* Card Container */}
-                <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#161715] border border-white/10 shadow-xl transition-all duration-500 group-hover:border-white/40">
+                <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#2a241e] border border-white/10 shadow-xl transition-all duration-500 group-hover:border-white/40">
                   <img
                     src={project.img}
                     alt={project.title}
@@ -114,7 +114,7 @@ export default function WorkPage() {
 
                   {/* Bottom Info */}
                   <div className="absolute bottom-4 left-4 right-4 z-10">
-                    <div className="text-[10px] font-mono text-[#b65234] uppercase tracking-wider mb-0.5">
+                    <div className="text-[10px] font-mono text-[#bd7b58] uppercase tracking-wider mb-0.5">
                       {project.location}
                     </div>
                     <h3 className="font-serif-luxury text-lg font-normal text-white group-hover:text-white/90 transition-colors line-clamp-1">

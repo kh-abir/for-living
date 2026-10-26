@@ -17,17 +17,19 @@
 }
 
 :root {
-  --color-dark: #080e00;
-  --color-obsidian: #111111;
-  --color-charcoal: #1a1a1a;
-  --color-neutral-dark: #1d1d1d;
-  --color-beige: #f2e8d4;
-  --color-bone: #fcfbf9;
-  --color-offwhite: #f4f2ee;
-  --color-linen: #ccbeb5;
-  --color-terracotta: #b65234;
-  --color-orange: #d37955;
-  --color-forest: #313729;
+  --color-dark: #12100e;
+  --color-obsidian: #221d18;
+  --color-charcoal: #393027;
+  --color-neutral-dark: #2a231d;
+  --color-beige: #f1f2e4;
+  --color-bone: #f8f9ee;
+  --color-offwhite: #f1f2e4;
+  --color-sand: #e2c5a7;
+  --color-linen: #e2c5a7;
+  --color-terracotta: #bd7b58;
+  --color-orange: #bd7b58;
+  --color-sage: #7c8c6f;
+  --color-forest: #7c8c6f;
 
   --font-serif: Ppfragment, 'Playfair Display', Georgia, serif;
   --font-cursive: 'Adobehandwriting Ernie', cursive;
@@ -102,7 +104,7 @@ body {
 .radar-ring {
   position: absolute;
   border-radius: 9999px;
-  border: 1px solid rgba(182, 82, 52, 0.7);
+  border: 1px solid rgba(189, 123, 88, 0.7);
   pointer-events: none;
   animation: radar-pulse 3.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
 }
@@ -192,7 +194,7 @@ body {
 
 .for_living_feat_tag {
   background-color: #ffffff;
-  color: #111111;
+  color: #221d18;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.12em;

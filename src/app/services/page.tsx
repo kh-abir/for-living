@@ -64,7 +64,7 @@ export default function ServicesPage() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <div className="bg-[#080e00] text-white pt-28">
+    <div className="bg-[#12100e] text-white pt-28">
       {/* Hero Header */}
       <section className="relative px-6 md:px-12 py-16 md:py-20 max-w-[1360px] mx-auto">
         <motion.div
@@ -73,7 +73,7 @@ export default function ServicesPage() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-3 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-3 font-semibold">
             Services & Scope
           </span>
           <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.08] text-white mb-4">
@@ -100,12 +100,12 @@ export default function ServicesPage() {
                 onClick={() => setActiveStep(idx)}
                 className={`p-5 rounded-xl border text-left transition-all duration-300 cursor-pointer ${
                   activeStep === idx
-                    ? 'bg-[#141512] border-[#b65234] shadow-xl'
+                    ? 'bg-[#221d18] border-[#bd7b58] shadow-xl'
                     : 'bg-transparent border-white/10 hover:border-white/30 text-white/60 hover:text-white'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-mono text-[#b65234] font-medium">
+                  <span className="text-xs font-mono text-[#bd7b58] font-medium">
                     Stage {phase.step}
                   </span>
                   <span className="text-[10px] text-white/40 font-mono">
@@ -120,10 +120,10 @@ export default function ServicesPage() {
           </div>
 
           {/* Right Active Step Detailed View */}
-          <div className="lg:col-span-7 bg-[#111111] rounded-2xl p-6 md:p-10 border border-white/10 flex flex-col justify-between shadow-2xl">
+          <div className="lg:col-span-7 bg-[#221d18] rounded-2xl p-6 md:p-10 border border-white/10 flex flex-col justify-between shadow-2xl">
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-                <span className="text-3xl font-mono text-[#b65234]">
+                <span className="text-3xl font-mono text-[#bd7b58]">
                   {servicePhases[activeStep].step}
                 </span>
                 <span className="text-[10px] uppercase tracking-widest text-white/50 font-mono">
@@ -139,13 +139,13 @@ export default function ServicesPage() {
                 {servicePhases[activeStep].description}
               </p>
 
-              <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#b65234] mb-3">
+              <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#bd7b58] mb-3">
                 Key Scope & Deliverables
               </h4>
               <ul className="space-y-2">
                 {servicePhases[activeStep].deliverables.map((item, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-xs text-white/80">
-                    <span className="text-[#b65234]">✦</span>
+                    <span className="text-[#bd7b58]">✦</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -158,7 +158,7 @@ export default function ServicesPage() {
               </span>
               <Link
                 href="/contact"
-                className="text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full bg-white text-black hover:bg-[#b65234] hover:text-white transition-colors"
+                className="text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full bg-white text-black hover:bg-[#bd7b58] hover:text-white transition-colors"
               >
                 Request consultation →
               </Link>
@@ -170,7 +170,7 @@ export default function ServicesPage() {
       {/* Environments Sector Breakdown */}
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-[1360px] mx-auto border-t border-white/10">
         <div className="max-w-2xl mb-12">
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-2 font-semibold">
             Sectors of Excellence
           </span>
           <h2 className="font-serif-luxury text-3xl sm:text-5xl font-light text-white">
@@ -179,9 +179,9 @@ export default function ServicesPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl bg-[#111111] border border-white/10 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#221d18] border border-white/10 flex flex-col justify-between">
             <div>
-              <div className="text-xs font-mono text-[#b65234] uppercase tracking-widest mb-2">
+              <div className="text-xs font-mono text-[#bd7b58] uppercase tracking-widest mb-2">
                 01 / Living
               </div>
               <h3 className="font-serif-luxury text-xl text-white mb-3">
@@ -196,9 +196,9 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-[#111111] border border-white/10 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#221d18] border border-white/10 flex flex-col justify-between">
             <div>
-              <div className="text-xs font-mono text-[#b65234] uppercase tracking-widest mb-2">
+              <div className="text-xs font-mono text-[#bd7b58] uppercase tracking-widest mb-2">
                 02 / Living
               </div>
               <h3 className="font-serif-luxury text-xl text-white mb-3">
@@ -213,9 +213,9 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-[#111111] border border-white/10 flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-[#221d18] border border-white/10 flex flex-col justify-between">
             <div>
-              <div className="text-xs font-mono text-[#b65234] uppercase tracking-widest mb-2">
+              <div className="text-xs font-mono text-[#bd7b58] uppercase tracking-widest mb-2">
                 03 / Living
               </div>
               <h3 className="font-serif-luxury text-xl text-white mb-3">

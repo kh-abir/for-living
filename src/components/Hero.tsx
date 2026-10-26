@@ -45,7 +45,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="section_hero hp_section_hero relative min-h-[220vh] bg-[#080e00] text-white"
+      className="section_hero hp_section_hero relative min-h-[220vh] bg-[#12100e] text-white"
     >
       {/* Pinned 100vh Viewport that stays completely still while next section stacks over */}
       <motion.div
@@ -91,14 +91,14 @@ export default function Hero() {
           style={{
             opacity: heroBackgroundOpacity,
             background:
-              'radial-gradient(ellipse at 50% 50%, rgba(205, 105, 55, 0.42) 0%, rgba(182, 82, 52, 0.2) 38%, transparent 72%)',
+              'radial-gradient(ellipse at 50% 50%, rgba(189, 123, 88, 0.42) 0%, rgba(189, 123, 88, 0.2) 38%, transparent 72%)',
           }}
           className="absolute inset-0 z-2 pointer-events-none"
         />
 
         {/* Layer 3: Progressive Fade / Darkening Overlay (stays still in background) */}
         <motion.div
-          className="absolute inset-0 z-4 pointer-events-none bg-[#080e00]"
+          className="absolute inset-0 z-4 pointer-events-none bg-[#12100e]"
           style={{
             opacity: heroOverlayDark,
           }}
@@ -159,7 +159,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="font-serif-luxury uppercase text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-normal leading-[1.08] tracking-normal text-center w-full max-w-[1360px] mb-6 bg-gradient-to-br from-white via-white to-[#f8e7c3]/60 bg-clip-text text-transparent drop-shadow-sm"
+            className="font-serif-luxury uppercase text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-normal leading-[1.08] tracking-normal text-center w-full max-w-[1360px] mb-6 bg-gradient-to-br from-white via-white to-[#e2c5a7]/60 bg-clip-text text-transparent drop-shadow-sm"
           >
             <span className="block whitespace-nowrap">THE POETRY OF DESIGN &amp;</span>
             <span className="block whitespace-nowrap">THE ENGINEERING OF CRAFT</span>
@@ -183,7 +183,7 @@ export default function Hero() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-[#111111] font-sans text-xs uppercase font-medium tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-white/90 hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-[#221d18] font-sans text-xs uppercase font-medium tracking-[0.2em] shadow-2xl transition-all duration-300 hover:bg-white/90 hover:scale-105 active:scale-95"
             >
               START A PROJECT
             </Link>
@@ -200,7 +200,7 @@ export default function Hero() {
             {/* Card 1: Commercial Living (Left) */}
             <motion.div
               style={{ y: cardCommercialY }}
-              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#111111]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
+              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
             >
               <Link href="/work/?category=Commercial" className="block w-full h-full relative">
                 <img
@@ -224,7 +224,7 @@ export default function Hero() {
             {/* Card 2: Residential Living (Center - Offset) */}
             <motion.div
               style={{ y: cardResidentialY }}
-              className="section_hero_followup_content_card card-1 group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#111111]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
+              className="section_hero_followup_content_card card-1 group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
             >
               <Link href="/work/?category=Residential" className="block w-full h-full relative">
                 <img
@@ -248,7 +248,7 @@ export default function Hero() {
             {/* Card 3: Marine Living (Right) */}
             <motion.div
               style={{ y: cardMarineY }}
-              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#111111]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
+              className="section_hero_followup_content_card group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)]"
             >
               <Link href="/work/?category=Marine" className="block w-full h-full relative">
                 <img

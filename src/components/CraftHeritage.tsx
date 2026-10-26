@@ -76,7 +76,7 @@ export default function CraftHeritage() {
   return (
     <section
       data-theme="light"
-      className="section_craft-italy relative z-30 bg-[#f2e8d4] text-[#111111] py-16 md:py-24 overflow-hidden"
+      className="section_craft-italy relative z-30 bg-[#f1f2e4] text-[#221d18] py-16 md:py-24 overflow-hidden"
     >
       {/* Background Wave Texture Overlay (Exact original Webflow asset) */}
       <div
@@ -91,10 +91,10 @@ export default function CraftHeritage() {
       <div className="relative z-10 max-w-[1360px] mx-auto px-6 md:px-12">
         {/* Section Heading */}
         <div className="mb-10 md:mb-14">
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-2 font-semibold">
             Provenance & Guilds
           </span>
-          <h2 className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl font-light leading-[1.12] tracking-tight text-[#111111]">
+          <h2 className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl font-light leading-[1.12] tracking-tight text-[#221d18]">
             Connection to craft and tradition
           </h2>
         </div>
@@ -105,10 +105,10 @@ export default function CraftHeritage() {
           <div className="w-full lg:w-[58%] rounded-2xl bg-[#ffffff80] backdrop-blur-sm border border-black/5 p-6 sm:p-8 flex flex-col justify-between shadow-sm">
             {/* Top Text Content */}
             <div className="mb-6">
-              <h3 className="font-serif-luxury text-2xl sm:text-3xl font-light text-[#111111] mb-3">
+              <h3 className="font-serif-luxury text-2xl sm:text-3xl font-light text-[#221d18] mb-3">
                 Perfect craft from Bangladesh&apos;s artisan guilds
               </h3>
-              <p className="text-xs sm:text-sm text-[#111111]/70 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-[#221d18]/70 leading-relaxed font-light">
                 We work with master artisans from specific delta regions with time-tested techniques that have been refined over centuries, connecting contemporary architecture to a legacy of craft and tradition.
               </p>
             </div>
@@ -142,8 +142,8 @@ export default function CraftHeritage() {
                       <div
                         className={`w-4 h-4 rounded-full overflow-hidden transition-all duration-300 shadow-md ring-2 ${
                           isActive
-                            ? 'ring-[#b65234] scale-125 shadow-lg'
-                            : 'ring-white/80 group-hover:ring-[#b65234] group-hover:scale-110'
+                            ? 'ring-[#bd7b58] scale-125 shadow-lg'
+                            : 'ring-white/80 group-hover:ring-[#bd7b58] group-hover:scale-110'
                         }`}
                       >
                         <img
@@ -174,13 +174,13 @@ export default function CraftHeritage() {
                           </div>
 
                           <div className="flex flex-col">
-                            <div className="font-serif-luxury text-xs sm:text-sm font-medium text-[#111111] leading-tight">
+                            <div className="font-serif-luxury text-xs sm:text-sm font-medium text-[#221d18] leading-tight">
                               {m.material}
                             </div>
-                            <div className="text-[10px] text-[#b65234] font-mono tracking-wider uppercase mt-0.5">
+                            <div className="text-[10px] text-[#bd7b58] font-mono tracking-wider uppercase mt-0.5">
                               {m.region}
                             </div>
-                            <div className="text-[9px] text-[#111111]/60 font-sans leading-tight mt-1 max-w-[170px] line-clamp-2">
+                            <div className="text-[9px] text-[#221d18]/60 font-sans leading-tight mt-1 max-w-[170px] line-clamp-2">
                               {m.description}
                             </div>
                           </div>
@@ -193,8 +193,8 @@ export default function CraftHeritage() {
             </div>
 
             {/* Bottom Quick Material Tags */}
-            <div className="mt-4 pt-3 border-t border-black/5 flex flex-wrap gap-1.5 items-center justify-between text-[11px] font-mono text-[#111111]/60">
-              <span className="uppercase text-[#b65234] font-semibold">Hover pins:</span>
+            <div className="mt-4 pt-3 border-t border-black/5 flex flex-wrap gap-1.5 items-center justify-between text-[11px] font-mono text-[#221d18]/60">
+              <span className="uppercase text-[#bd7b58] font-semibold">Hover pins:</span>
               <div className="flex flex-wrap gap-2">
                 {bdMaterials.map((m) => (
                   <button
@@ -202,8 +202,8 @@ export default function CraftHeritage() {
                     onClick={() => setActiveId(m.id)}
                     className={`px-2 py-0.5 rounded transition-colors cursor-pointer ${
                       activeId === m.id
-                        ? 'bg-[#111111] text-white'
-                        : 'bg-black/5 hover:bg-black/10 text-[#111111]'
+                        ? 'bg-[#221d18] text-white'
+                        : 'bg-black/5 hover:bg-black/10 text-[#221d18]'
                     }`}
                   >
                     {m.material.split(' ')[0]}
@@ -218,10 +218,10 @@ export default function CraftHeritage() {
             {/* Small Card 1: Built by master artisans */}
             <div className="rounded-2xl bg-[#ffffff80] backdrop-blur-sm border border-black/5 overflow-hidden flex flex-col justify-between shadow-sm group">
               <div className="p-6 sm:p-7">
-                <h3 className="font-serif-luxury text-xl sm:text-2xl font-light text-[#111111] mb-2.5">
+                <h3 className="font-serif-luxury text-xl sm:text-2xl font-light text-[#221d18] mb-2.5">
                   Built by master artisans
                 </h3>
-                <p className="text-xs sm:text-sm text-[#111111]/70 leading-relaxed font-light">
+                <p className="text-xs sm:text-sm text-[#221d18]/70 leading-relaxed font-light">
                   This appreciation for the past enriches the final product, lending it an authenticity that resonates with clients who value heritage and artistry.
                 </p>
               </div>
@@ -237,10 +237,10 @@ export default function CraftHeritage() {
             {/* Small Card 2: Creative engineering for complex ideas */}
             <div className="rounded-2xl bg-[#ffffff80] backdrop-blur-sm border border-black/5 overflow-hidden flex flex-col justify-between shadow-sm group">
               <div className="p-6 sm:p-7">
-                <h3 className="font-serif-luxury text-xl sm:text-2xl font-light text-[#111111] mb-2.5">
+                <h3 className="font-serif-luxury text-xl sm:text-2xl font-light text-[#221d18] mb-2.5">
                   Creative engineering for complex ideas
                 </h3>
-                <p className="text-xs sm:text-sm text-[#111111]/70 leading-relaxed font-light">
+                <p className="text-xs sm:text-sm text-[#221d18]/70 leading-relaxed font-light">
                   Owning artisanal furniture is about more than just function; it&apos;s about experiencing the story, culture, and skill embedded within each piece.
                 </p>
               </div>

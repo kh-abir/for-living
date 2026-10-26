@@ -31,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${instrumentSans.variable} font-sans-luxury`}>
-      <body className="bg-[#080e00] text-white selection:bg-[#b65234] selection:text-white antialiased">
+      <body className="bg-[#12100e] text-white selection:bg-[#bd7b58] selection:text-white antialiased">
         <SmoothScroll>
           <Navigation />
           <main className="min-h-screen">{children}</main>

@@ -83,18 +83,18 @@ export default function WorksCarousel() {
   };
 
   return (
-    <section className="relative bg-[#080e00] text-white py-24 md:py-32 overflow-hidden border-t border-white/10">
+    <section className="relative bg-[#12100e] text-white py-24 md:py-32 overflow-hidden border-t border-white/10">
       {/* Subtle Ambient Radial Backlight */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] pointer-events-none opacity-20"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(182, 82, 52, 0.35) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(189, 123, 88, 0.35) 0%, transparent 70%)',
         }}
       />
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-2 font-semibold">
             Selected Commissions
           </span>
           <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white">
@@ -163,7 +163,7 @@ export default function WorksCarousel() {
               <div className="flex items-center justify-between mb-3 px-2 opacity-60 group-hover:opacity-100 transition-opacity">
                 <span className="w-1.5 h-[1px] bg-white/40" />
                 <span className="w-1.5 h-[1px] bg-white/40" />
-                <span className="w-3 h-[1px] bg-[#b65234]" />
+                <span className="w-3 h-[1px] bg-[#bd7b58]" />
                 <span className="w-1.5 h-[1px] bg-white/40" />
                 <span className="w-1.5 h-[1px] bg-white/40" />
               </div>
@@ -186,7 +186,7 @@ export default function WorksCarousel() {
 
                 {/* Floating Glassmorphic Location & Title Badge */}
                 <div className="absolute bottom-4 left-4 right-4 z-10 backdrop-blur-md bg-black/60 border border-white/15 rounded-xl p-4 transition-all duration-300 group-hover:bg-black/80 group-hover:border-white/35">
-                  <div className="text-[10px] font-mono text-[#b65234] uppercase tracking-wider mb-1">
+                  <div className="text-[10px] font-mono text-[#bd7b58] uppercase tracking-wider mb-1">
                     {project.location} • {project.year}
                   </div>
                   <div className="text-base font-serif-luxury font-normal tracking-wide text-white group-hover:text-white transition-colors line-clamp-1">
@@ -199,7 +199,7 @@ export default function WorksCarousel() {
               <div className="flex items-center justify-between mt-3 px-2 opacity-60 group-hover:opacity-100 transition-opacity">
                 <span className="w-1.5 h-[1px] bg-white/40" />
                 <span className="w-1.5 h-[1px] bg-white/40" />
-                <span className="w-3 h-[1px] bg-[#b65234]" />
+                <span className="w-3 h-[1px] bg-[#bd7b58]" />
                 <span className="w-1.5 h-[1px] bg-white/40" />
                 <span className="w-1.5 h-[1px] bg-white/40" />
               </div>

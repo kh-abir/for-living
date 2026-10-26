@@ -59,7 +59,7 @@ export default function Navigation() {
         <div
           className={`pointer-events-auto w-full max-w-[1360px] transition-all duration-300 rounded-2xl border px-6 md:px-10 py-3.5 flex items-center justify-between gap-6 md:gap-10 shadow-2xl backdrop-blur-xl ${
             isLightSection && scrolled
-              ? 'bg-[#ffffff]/85 text-[#111111] border-black/10 shadow-[0_15px_35px_rgba(0,0,0,0.06)]'
+              ? 'bg-[#ffffff]/85 text-[#221d18] border-black/10 shadow-[0_15px_35px_rgba(0,0,0,0.06)]'
               : 'bg-[#000000a6] text-white border-white/12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]'
           }`}
         >
@@ -71,7 +71,7 @@ export default function Navigation() {
           >
             <span
               className={`font-serif-luxury text-xl md:text-2xl tracking-[0.24em] font-medium leading-none uppercase transition-colors duration-300 ${
-                isLightSection && scrolled ? 'text-[#111111]' : 'text-white'
+                isLightSection && scrolled ? 'text-[#221d18]' : 'text-white'
               }`}
             >
               PRANGON
@@ -89,10 +89,10 @@ export default function Navigation() {
                   className={`text-xs uppercase tracking-[0.2em] transition-all duration-300 relative py-1.5 px-2 font-medium ${
                     isActive
                       ? isLightSection && scrolled
-                        ? 'text-[#111111] font-semibold'
+                        ? 'text-[#221d18] font-semibold'
                         : 'text-white font-semibold'
                       : isLightSection && scrolled
-                      ? 'text-[#666666] hover:text-[#111111]'
+                      ? 'text-[#666666] hover:text-[#221d18]'
                       : 'text-white/70 hover:text-white'
                   }`}
                 >
@@ -101,7 +101,7 @@ export default function Navigation() {
                     <motion.span
                       layoutId="nav-underline"
                       className={`absolute left-0 bottom-0 w-full h-[1.5px] ${
-                        isLightSection && scrolled ? 'bg-[#111111]' : 'bg-[#b65234]'
+                        isLightSection && scrolled ? 'bg-[#221d18]' : 'bg-[#bd7b58]'
                       }`}
                     />
                   )}
@@ -136,8 +136,8 @@ export default function Navigation() {
               href="/contact"
               className={`text-xs uppercase tracking-[0.2em] px-5 py-2 rounded-full border transition-all duration-300 hover:scale-105 active:scale-95 ${
                 isLightSection && scrolled
-                  ? 'border-[#111111] bg-[#111111] text-white hover:bg-[#b65234] hover:border-[#b65234]'
-                  : 'border-white/20 bg-white/10 backdrop-blur-md text-white hover:border-white hover:bg-white hover:text-[#080e00]'
+                  ? 'border-[#221d18] bg-[#221d18] text-white hover:bg-[#bd7b58] hover:border-[#bd7b58]'
+                  : 'border-white/20 bg-white/10 backdrop-blur-md text-white hover:border-white hover:bg-white hover:text-[#12100e]'
               }`}
             >
               Contact
@@ -188,10 +188,10 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-[#080e00] text-white flex flex-col justify-between px-8 pt-28 pb-12 md:hidden"
+            className="fixed inset-0 z-40 bg-[#12100e] text-white flex flex-col justify-between px-8 pt-28 pb-12 md:hidden"
           >
             <div className="flex flex-col gap-6">
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#b65234]">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#bd7b58]">
                 PRANGON Studios • Menu
               </span>
               {navLinks.map((link, idx) => (

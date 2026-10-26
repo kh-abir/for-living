@@ -7,7 +7,7 @@ export default function CtaSection() {
   return (
     <section
       data-theme="light"
-      className="section_cta25 relative bg-[#f2e8d4] text-[#111111] py-20 md:py-28 overflow-hidden border-t border-black/5"
+      className="section_cta25 relative bg-[#f1f2e4] text-[#221d18] py-20 md:py-28 overflow-hidden border-t border-black/5"
     >
       {/* Exact Original Background Asset */}
       <div className="absolute inset-0 pointer-events-none">
@@ -94,7 +94,7 @@ export default function CtaSection() {
           <div className="button-outline p-[4px] rounded-[14px] border border-black/25 inline-flex transition-colors duration-300 hover:border-black/50">
             <Link
               href="/contact"
-              className="px-6 py-2.5 rounded-[9px] bg-black text-white font-serif-luxury text-sm md:text-[15.75px] uppercase tracking-normal transition-all duration-300 hover:bg-[#b65234] hover:scale-[1.02] active:scale-[0.98]"
+              className="px-6 py-2.5 rounded-[9px] bg-black text-white font-serif-luxury text-sm md:text-[15.75px] uppercase tracking-normal transition-all duration-300 hover:bg-[#bd7b58] hover:scale-[1.02] active:scale-[0.98]"
             >
               start a project
             </Link>

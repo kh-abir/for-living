@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function BengalManifesto() {
   return (
-    <section className="relative bg-[#0c100a] text-white py-24 md:py-32 overflow-hidden border-t border-white/10">
+    <section className="relative bg-[#1c1713] text-white py-24 md:py-32 overflow-hidden border-t border-white/10">
       {/* Background Architectural Canvas */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20 mix-blend-screen"
@@ -19,7 +19,7 @@ export default function BengalManifesto() {
       <div
         className="absolute top-1/3 left-10 w-[600px] h-[500px] pointer-events-none opacity-20"
         style={{
-          background: 'radial-gradient(circle at center, rgba(182, 82, 52, 0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(circle at center, rgba(189, 123, 88, 0.4) 0%, transparent 70%)',
         }}
       />
 
@@ -27,7 +27,7 @@ export default function BengalManifesto() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Manifesto & Signatures */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-3 font-semibold">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-3 font-semibold">
               Delta Modernism & Discipline
             </span>
 
@@ -43,7 +43,7 @@ export default function BengalManifesto() {
 
               {/* Glassmorphic Core Covenant Quote */}
               <div className="p-6 rounded-2xl backdrop-blur-xl bg-white/[0.04] border border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.5)] relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-[#b65234]" />
+                <div className="absolute top-0 left-0 w-1 h-full bg-[#bd7b58]" />
                 <p className="font-serif-luxury text-base md:text-lg text-white font-normal italic leading-snug">
                   “One partner, one touchpoint, full accountability across every joint, weld, and weave.”
                 </p>
@@ -61,7 +61,7 @@ export default function BengalManifesto() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8 border-t border-white/10">
               {/* Founder 1 */}
               <div className="flex flex-col">
-                <div className="font-cursive-luxury text-3xl md:text-4xl text-[#f8e7c3] tracking-wide mb-1 select-none">
+                <div className="font-cursive-luxury text-3xl md:text-4xl text-[#e2c5a7] tracking-wide mb-1 select-none">
                   Tariqul Islam
                 </div>
                 <div className="font-sans text-xs uppercase tracking-wider text-white font-medium">
@@ -74,7 +74,7 @@ export default function BengalManifesto() {
 
               {/* Founder 2 */}
               <div className="flex flex-col">
-                <div className="font-cursive-luxury text-3xl md:text-4xl text-[#f8e7c3] tracking-wide mb-1 select-none">
+                <div className="font-cursive-luxury text-3xl md:text-4xl text-[#e2c5a7] tracking-wide mb-1 select-none">
                   Farhana Rahman
                 </div>
                 <div className="font-sans text-xs uppercase tracking-wider text-white font-medium">
@@ -107,7 +107,7 @@ export default function BengalManifesto() {
                 {/* Floating Glassmorphic Atelier GPS Coordinates Badge */}
                 <div className="absolute bottom-5 left-5 right-5 z-10 backdrop-blur-md bg-black/60 border border-white/15 rounded-xl p-3.5 flex items-center justify-between">
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-[#b65234]">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-[#bd7b58]">
                       Dhaka Atelier
                     </div>
                     <div className="text-xs font-sans tracking-wide text-white font-medium">

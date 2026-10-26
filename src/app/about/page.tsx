@@ -32,7 +32,7 @@ const teamMembers = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-[#080e00] text-white pt-28">
+    <div className="bg-[#12100e] text-white pt-28">
       {/* About Hero */}
       <section className="px-6 md:px-12 py-16 md:py-20 max-w-[1360px] mx-auto">
         <motion.div
@@ -41,7 +41,7 @@ export default function AboutPage() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-3 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-3 font-semibold">
             Our Provenance
           </span>
           <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.08] text-white mb-4">
@@ -85,7 +85,7 @@ export default function AboutPage() {
       {/* Leadership & Team Section */}
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-[1360px] mx-auto border-t border-white/10">
         <div className="max-w-2xl mb-12">
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-2 font-semibold">
             Leadership
           </span>
           <h2 className="font-serif-luxury text-3xl sm:text-4xl font-light text-white">
@@ -97,12 +97,12 @@ export default function AboutPage() {
           {teamMembers.map((member, i) => (
             <div
               key={member.name}
-              className={`p-5 rounded-2xl bg-[#111111] border border-white/10 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-white/30 ${
+              className={`p-5 rounded-2xl bg-[#221d18] border border-white/10 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-white/30 ${
                 i % 2 === 1 ? 'lg:translate-y-4' : ''
               }`}
             >
               <div>
-                <div className="relative aspect-square rounded-xl overflow-hidden mb-5 bg-[#161715]">
+                <div className="relative aspect-square rounded-xl overflow-hidden mb-5 bg-[#2a241e]">
                   <img
                     src={member.img}
                     alt={member.name}
@@ -112,7 +112,7 @@ export default function AboutPage() {
                 <h3 className="font-serif-luxury text-lg text-white font-medium">
                   {member.name}
                 </h3>
-                <div className="text-[11px] font-mono text-[#b65234] uppercase tracking-wider mt-0.5 mb-3">
+                <div className="text-[11px] font-mono text-[#bd7b58] uppercase tracking-wider mt-0.5 mb-3">
                   {member.role}
                 </div>
                 <p className="text-xs text-white/60 leading-relaxed font-light">

@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-[#080e00] text-white pt-32 pb-20">
+    <div className="bg-[#12100e] text-white pt-32 pb-20">
       <div className="max-w-[840px] mx-auto px-6 md:px-12">
-        <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+        <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-2 font-semibold">
           Legal Compliance
         </span>
         <h1 className="font-serif-luxury text-3xl sm:text-5xl font-light text-white tracking-tight mb-4">
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p>
               For inquiries regarding your stored client information, please email our legal counsel at{' '}
-              <a href="mailto:privacy@prangonstudios.com" className="text-[#b65234] hover:underline">
+              <a href="mailto:privacy@prangonstudios.com" className="text-[#bd7b58] hover:underline">
                 privacy@prangonstudios.com
               </a>.
             </p>

@@ -25,7 +25,7 @@ export default async function ProjectDetailPage({
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
-    <div className="bg-[#080e00] text-white pt-28">
+    <div className="bg-[#12100e] text-white pt-28">
       {/* Breadcrumb & Navigation */}
       <div className="max-w-[1360px] mx-auto px-6 md:px-12 py-4 flex items-center justify-between text-xs font-mono uppercase tracking-widest text-white/50 border-b border-white/10">
         <Link href="/work" className="hover:text-white transition-colors flex items-center gap-2">
@@ -34,7 +34,7 @@ export default async function ProjectDetailPage({
         <div className="flex items-center gap-2">
           <span>{project.category} Living</span>
           <span>/</span>
-          <span className="text-[#b65234] font-semibold">{project.initials}</span>
+          <span className="text-[#bd7b58] font-semibold">{project.initials}</span>
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export default async function ProjectDetailPage({
       <section className="px-6 md:px-12 py-10 md:py-14 max-w-[1360px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-8">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] block mb-2 font-semibold">
               PRANGON Case Study
             </span>
             <h1 className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl font-light text-white tracking-tight leading-tight">
@@ -69,7 +69,7 @@ export default async function ProjectDetailPage({
 
       {/* Hero Showcase Image */}
       <section className="px-6 md:px-12 py-4 max-w-[1360px] mx-auto">
-        <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#161715]">
+        <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#2a241e]">
           <img
             src={project.img}
             alt={project.title}
@@ -93,7 +93,7 @@ export default async function ProjectDetailPage({
               Every joinery detail, terracotta louver, and metal casting underwent rigorous quality audits across our collaborative workshops in Savar, Dhamrai, and Dhaka. Final installation was completed by PRANGON master craftsmen, ensuring continuous alignment with the client’s architectural specifications.
             </p>
 
-            <blockquote className="my-8 p-6 rounded-xl bg-[#111111] border-l-2 border-[#b65234] text-white italic font-serif-luxury text-base md:text-lg">
+            <blockquote className="my-8 p-6 rounded-xl bg-[#221d18] border-l-2 border-[#bd7b58] text-white italic font-serif-luxury text-base md:text-lg">
               “{project.quote}”
             </blockquote>
           </div>
@@ -103,14 +103,14 @@ export default async function ProjectDetailPage({
       {/* Gallery Showcase */}
       {project.gallery && project.gallery.length > 1 && (
         <section className="px-6 md:px-12 py-8 max-w-[1360px] mx-auto border-t border-white/10">
-          <h3 className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] mb-6 font-semibold">
+          <h3 className="text-xs font-mono uppercase tracking-[0.25em] text-[#bd7b58] mb-6 font-semibold">
             Material & Detail Gallery
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {project.gallery.slice(1).map((imgUrl, i) => (
               <div
                 key={i}
-                className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 shadow-lg bg-[#161715] group"
+                className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 shadow-lg bg-[#2a241e] group"
               >
                 <img
                   src={imgUrl}
@@ -131,7 +131,7 @@ export default async function ProjectDetailPage({
           </span>
           <Link
             href={`/work/${nextProject.slug}`}
-            className="font-serif-luxury text-xl md:text-2xl font-light text-white hover:text-[#b65234] transition-colors"
+            className="font-serif-luxury text-xl md:text-2xl font-light text-white hover:text-[#bd7b58] transition-colors"
           >
             {nextProject.title} →
           </Link>

@@ -4,12 +4,12 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#070b05] text-white pt-20 pb-12 border-t border-white/10 overflow-hidden">
+    <footer className="relative bg-[#12100e] text-white pt-20 pb-12 border-t border-white/10 overflow-hidden">
       {/* Background Subtle Gradient */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[350px] pointer-events-none opacity-20"
         style={{
-          background: 'radial-gradient(ellipse at bottom, rgba(182, 82, 52, 0.25) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at bottom, rgba(189, 123, 88, 0.25) 0%, transparent 70%)',
         }}
       />
 
@@ -23,7 +23,7 @@ export default function Footer() {
                 <span className="font-serif-luxury text-2xl tracking-[0.24em] font-medium uppercase text-white group-hover:text-white/80 transition-colors">
                   PRANGON
                 </span>
-                <span className="text-[9px] font-mono tracking-[0.35em] text-[#b65234] uppercase block mt-1">
+                <span className="text-[9px] font-mono tracking-[0.35em] text-[#bd7b58] uppercase block mt-1">
                   Studios • Dhaka
                 </span>
               </Link>
@@ -39,7 +39,7 @@ export default function Footer() {
 
           {/* Col 2: Navigation Links */}
           <div className="md:col-span-3">
-            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#b65234] mb-4 font-semibold">
+            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#bd7b58] mb-4 font-semibold">
               Explore
             </h4>
             <ul className="space-y-2.5 text-xs md:text-sm text-white/70">
@@ -73,7 +73,7 @@ export default function Footer() {
 
           {/* Col 3: Legal Policy Pages */}
           <div className="md:col-span-2">
-            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#b65234] mb-4 font-semibold">
+            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#bd7b58] mb-4 font-semibold">
               Legal
             </h4>
             <ul className="space-y-2.5 text-xs md:text-sm text-white/70">
@@ -92,7 +92,7 @@ export default function Footer() {
 
           {/* Col 4: Contact & Social */}
           <div className="md:col-span-2">
-            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#b65234] mb-4 font-semibold">
+            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#bd7b58] mb-4 font-semibold">
               Studio
             </h4>
             <div className="space-y-2 text-xs text-white/70">
@@ -101,7 +101,7 @@ export default function Footer() {
               <p className="pt-2">
                 <a
                   href="mailto:contact@prangonstudios.com"
-                  className="hover:text-white transition-colors text-[#b65234]"
+                  className="hover:text-white transition-colors text-[#bd7b58]"
                 >
                   contact@prangonstudios.com
                 </a>
@@ -169,7 +169,7 @@ export default function Footer() {
                 fontSize="175"
                 fontWeight="400"
                 letterSpacing="0.16em"
-                fill="#0a0f07"
+                fill="#12100e"
               >
                 PRANGON
               </text>
