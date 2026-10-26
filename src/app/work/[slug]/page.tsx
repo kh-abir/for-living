@@ -21,37 +21,36 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
-  // Find next project in list for navigation
   const currentIndex = projects.findIndex((p) => p.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
-    <div className="bg-[#080e00] text-white pt-32">
+    <div className="bg-[#080e00] text-white pt-28">
       {/* Breadcrumb & Navigation */}
-      <div className="max-w-[1360px] mx-auto px-6 md:px-12 py-6 flex items-center justify-between text-xs font-mono uppercase tracking-widest text-white/50">
+      <div className="max-w-[1360px] mx-auto px-6 md:px-12 py-4 flex items-center justify-between text-xs font-mono uppercase tracking-widest text-white/50 border-b border-white/10">
         <Link href="/work" className="hover:text-white transition-colors flex items-center gap-2">
           ← Back to Works
         </Link>
         <div className="flex items-center gap-2">
-          <span>{project.category}</span>
+          <span>{project.category} Living</span>
           <span>/</span>
-          <span className="text-white">{project.initials}</span>
+          <span className="text-[#b65234] font-semibold">{project.initials}</span>
         </div>
       </div>
 
       {/* Case Header */}
-      <section className="px-6 md:px-12 py-12 md:py-16 max-w-[1360px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+      <section className="px-6 md:px-12 py-10 md:py-14 max-w-[1360px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-8">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-3 font-semibold">
-              Case Study
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+              PRANGON Case Study
             </span>
-            <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tight leading-tight">
+            <h1 className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl font-light text-white tracking-tight leading-tight">
               {project.title}
             </h1>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col gap-4 text-xs font-mono text-white/70 border-l border-white/20 pl-6">
+          <div className="lg:col-span-4 flex flex-col gap-3 text-xs font-mono text-white/70 border-l border-white/20 pl-6">
             <div>
               <span className="text-white/40 block">Location</span>
               <span className="text-white text-sm">{project.location}</span>
@@ -61,7 +60,7 @@ export default async function ProjectDetailPage({
               <span className="text-white text-sm">{project.size}</span>
             </div>
             <div>
-              <span className="text-white/40 block">Services Rendered</span>
+              <span className="text-white/40 block">Scope Rendered</span>
               <span className="text-white text-sm">{project.services}</span>
             </div>
           </div>
@@ -69,7 +68,7 @@ export default async function ProjectDetailPage({
       </section>
 
       {/* Hero Showcase Image */}
-      <section className="px-6 md:px-12 py-8 max-w-[1360px] mx-auto">
+      <section className="px-6 md:px-12 py-4 max-w-[1360px] mx-auto">
         <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#161715]">
           <img
             src={project.img}
@@ -79,23 +78,22 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      {/* Editorial Narrative & Designer Quote */}
-      <section className="px-6 md:px-12 py-20 max-w-[1360px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      {/* Editorial Narrative & Architect Quote */}
+      <section className="px-6 md:px-12 py-14 md:py-20 max-w-[1360px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
           <div className="lg:col-span-4">
-            <h2 className="font-serif-luxury text-2xl sm:text-3xl font-light text-white leading-snug">
-              Bespoke execution tailored to architectural excellence
+            <h2 className="font-serif-luxury text-2xl md:text-3xl font-light text-white leading-snug">
+              Bespoke execution tailored to delta architectural climate
             </h2>
           </div>
 
-          <div className="lg:col-span-8 space-y-6 text-sm md:text-base text-white/75 font-light leading-relaxed">
+          <div className="lg:col-span-8 space-y-4 text-xs md:text-sm text-white/75 font-light leading-relaxed">
             <p>{project.description}</p>
             <p>
-              Each joint, finish, and textile underwent strict quality audits across our partner workshops in Milan and northern Italy. The final installation was completed by Italian master craftsmen, ensuring continuous alignment with the client’s exacting architectural specifications.
+              Every joinery detail, terracotta louver, and metal casting underwent rigorous quality audits across our collaborative workshops in Savar, Dhamrai, and Dhaka. Final installation was completed by PRANGON master craftsmen, ensuring continuous alignment with the client’s architectural specifications.
             </p>
 
-            {/* Quote Block */}
-            <blockquote className="my-10 p-8 rounded-xl bg-[#111111] border-l-2 border-[#b65234] text-white italic font-serif-luxury text-lg md:text-xl">
+            <blockquote className="my-8 p-6 rounded-xl bg-[#111111] border-l-2 border-[#b65234] text-white italic font-serif-luxury text-base md:text-lg">
               “{project.quote}”
             </blockquote>
           </div>
@@ -104,11 +102,11 @@ export default async function ProjectDetailPage({
 
       {/* Gallery Showcase */}
       {project.gallery && project.gallery.length > 1 && (
-        <section className="px-6 md:px-12 py-12 max-w-[1360px] mx-auto border-t border-white/10">
-          <h3 className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] mb-8 font-semibold">
+        <section className="px-6 md:px-12 py-8 max-w-[1360px] mx-auto border-t border-white/10">
+          <h3 className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] mb-6 font-semibold">
             Material & Detail Gallery
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {project.gallery.slice(1).map((imgUrl, i) => (
               <div
                 key={i}
@@ -126,14 +124,14 @@ export default async function ProjectDetailPage({
       )}
 
       {/* Next Project Footer Bar */}
-      <section className="px-6 md:px-12 py-16 max-w-[1360px] mx-auto border-t border-white/10 flex items-center justify-between">
+      <section className="px-6 md:px-12 py-12 max-w-[1360px] mx-auto border-t border-white/10 flex items-center justify-between">
         <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-white/40 block mb-1">
-            Next Project
+          <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 block mb-1">
+            Next Commission
           </span>
           <Link
             href={`/work/${nextProject.slug}`}
-            className="font-serif-luxury text-2xl md:text-3xl font-light text-white hover:text-[#b65234] transition-colors"
+            className="font-serif-luxury text-xl md:text-2xl font-light text-white hover:text-[#b65234] transition-colors"
           >
             {nextProject.title} →
           </Link>
@@ -141,7 +139,7 @@ export default async function ProjectDetailPage({
 
         <Link
           href="/work"
-          className="text-xs uppercase tracking-[0.2em] px-6 py-2.5 rounded-full border border-white/30 text-white hover:bg-white hover:text-black transition-colors"
+          className="text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border border-white/30 text-white hover:bg-white hover:text-black transition-colors"
         >
           View Archive
         </Link>

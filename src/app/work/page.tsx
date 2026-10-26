@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { projects, Project } from '@/data/projects';
+import { projects } from '@/data/projects';
 import CtaSection from '@/components/CtaSection';
 
 export default function WorkPage() {
@@ -17,36 +17,36 @@ export default function WorkPage() {
       : projects.filter((p) => p.category === selectedCategory);
 
   return (
-    <div className="bg-[#080e00] text-white pt-32">
+    <div className="bg-[#080e00] text-white pt-28">
       {/* Work Hero */}
-      <section className="px-6 md:px-12 py-16 md:py-24 max-w-[1440px] mx-auto">
+      <section className="px-6 md:px-12 py-12 md:py-16 max-w-[1440px] mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-3 font-semibold">
-            Portfolio Archive
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+            PRANGON Portfolio Archive
           </span>
-          <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-white mb-6">
+          <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-white mb-4">
             Work that speaks for us
           </h1>
-          <p className="text-base text-white/70 font-light max-w-xl leading-relaxed">
-            A curated selection of 48 turnkey interior engineering projects executed across private residences, commercial landmarks, and superyachts globally.
+          <p className="text-sm md:text-base text-white/70 font-light max-w-xl leading-relaxed">
+            A curated archive of 48 turnkey architectural and interior commissions crafted across Dhaka, Sylhet, Chittagong, and coastal Bangladesh.
           </p>
         </motion.div>
 
-        {/* Filter Bar with Custom Ruler Indicator */}
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-6">
-          <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto no-scrollbar py-2">
+        {/* Filter Bar with Ruler Indicator */}
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar py-1">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2 rounded-full text-xs uppercase tracking-[0.18em] transition-all duration-300 ${
+                className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-white text-black font-medium shadow-md'
+                    ? 'bg-white text-black font-semibold shadow-md'
                     : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                 }`}
               >
@@ -59,30 +59,30 @@ export default function WorkPage() {
           </div>
 
           <div className="text-xs font-mono text-white/40 tracking-wider">
-            Displaying {filteredProjects.length} of {projects.length} Works
+            Showing {filteredProjects.length} of {projects.length} Works
           </div>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="px-6 md:px-12 pb-32 max-w-[1440px] mx-auto">
+      <section className="px-6 md:px-12 pb-24 max-w-[1440px] mx-auto">
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
           {filteredProjects.map((project) => (
             <motion.div
               layout
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.35 }}
               key={project.slug}
               className="group"
             >
               <Link href={`/work/${project.slug}`} className="block">
                 {/* Top Ruler Ticks */}
-                <div className="flex items-center justify-between mb-3 px-1">
+                <div className="flex items-center justify-between mb-2.5 px-1">
                   <span className="rp_ruler_markers" />
                   <span className="rp_ruler_markers" />
                   <span className="rp_ruler_markers center" />
@@ -100,34 +100,37 @@ export default function WorkPage() {
                   />
 
                   {/* Dark gradient on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-65 group-hover:opacity-90 transition-opacity duration-300" />
 
-                  {/* Top Badge */}
-                  <div className="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] uppercase tracking-widest text-white/80">
+                  {/* Category Pill Tag */}
+                  <div className="absolute top-3.5 left-3.5 z-10 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[9px] uppercase tracking-widest text-white/80">
                     {project.category}
                   </div>
 
-                  {/* Initials Badge Top Right */}
-                  <div className="absolute top-4 right-4 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center font-mono text-[10px] text-white/80">
+                  {/* Initials Badge */}
+                  <div className="absolute top-3.5 right-3.5 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center font-mono text-[10px] text-white/80">
                     {project.initials}
                   </div>
 
                   {/* Bottom Info */}
-                  <div className="absolute bottom-5 left-5 right-5 z-10">
-                    <h3 className="font-serif-luxury text-xl font-normal text-white group-hover:text-white/90 transition-colors">
+                  <div className="absolute bottom-4 left-4 right-4 z-10">
+                    <div className="text-[10px] font-mono text-[#b65234] uppercase tracking-wider mb-0.5">
+                      {project.location}
+                    </div>
+                    <h3 className="font-serif-luxury text-lg font-normal text-white group-hover:text-white/90 transition-colors line-clamp-1">
                       {project.title}
                     </h3>
-                    <div className="text-xs text-white/50 font-mono mt-1 flex items-center justify-between">
-                      <span>{project.location}</span>
+                    <div className="text-[11px] text-white/50 font-mono mt-1 flex items-center justify-between">
+                      <span>{project.size}</span>
                       <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white">
-                        View Case →
+                        Case Study →
                       </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom Ruler Ticks */}
-                <div className="flex items-center justify-between mt-3 px-1">
+                <div className="flex items-center justify-between mt-2.5 px-1">
                   <span className="rp_ruler_markers" />
                   <span className="rp_ruler_markers" />
                   <span className="rp_ruler_markers center" />

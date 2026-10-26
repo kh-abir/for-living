@@ -13,13 +13,13 @@ const instrumentSans = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'FOR LIVING | Masterpiece Interiors Crafted in Italy',
+  title: 'PRANGON Studios | Bespoke Architecture & Interior Engineering',
   description:
-    'We turn architectural designs into masterpiece interiors crafted by genius Italian artists.',
+    'We turn architectural designs into masterpiece interiors crafted by Bengal’s finest master artisans.',
   openGraph: {
-    title: 'FOR LIVING | Homepage',
+    title: 'PRANGON Studios | Dhaka Atelier',
     description:
-      'We turn architectural designs into masterpiece interiors crafted by genius Italian artists.',
+      'We turn architectural designs into masterpiece interiors crafted by Bengal’s finest master artisans.',
     images: ['/assets/founders.avif'],
   },
 };

@@ -1,153 +1,108 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Mouse move handler for spotlight mask micro-interaction
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: e.clientX,
-        y: e.clientY,
-      });
+      setMousePos({ x: e.clientX, y: e.clientY });
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
-
-  // Parallax transformations for hero elements
-  const textOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.45], [0, -60]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.45], ['blur(0px)', 'blur(10px)']);
-  const overlayDarken = useTransform(scrollYProgress, [0, 0.5], [0.35, 0.85]);
-
-  // Parallax elevation for the 3 living cards
-  const card1Y = useTransform(scrollYProgress, [0.1, 0.8], [240, -40]);
-  const card2Y = useTransform(scrollYProgress, [0.1, 0.8], [320, -10]);
-  const card3Y = useTransform(scrollYProgress, [0.1, 0.8], [280, -30]);
-
-  const livingCards = [
-    {
-      type: 'Commercial',
-      title: 'Commercial Living',
-      img: '/assets/feat-commercial.avif',
-      alt: 'Luxury commercial interior fitout by Italian artisans',
-      y: card1Y,
-    },
+  const livingCategories = [
     {
       type: 'Residential',
       title: 'Residential Living',
+      tagline: 'Private Courtyards & Lakeside Estates',
       img: '/assets/feat-residential.avif',
-      alt: 'Bespoke residential architectural living space',
-      y: card2Y,
+      count: '24 Projects',
+      slug: 'residential',
+    },
+    {
+      type: 'Commercial',
+      title: 'Commercial Living',
+      tagline: 'Flagships, Art Lounges & Diplomatic Suites',
+      img: '/assets/feat-commercial.avif',
+      count: '16 Projects',
+      slug: 'commercial',
     },
     {
       type: 'Marine',
-      title: 'Marine Living',
+      title: 'Marine & Riverside',
+      tagline: 'Expedition Yachts & Delta River Cruisers',
       img: '/assets/feat-marine.avif',
-      alt: 'Superyacht naval architecture and bespoke interior',
-      y: card3Y,
+      count: '8 Projects',
+      slug: 'marine',
     },
   ];
 
+  const metrics = [
+    { label: 'Years of Atelier Craft', value: '12+' },
+    { label: 'Commissions Executed', value: '48+' },
+    { label: 'Regional Craft Guilds', value: '06' },
+    { label: 'Turnkey Guarantee', value: '100%' },
+  ];
+
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-[160vh] md:min-h-[185vh] bg-[#080e00] text-white overflow-hidden"
-    >
-      {/* Pinned Cinematic Background Container */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
-        {/* Base Layer: High-Res Handcrafted Fabric / Chair Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/assets/hero-chair.avif"
-            alt="Italian craftsmanship shadow detail"
-            className="w-full h-full object-cover object-center scale-105"
-          />
-        </div>
-
-        {/* Breathing / Pulsing Geometric Line Pattern Layer */}
-        <div
-          className="absolute inset-0 z-1 pointer-events-none mix-blend-screen opacity-20 animate-hero-pulse"
-          style={{
-            backgroundImage: `url('/assets/hero_line_bg.webp')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+    <section className="relative bg-[#080e00] text-white overflow-hidden pt-28 pb-16 md:pb-24">
+      {/* Background High-Res Texture Layer */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/assets/hero-chair.avif"
+          alt="Architectural shadow on handcrafted textile"
+          className="w-full h-full object-cover object-center scale-105 opacity-60"
         />
+      </div>
 
-        {/* Interactive Radial Spotlight Mask that follows mouse */}
-        <div
-          className="absolute inset-0 z-2 pointer-events-none opacity-40 transition-opacity duration-300 hidden md:block"
-          style={{
-            background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.08), transparent 70%)`,
-          }}
-        />
+      {/* Breathing / Pulsing Geometric Grid Pattern */}
+      <div
+        className="absolute inset-0 z-1 pointer-events-none mix-blend-screen opacity-25 animate-hero-pulse"
+        style={{
+          backgroundImage: `url('/assets/hero_line_bg.webp')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
 
-        {/* Scroll-driven Dark Dimmer Overlay */}
-        <motion.div
-          className="absolute inset-0 z-3 bg-[#080e00]"
-          style={{ opacity: overlayDarken }}
-        />
+      {/* Interactive Radial Spotlight Mask */}
+      <div
+        className="absolute inset-0 z-2 pointer-events-none opacity-40 hidden md:block"
+        style={{
+          background: `radial-gradient(650px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.07), transparent 70%)`,
+        }}
+      />
 
-        {/* Top Spacer for floating navigation */}
-        <div className="h-28 w-full z-10" />
+      {/* Dark Subtle Vignette Gradient */}
+      <div className="absolute inset-0 z-3 bg-gradient-to-b from-[#080e00]/60 via-[#080e00]/40 to-[#080e00]" />
 
-        {/* Central Brand Statement */}
-        <motion.div
-          className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 text-center flex flex-col items-center justify-center my-auto"
-          style={{
-            opacity: textOpacity,
-            y: textY,
-            filter: textBlur,
-          }}
-        >
-          {/* Made in Italy Crest & Script */}
+      <div className="relative z-10 max-w-[1360px] mx-auto px-6 md:px-12 flex flex-col justify-between">
+        {/* Main Hero Header */}
+        <div className="max-w-4xl mx-auto text-center pt-8 pb-12 md:pb-16 flex flex-col items-center">
+          {/* Made in Bengal Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center gap-3 mb-6"
+            transition={{ duration: 0.8 }}
+            className="flex items-center gap-3 mb-5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
           >
-            {/* Elegant Emblem SVG */}
-            <svg
-              width="32"
-              height="42"
-              viewBox="0 0 36 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="opacity-90 drop-shadow"
-            >
-              <path
-                d="M18 2C9.5 2 3 8.5 3 17C3 26 18 46 18 46C18 46 33 26 33 17C33 8.5 26.5 2 18 2Z"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeMiterlimit="10"
-              />
-              <circle cx="18" cy="17" r="6" stroke="white" strokeWidth="1.5" />
-            </svg>
-            <span className="font-cursive-luxury text-2xl md:text-3xl text-white/70 tracking-wide">
-              Made in Italy
+            <span className="w-2 h-2 rounded-full bg-[#b65234] animate-pulse" />
+            <span className="text-xs font-mono tracking-[0.25em] uppercase text-white/80">
+              Crafted in Bangladesh • Dhaka Atelier
             </span>
           </motion.div>
 
-          {/* Core Brand Headline */}
+          {/* Central Statement */}
           <motion.h1
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.12] tracking-tight max-w-4xl text-white drop-shadow-sm mb-6"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.08] tracking-tight text-white mb-6"
           >
             The poetry of design & <br className="hidden sm:inline" />
             The engineering of craft
@@ -155,83 +110,110 @@ export default function Hero() {
 
           {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.6 }}
-            className="text-sm md:text-base text-white/75 font-light max-w-xl mx-auto leading-relaxed mb-8"
+            transition={{ duration: 0.9, delay: 0.35 }}
+            className="text-sm md:text-base text-white/75 font-light max-w-2xl leading-relaxed mb-8"
           >
-            We turn architectural designs into masterpiece interiors crafted by genius Italian artists.
+            PRANGON Studios turns architectural visions into bespoke interior masterpieces, synthesizing delta tropical modernism with centuries of Bengal artisanal heritage.
           </motion.p>
 
-          {/* Call to action button */}
+          {/* Call to action & Direct Inquiry */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.75 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="flex flex-wrap items-center justify-center gap-4"
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-white/40 text-xs uppercase tracking-[0.22em] text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-[#080e00] hover:scale-105 active:scale-95 shadow-lg"
+              className="px-8 py-3.5 rounded-full bg-white text-black text-xs uppercase tracking-[0.22em] font-medium transition-all duration-300 hover:bg-[#b65234] hover:text-white shadow-xl hover:scale-105 active:scale-95"
             >
               Start a project
             </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Down Scroll Indicator */}
-        <motion.div
-          className="relative z-10 pb-8 flex flex-col items-center gap-2 text-white/40 text-[10px] uppercase tracking-[0.25em]"
-          style={{ opacity: textOpacity }}
-        >
-          <span>Scroll to explore</span>
-          <div className="w-[1px] h-8 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
-        </motion.div>
-      </div>
-
-      {/* Parallax Floating Living Categories Cards */}
-      <div className="relative z-20 max-w-[1360px] mx-auto px-6 md:px-12 -mt-[35vh] md:-mt-[45vh] pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
-          {livingCards.map((card, idx) => (
-            <motion.div
-              key={card.type}
-              style={{ y: card.y }}
-              className={`group relative rounded-xl overflow-hidden shadow-2xl bg-[#111111] border border-white/10 transition-all duration-500 hover:border-white/30 ${
-                idx === 1 ? 'md:translate-y-8' : ''
-              }`}
+            <Link
+              href="/work"
+              className="px-8 py-3.5 rounded-full border border-white/30 text-white text-xs uppercase tracking-[0.22em] font-medium transition-all duration-300 hover:border-white hover:bg-white/10"
             >
-              {/* Image with slow luxurious hover scale */}
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={card.img}
-                  alt={card.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
+              Explore 48 Works
+            </Link>
+          </motion.div>
+        </div>
 
-                {/* Subtle dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                {/* Animated Floating Tag */}
-                <div className="absolute top-5 left-5 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[11px] uppercase tracking-[0.16em] text-white">
-                  <span className="text-white/50">For</span>
-                  <span className="font-semibold text-white">{card.type}</span>
-                  <span className="text-white/50">Living</span>
-                </div>
-
-                {/* Bottom title & link */}
-                <div className="absolute bottom-5 left-5 right-5 z-10 flex items-center justify-between">
-                  <h3 className="font-serif-luxury text-xl font-light text-white tracking-wide">
-                    {card.title}
-                  </h3>
-                  <Link
-                    href={`/work?category=${card.type}`}
-                    className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center text-white text-xs transition-colors group-hover:bg-white group-hover:text-black"
-                  >
-                    →
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
+        {/* Studio Metrics Row to Utilize Whitespace Cleanly */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 my-4 border-y border-white/10 text-center">
+          {metrics.map((m, i) => (
+            <div key={i} className="flex flex-col items-center">
+              <span className="font-serif-luxury text-2xl md:text-3xl text-white font-normal">
+                {m.value}
+              </span>
+              <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] text-white/50 mt-1">
+                {m.label}
+              </span>
+            </div>
           ))}
+        </div>
+
+        {/* 3 Living Categories Asymmetrical Cards */}
+        <div className="mt-8 pt-4">
+          <div className="flex items-center justify-between mb-6">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] font-semibold">
+              Three Living Environments
+            </span>
+            <span className="text-xs font-mono text-white/40 tracking-wider hidden sm:inline">
+              Bespoke Turnkey Interior Engineering
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {livingCategories.map((card, idx) => (
+              <motion.div
+                key={card.type}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 + idx * 0.15 }}
+                className="group relative rounded-xl overflow-hidden bg-[#111111] border border-white/10 shadow-2xl transition-all duration-500 hover:border-white/35"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img
+                    src={card.img}
+                    alt={card.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+
+                  {/* Gradient Mask */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+
+                  {/* Category Pill Tag */}
+                  <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] uppercase tracking-[0.16em] text-white">
+                    <span className="text-white/50">For</span>
+                    <span className="font-semibold text-white">{card.type}</span>
+                    <span className="text-white/50">Living</span>
+                  </div>
+
+                  <div className="absolute top-4 right-4 z-10 text-[10px] font-mono text-white/60 bg-black/50 px-2 py-0.5 rounded">
+                    {card.count}
+                  </div>
+
+                  {/* Card Bottom Meta */}
+                  <div className="absolute bottom-5 left-5 right-5 z-10">
+                    <h3 className="font-serif-luxury text-2xl font-light text-white tracking-wide mb-1">
+                      {card.title}
+                    </h3>
+                    <p className="text-xs text-white/65 font-light mb-3">
+                      {card.tagline}
+                    </p>
+                    <Link
+                      href={`/work?category=${card.type}`}
+                      className="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-white/80 hover:text-white transition-colors"
+                    >
+                      View Projects <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -7,80 +7,101 @@ interface RegionMaterial {
   id: string;
   material: string;
   region: string;
+  district: string;
   x: number; // percentage on map
   y: number; // percentage on map
   img: string;
+  tagline: string;
   description: string;
+  architecturalApplication: string;
 }
 
-const materialsData: RegionMaterial[] = [
+const bengalMaterials: RegionMaterial[] = [
   {
-    id: 'wood',
-    material: 'Wood',
-    region: 'Brianza, Lombardy',
-    x: 24,
-    y: 19,
+    id: 'terracotta',
+    material: 'Terracotta & Architectural Clay',
+    region: 'Sonargaon & Savar',
+    district: 'Dhaka Division',
+    x: 48,
+    y: 52,
+    img: '/assets/bg-complexity.avif',
+    tagline: 'Fired Red Delta Clay & Sculptural Jali',
+    description: 'Centuries of Bengal temple terracotta heritage reimagined into precision-perforated sun-shading jali bricks, acoustic interior screens, and hand-burnished floor pavers.',
+    architecturalApplication: 'Bespoke Facade Screens, Wine Cellars, Feature Wall Cladding',
+  },
+  {
+    id: 'teak',
+    material: 'Seasoned Teak & Sundari Hardwood',
+    region: 'Chittagong Hill Tracts',
+    district: 'Chittagong Division',
+    x: 72,
+    y: 65,
     img: '/assets/material-wood.avif',
-    description: 'Master joinery, steam-bent solid woods, and exquisite high-gloss lacquer finishes perfected over generations.',
+    tagline: 'Kiln-Dried Tropical Hardwood Joinery',
+    description: 'Harvested from certified sustainable plantations, seasoned against tropical delta humidity, and hand-planed by master joiners using traditional mortise-and-tenon interlocking joints.',
+    architecturalApplication: 'Cantilevered Staircases, Pivot Doors, Monolithic Dining Tables',
   },
   {
-    id: 'leather',
-    material: 'Leather',
-    region: 'Vicenza, Veneto',
-    x: 37,
-    y: 22,
-    img: '/assets/material-leather.avif',
-    description: 'Full-grain vegetable-tanned hides, saddle stitching, and supple bespoke upholstery.',
-  },
-  {
-    id: 'glass',
-    material: 'Glass',
-    region: 'Murano, Veneto',
-    x: 44,
-    y: 25,
-    img: '/assets/material-glass.avif',
-    description: 'Hand-blown Venetian glass chandeliers, cast architectural panels, and prismatic crystal details.',
-  },
-  {
-    id: 'marble',
-    material: 'Marble',
-    region: 'Carrara, Tuscany',
-    x: 32,
-    y: 35,
-    img: '/assets/material-marble.avif',
-    description: 'Book-matched Calacatta and Statuario slabs quarried from the Apuan Alps, precision CNC-cut and hand-honed.',
-  },
-  {
-    id: 'metal',
-    material: 'Metal',
-    region: 'Perugia, Umbria',
-    x: 45,
-    y: 45,
+    id: 'brass',
+    material: 'Hand-Cast Bell Metal & Brass',
+    region: 'Dhamrai Heritage Belt',
+    district: 'Greater Dhaka',
+    x: 43,
+    y: 47,
     img: '/assets/material-metal.avif',
-    description: 'Brushed bronze, antique patinas, and structural architectural metals hand-buffed to museum spec.',
+    tagline: 'Ancient Lost-Wax Metal Casting (Kasha)',
+    description: 'Artisans practicing two-millennia-old lost-wax metallurgy, casting heavy architectural handles, patinated bronze cabinet pulls, and custom acoustic pendant luminaires.',
+    architecturalApplication: 'Architectural Door Pulls, Cabinetry Trims, Water Spouts',
+  },
+  {
+    id: 'cane',
+    material: 'Golden Jute & Natural Cane',
+    region: 'Narsingdi & Sylhet Wetlands',
+    district: 'Sylhet & Dhaka',
+    x: 62,
+    y: 38,
+    img: '/assets/material-leather.avif',
+    tagline: 'Hand-Woven Natural Fiber Composites',
+    description: 'Eco-conscious golden jute fiber pressed with bio-resins and hand-split rattan cane weaves that introduce tactile acoustic warmth and natural texture to modern minimalist spaces.',
+    architecturalApplication: 'Acoustic Ceiling Clouds, Wardrobe Infill Panels, Shaded Screens',
   },
   {
     id: 'stone',
-    material: 'Travertine',
-    region: 'Rome, Lazio',
-    x: 48,
-    y: 56,
-    img: '/assets/material-stone.avif',
-    description: 'Porous Roman travertine honed for monumental fireplaces, monolithic sinks, and architectural steps.',
+    material: 'River-Honed Black Basalt Stone',
+    region: 'Jaflong & Piyain Riverbed',
+    district: 'Sylhet Division',
+    x: 76,
+    y: 22,
+    img: '/assets/material-marble.avif',
+    tagline: 'Himalayan-Fed Riverbed Black Granite',
+    description: 'Natural stone washed down from the Khasi hills, hand-honed to a leathered velvet finish. Highly resistant to staining and engineered into monolithic bathroom fixtures.',
+    architecturalApplication: 'Monolithic Sinks, Courtyard Fountains, Honed Fireplace Mantels',
+  },
+  {
+    id: 'silk',
+    material: 'Hand-Loomed Silk & Jamdani',
+    region: 'Narayanganj & Rajshahi',
+    district: 'Narayanganj Waterfront',
+    x: 52,
+    y: 57,
+    img: '/assets/material-glass.avif',
+    tagline: 'Heritage Mulberry Silk & Muslin Weaves',
+    description: 'Woven on wooden pit looms with geometric motifs inherited from the Mughal golden age. Tailored into sheer architectural solar drapery and custom wall tapestries.',
+    architecturalApplication: 'Motorized Sheer Drapery, Fabric Wall Paneling, Bespoke Headboards',
   },
 ];
 
 export default function CraftHeritage() {
-  const [activeMaterial, setActiveMaterial] = useState<RegionMaterial>(materialsData[0]);
+  const [activeMaterial, setActiveMaterial] = useState<RegionMaterial>(bengalMaterials[0]);
 
   return (
     <section
       data-theme="light"
-      className="relative bg-[#f2e8d4] text-[#111111] py-24 md:py-36 overflow-hidden transition-colors"
+      className="relative bg-[#f2e8d4] text-[#111111] py-16 md:py-24 overflow-hidden transition-colors"
     >
       {/* Subtle organic wavy texture overlay */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply"
+        className="absolute inset-0 pointer-events-none opacity-35 mix-blend-multiply"
         style={{
           backgroundImage: `url('/assets/wave-bg.avif')`,
           backgroundSize: 'cover',
@@ -90,167 +111,214 @@ export default function CraftHeritage() {
 
       <div className="relative z-10 max-w-[1360px] mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="max-w-2xl mb-16 md:mb-24">
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-3 font-semibold">
-            Artisan Legacy
+        <div className="max-w-3xl mb-12 md:mb-16">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#b65234] block mb-2 font-semibold">
+            Delta Provenance & Materiality
           </span>
-          <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-light leading-tight tracking-tight text-[#111111]">
-            Connection to craft <br className="hidden sm:inline" />
-            and tradition
+          <h2 className="font-serif-luxury text-3xl sm:text-5xl font-light leading-tight tracking-tight text-[#111111]">
+            Connection to Bengal craft <br className="hidden sm:inline" />
+            and architectural heritage
           </h2>
         </div>
 
-        {/* Top Split Layout: Interactive Map + Material Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24 md:mb-32">
-          {/* Left Text & Active Material Detail */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
-            <h3 className="font-serif-luxury text-2xl md:text-3xl font-light mb-4 text-[#111111]">
-              Perfect craft from the best of Italy
+        {/* Interactive Map + Material Detail Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16 md:mb-20">
+          {/* Left: Active Material Spec Card */}
+          <div className="lg:col-span-6 flex flex-col justify-center">
+            <h3 className="font-serif-luxury text-2xl md:text-3xl font-light mb-3 text-[#111111]">
+              Authentic craft from Bangladesh’s artisan guilds
             </h3>
-            <p className="text-sm md:text-base text-[#111111]/75 leading-relaxed mb-8">
-              We work with artisans from specific Italian regions with time-tested techniques that have been refined over centuries, connecting modern luxury furniture to a legacy of craft and tradition.
+            <p className="text-sm text-[#111111]/75 leading-relaxed mb-6">
+              We collaborate with master artisans across 6 specialized delta regions, transforming time-honored artisanal techniques into precision interior engineering suited for contemporary tropical architecture.
             </p>
 
-            {/* Active Material Interactive Pill Card */}
+            {/* Selected Material Card */}
             <div className="bg-[#fcfbf9] rounded-2xl p-6 border border-[#111111]/10 shadow-lg">
-              <div className="flex items-center gap-5">
+              <div className="flex items-start gap-5">
                 <img
                   src={activeMaterial.img}
                   alt={activeMaterial.material}
-                  className="w-16 h-16 rounded-xl object-cover border border-[#111111]/10 shadow-sm"
+                  className="w-20 h-20 rounded-xl object-cover border border-[#111111]/10 shadow-sm flex-shrink-0"
                 />
                 <div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-[#b65234]">
-                    Selected Material
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-[#b65234] font-semibold">
+                    {activeMaterial.region} • {activeMaterial.district}
                   </div>
-                  <div className="font-serif-luxury text-xl font-normal text-[#111111]">
+                  <h4 className="font-serif-luxury text-xl font-normal text-[#111111] mt-0.5">
                     {activeMaterial.material}
-                  </div>
-                  <div className="text-xs text-[#111111]/60">
-                    {activeMaterial.region}
-                  </div>
+                  </h4>
+                  <p className="text-xs text-[#111111]/60 font-mono mt-0.5">
+                    {activeMaterial.tagline}
+                  </p>
                 </div>
               </div>
-              <p className="mt-4 text-xs text-[#111111]/70 leading-relaxed border-t border-[#111111]/10 pt-4">
+
+              <p className="mt-4 text-xs text-[#111111]/75 leading-relaxed border-t border-[#111111]/10 pt-4">
                 {activeMaterial.description}
               </p>
 
-              {/* Selector buttons for quick switching */}
+              <div className="mt-3 pt-3 border-t border-[#111111]/10 flex items-center justify-between text-xs">
+                <span className="font-mono text-[#b65234] text-[11px] uppercase tracking-wider">
+                  Typical Application:
+                </span>
+                <span className="font-medium text-[#111111]/85 text-[11px]">
+                  {activeMaterial.architecturalApplication}
+                </span>
+              </div>
+
+              {/* Selector Buttons */}
               <div className="grid grid-cols-3 gap-2 mt-4 pt-2">
-                {materialsData.map((m) => (
+                {bengalMaterials.map((m) => (
                   <button
                     key={m.id}
                     onClick={() => setActiveMaterial(m)}
-                    className={`text-[11px] py-1.5 px-2 rounded-md font-medium text-center transition-all ${
+                    className={`text-[11px] py-1.5 px-2 rounded-md font-medium text-center transition-all cursor-pointer ${
                       activeMaterial.id === m.id
                         ? 'bg-[#111111] text-white shadow'
                         : 'bg-black/5 hover:bg-black/10 text-[#111111]/80'
                     }`}
                   >
-                    {m.material}
+                    {m.material.split('&')[0]}
                   </button>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right: Interactive Italy Map with Hotspots */}
-          <div className="lg:col-span-7 relative flex justify-center">
-            <div className="relative w-full max-w-[620px] aspect-[4/5] rounded-2xl overflow-hidden bg-black/5 p-4 border border-[#111111]/10 shadow-xl">
-              <img
-                src="/assets/it-map-materials.avif"
-                alt="Map of Italian artisan production regions"
-                className="w-full h-full object-contain filter contrast-105"
-              />
+          {/* Right: Architectural Bangladesh Delta Map with Radar Pulsing Rings */}
+          <div className="lg:col-span-6 flex justify-center">
+            <div className="relative w-full max-w-[560px] aspect-[4/5] rounded-2xl overflow-hidden bg-[#161715] p-6 border border-[#111111]/15 shadow-2xl flex flex-col justify-between">
+              {/* Map Header */}
+              <div className="relative z-10 flex items-center justify-between text-xs font-mono text-white/60 pb-3 border-b border-white/10">
+                <span>BANGLADESH CRAFT REGIONS</span>
+                <span className="text-[#b65234] font-semibold">6 ACTIVE GUILDS</span>
+              </div>
 
-              {/* Hotspot Markers */}
-              {materialsData.map((m) => {
-                const isActive = activeMaterial.id === m.id;
-                return (
-                  <button
-                    key={m.id}
-                    onClick={() => setActiveMaterial(m)}
-                    onMouseEnter={() => setActiveMaterial(m)}
-                    style={{ left: `${m.x}%`, top: `${m.y}%` }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 group focus:outline-none z-20 cursor-pointer"
-                    aria-label={`${m.material} in ${m.region}`}
-                  >
-                    {/* Pulsing Radar Rings */}
-                    <div className="relative flex items-center justify-center w-8 h-8">
-                      <span className="radar-ring w-8 h-8" />
-                      <span className="radar-ring w-8 h-8" />
-                      <span className="radar-ring w-8 h-8" />
-                      
-                      {/* Core Dot */}
-                      <span
-                        className={`w-3.5 h-3.5 rounded-full transition-transform duration-300 shadow-md ${
-                          isActive
-                            ? 'bg-[#b65234] scale-125 ring-4 ring-[#b65234]/30'
-                            : 'bg-[#111111] group-hover:scale-125'
-                        }`}
-                      />
-                    </div>
+              {/* Stylized Delta Map SVG */}
+              <div className="relative flex-1 w-full flex items-center justify-center my-2">
+                <svg
+                  viewBox="0 0 400 480"
+                  className="w-full h-full opacity-70"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  {/* Bangladesh Contour Outline */}
+                  <path
+                    d="M170 30 C 180 35, 230 40, 260 50 C 290 60, 310 80, 330 110 C 340 130, 320 160, 310 180 C 310 200, 340 230, 350 260 C 360 290, 360 330, 350 370 C 340 400, 300 440, 270 450 C 240 460, 200 440, 180 430 C 160 420, 140 435, 110 430 C 80 420, 70 380, 80 340 C 90 300, 100 270, 110 230 C 120 190, 110 150, 120 120 C 130 90, 150 40, 170 30 Z"
+                    stroke="rgba(255,255,255,0.25)"
+                    strokeWidth="1.5"
+                    strokeDasharray="3 3"
+                    fill="rgba(255,255,255,0.02)"
+                  />
+                  {/* Rivers: Padma, Meghna, Jamuna */}
+                  <path
+                    d="M190 70 Q 200 150 200 220 Q 210 280 230 350 Q 240 400 240 440"
+                    stroke="rgba(182, 82, 52, 0.4)"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M120 190 Q 160 230 200 240 Q 240 270 270 340"
+                    stroke="rgba(182, 82, 52, 0.3)"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M310 160 Q 260 200 220 250"
+                    stroke="rgba(182, 82, 52, 0.3)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
 
-                    {/* Popover label on hover or active */}
-                    <div
-                      className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-1.5 rounded-lg bg-[#111111] text-white text-[11px] whitespace-nowrap shadow-xl transition-all duration-200 pointer-events-none ${
-                        isActive
-                          ? 'opacity-100 -translate-y-1 scale-100'
-                          : 'opacity-0 scale-95'
-                      }`}
+                {/* Hotspot Markers */}
+                {bengalMaterials.map((m) => {
+                  const isActive = activeMaterial.id === m.id;
+                  return (
+                    <button
+                      key={m.id}
+                      onClick={() => setActiveMaterial(m)}
+                      onMouseEnter={() => setActiveMaterial(m)}
+                      style={{ left: `${m.x}%`, top: `${m.y}%` }}
+                      className="absolute -translate-x-1/2 -translate-y-1/2 group focus:outline-none z-20 cursor-pointer"
+                      aria-label={`${m.material} in ${m.region}`}
                     >
-                      <div className="font-semibold">{m.material}</div>
-                      <div className="text-[9px] text-white/60">{m.region}</div>
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#111111]" />
-                    </div>
-                  </button>
-                );
-              })}
+                      <div className="relative flex items-center justify-center w-8 h-8">
+                        <span className="radar-ring w-8 h-8" />
+                        <span className="radar-ring w-8 h-8" />
+                        <span className="radar-ring w-8 h-8" />
+                        
+                        <span
+                          className={`w-3.5 h-3.5 rounded-full transition-transform duration-300 shadow-md ${
+                            isActive
+                              ? 'bg-[#b65234] scale-125 ring-4 ring-[#b65234]/40'
+                              : 'bg-white group-hover:scale-125'
+                          }`}
+                        />
+                      </div>
+
+                      {/* Tooltip Label */}
+                      <div
+                        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-1.5 rounded-lg bg-[#080e00] text-white text-[11px] whitespace-nowrap shadow-2xl transition-all duration-200 pointer-events-none border border-white/10 ${
+                          isActive
+                            ? 'opacity-100 -translate-y-1 scale-100'
+                            : 'opacity-0 scale-95'
+                        }`}
+                      >
+                        <div className="font-semibold">{m.material.split('&')[0]}</div>
+                        <div className="text-[9px] text-[#b65234] font-mono">{m.region}</div>
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#080e00]" />
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Map Legend */}
+              <div className="relative z-10 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/50">
+                <span>Coordinates: 23.6850° N, 90.3563° E</span>
+                <span>Click markers to explore</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Split Feature Cards: Master Artisans & Creative Engineering */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {/* Card 1 */}
+        {/* Bottom Feature Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="group rounded-2xl overflow-hidden bg-[#fcfbf9] border border-[#111111]/10 shadow-xl flex flex-col justify-between">
-            <div className="p-8 md:p-10">
+            <div className="p-8">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#b65234] block mb-2 font-semibold">
-                Heritage & Provenance
+                Guild Lineage
               </span>
-              <h3 className="font-serif-luxury text-2xl md:text-3xl font-light text-[#111111] mb-4">
-                Built by master artisans
+              <h3 className="font-serif-luxury text-2xl font-light text-[#111111] mb-3">
+                Built by delta master artisans
               </h3>
-              <p className="text-sm md:text-base text-[#111111]/75 leading-relaxed">
-                This appreciation for the past enriches the final product, lending it an authenticity that resonates with clients who value heritage, hand finishing, and centuries of artistic mastery.
+              <p className="text-xs md:text-sm text-[#111111]/75 leading-relaxed font-light">
+                From Dhamrai brass founders to Savar clay masters, our collaborative workshops preserve multi-generational techniques, lending an authenticity that resonates with clients who value tactile permanence and soul.
               </p>
             </div>
-            <div className="relative aspect-[16/10] overflow-hidden">
+            <div className="relative aspect-[16/9] overflow-hidden">
               <img
                 src="/assets/craft-villa.avif"
-                alt="Close-up of hands assembling curved wooden furniture"
+                alt="Close-up of curved timber assemble by master craftsman"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
           </div>
 
-          {/* Card 2 */}
           <div className="group rounded-2xl overflow-hidden bg-[#fcfbf9] border border-[#111111]/10 shadow-xl flex flex-col justify-between">
-            <div className="p-8 md:p-10">
+            <div className="p-8">
               <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#b65234] block mb-2 font-semibold">
-                Technical Execution
+                Climate & Engineering
               </span>
-              <h3 className="font-serif-luxury text-2xl md:text-3xl font-light text-[#111111] mb-4">
-                Creative engineering for complex ideas
+              <h3 className="font-serif-luxury text-2xl font-light text-[#111111] mb-3">
+                Tropical modernism & structural precision
               </h3>
-              <p className="text-sm md:text-base text-[#111111]/75 leading-relaxed">
-                Owning artisanal furniture is about more than just function; it’s about experiencing the story, culture, structural ingenuity, and skill embedded within each bespoke architectural element.
+              <p className="text-xs md:text-sm text-[#111111]/75 leading-relaxed font-light">
+                Bengal architecture demands harmony with monsoon rains, shifting delta watercourses, and high solar heat. Our engineering pairs deep overhangs and cross-ventilation joinery with aerospace-grade sealants.
               </p>
             </div>
-            <div className="relative aspect-[16/10] overflow-hidden">
+            <div className="relative aspect-[16/9] overflow-hidden">
               <img
                 src="/assets/craft-engineering.avif"
-                alt="Architectural wooden slats detail"
+                alt="Architectural timber louvers and shaded space"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>

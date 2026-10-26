@@ -10,15 +10,15 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLightSection, setIsLightSection] = useState(false);
+  const [lang, setLang] = useState<'En' | 'Bn'>('En');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      // Detect if user is over a light background section
       const lightElements = document.querySelectorAll('[data-theme="light"]');
       let overLight = false;
-      const navCenter = 30; // approx center Y of nav
+      const navCenter = 30;
 
       lightElements.forEach((el) => {
         const rect = el.getBoundingClientRect();
@@ -35,7 +35,6 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -60,27 +59,33 @@ export default function Navigation() {
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled
             ? isLightSection && !isOpen
-              ? 'bg-[#fcfbf9]/85 text-[#111111] backdrop-blur-md shadow-sm'
-              : 'bg-[#080e00]/80 text-white backdrop-blur-md border-b border-white/10'
+              ? 'bg-[#fcfbf9]/90 text-[#111111] backdrop-blur-md shadow-sm py-4'
+              : 'bg-[#080e00]/85 text-white backdrop-blur-md border-b border-white/10 py-4'
             : isLightSection && !isOpen
-            ? 'text-[#111111]'
-            : 'text-white'
+            ? 'text-[#111111] py-5'
+            : 'text-white py-5'
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
-          {/* Brand Logo */}
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between">
+          {/* Brand Logo: PRANGON Studios */}
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-2 group transition-opacity hover:opacity-80"
+            className="flex items-center gap-3 group transition-opacity hover:opacity-90"
           >
-            <img
-              src="/assets/logo-white.svg"
-              alt="FOR LIVING brand logo"
-              className={`h-4 md:h-5 transition-all duration-300 ${
-                isLightSection && !isOpen && scrolled ? 'invert' : ''
-              }`}
-            />
+            {/* Geometric Delta / Courtyard Icon */}
+            <div className="w-7 h-7 rounded-sm border border-current flex items-center justify-center p-1 relative">
+              <div className="w-2.5 h-2.5 border border-current rotate-45" />
+            </div>
+
+            <div className="flex flex-col">
+              <span className="font-serif-luxury text-xl md:text-2xl tracking-[0.18em] font-medium leading-none uppercase">
+                PRANGON
+              </span>
+              <span className="text-[9px] font-mono tracking-[0.35em] opacity-60 uppercase mt-0.5">
+                Studios • Dhaka
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -92,13 +97,13 @@ export default function Navigation() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-sm tracking-wide transition-colors relative py-1 ${
+                    className={`text-xs uppercase tracking-[0.18em] transition-colors relative py-1 ${
                       isActive
                         ? isLightSection && scrolled
-                          ? 'text-[#111111] font-medium'
-                          : 'text-white font-medium'
+                          ? 'text-[#111111] font-semibold'
+                          : 'text-white font-semibold'
                         : isLightSection && scrolled
-                        ? 'text-[#555555] hover:text-[#111111]'
+                        ? 'text-[#666666] hover:text-[#111111]'
                         : 'text-white/70 hover:text-white'
                     }`}
                   >
@@ -106,8 +111,8 @@ export default function Navigation() {
                     {isActive && (
                       <motion.span
                         layoutId="nav-underline"
-                        className={`absolute left-0 bottom-0 w-full h-[1px] ${
-                          isLightSection && scrolled ? 'bg-[#111111]' : 'bg-white'
+                        className={`absolute left-0 bottom-0 w-full h-[1.5px] ${
+                          isLightSection && scrolled ? 'bg-[#111111]' : 'bg-[#b65234]'
                         }`}
                       />
                     )}
@@ -117,26 +122,40 @@ export default function Navigation() {
             </div>
 
             {/* Language switch & Contact button */}
-            <div className="flex items-center gap-6 pl-4 border-l border-white/20">
-              <div className="flex items-center gap-2 text-xs tracking-wider uppercase">
-                <span className={`font-semibold ${isLightSection && scrolled ? 'text-[#111111]' : 'text-white'}`}>
-                  En
-                </span>
-                <span className="opacity-40">/</span>
-                <span className="opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-                  It
-                </span>
+            <div className="flex items-center gap-5 pl-5 border-l border-white/20">
+              <div className="flex items-center gap-2 text-xs font-mono tracking-wider uppercase">
+                <button
+                  onClick={() => setLang('En')}
+                  className={`transition-opacity cursor-pointer ${
+                    lang === 'En'
+                      ? 'font-bold opacity-100'
+                      : 'opacity-40 hover:opacity-80'
+                  }`}
+                >
+                  EN
+                </button>
+                <span className="opacity-30">/</span>
+                <button
+                  onClick={() => setLang('Bn')}
+                  className={`transition-opacity cursor-pointer ${
+                    lang === 'Bn'
+                      ? 'font-bold opacity-100'
+                      : 'opacity-40 hover:opacity-80'
+                  }`}
+                >
+                  বাং
+                </button>
               </div>
 
               <Link
                 href="/contact"
-                className={`text-xs uppercase tracking-[0.18em] px-5 py-2.5 rounded-full border transition-all duration-300 ${
+                className={`text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border transition-all duration-300 ${
                   isLightSection && scrolled
                     ? 'border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-white'
                     : 'border-white/30 text-white hover:border-white hover:bg-white hover:text-[#080e00]'
                 }`}
               >
-                Contact
+                Inquire
               </Link>
             </div>
           </nav>
@@ -195,7 +214,10 @@ export default function Navigation() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-40 bg-[#080e00] text-white flex flex-col justify-between px-8 pt-28 pb-12 md:hidden"
           >
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#b65234]">
+                PRANGON Studios • Menu
+              </span>
               {navLinks.map((link, idx) => (
                 <motion.div
                   key={link.href}
@@ -215,17 +237,17 @@ export default function Navigation() {
             </div>
 
             <div className="flex flex-col gap-6 pt-8 border-t border-white/10">
-              <div className="flex items-center gap-4 text-sm tracking-widest uppercase">
-                <span className="font-semibold text-white">En</span>
+              <div className="flex items-center gap-4 text-xs font-mono tracking-widest uppercase">
+                <span className="font-semibold text-white">English</span>
                 <span className="text-white/30">/</span>
-                <span className="text-white/50">It</span>
+                <span className="text-white/60">বাংলা</span>
               </div>
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
                 className="w-full text-center text-xs uppercase tracking-[0.2em] py-3.5 rounded-full border border-white/40 text-white hover:bg-white hover:text-black transition-colors"
               >
-                Start a project
+                Initiate Project Consultation
               </Link>
             </div>
           </motion.div>
