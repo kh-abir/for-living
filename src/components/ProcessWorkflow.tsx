@@ -50,7 +50,7 @@ export default function ProcessWorkflow() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
 
   return (
-    <section className="relative bg-[#12100e] text-white py-24 md:py-32 overflow-hidden border-t border-white/10">
+    <section id="services" className="relative bg-[#12100e] text-white py-24 md:py-32 overflow-hidden border-t border-white/10 scroll-mt-20">
       {/* Creative Background: Architectural Drafting Grid & Topographic Contour Lines */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">

@@ -15,13 +15,15 @@ export default function WorksCarousel() {
 
   // Duplicate items for infinite seamless scroll flow
   const allProjects = [...projects, ...projects];
+  const driftAccumulator = useRef(0);
 
   const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 20);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 20);
-    }
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    const nextLeft = scrollLeft > 20;
+    const nextRight = scrollLeft < scrollWidth - clientWidth - 20;
+    setCanScrollLeft((prev) => (prev !== nextLeft ? nextLeft : prev));
+    setCanScrollRight((prev) => (prev !== nextRight ? nextRight : prev));
   };
 
   useEffect(() => {
@@ -33,20 +35,27 @@ export default function WorksCarousel() {
     }
   }, []);
 
-  // Smooth continuous auto-scroll drift (pauses on hover or manual drag)
+  // Smooth continuous auto-scroll drift (faster 80px/s, subpixel accumulator, pause on hover/drag)
   useEffect(() => {
     let animId: number;
     let lastTime = performance.now();
 
     const step = (time: number) => {
-      const delta = (time - lastTime) / 1000;
+      const delta = Math.min((time - lastTime) / 1000, 0.1); // clamp delta to prevent jump
       lastTime = time;
 
       if (!isHovered && !isDragging && scrollRef.current) {
-        scrollRef.current.scrollLeft += delta * 42; // ~42px per second smooth glide
-        const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
-        if (scrollRef.current.scrollLeft >= maxScroll - 5) {
-          scrollRef.current.scrollLeft = 0;
+        driftAccumulator.current += delta * 80; // 80px per second lively smooth flow
+
+        if (Math.abs(driftAccumulator.current) >= 1) {
+          const stepPx = Math.trunc(driftAccumulator.current);
+          scrollRef.current.scrollLeft += stepPx;
+          driftAccumulator.current -= stepPx;
+
+          const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+          if (scrollRef.current.scrollLeft >= maxScroll - 10) {
+            scrollRef.current.scrollLeft = 0;
+          }
         }
       }
       animId = requestAnimationFrame(step);
@@ -62,7 +71,15 @@ export default function WorksCarousel() {
     }
   };
 
-  // Mouse Drag to Scroll handlers
+  // Trackpad / Mouse Wheel smooth horizontal scroll conversion
+  const handleWheel = (e: React.WheelEvent) => {
+    if (!scrollRef.current) return;
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    scrollRef.current.scrollLeft += delta * 0.9;
+    checkScroll();
+  };
+
+  // Mouse Drag to Scroll handlers with smooth tracking
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollRef.current) return;
     setIsDragging(true);
@@ -74,8 +91,9 @@ export default function WorksCarousel() {
     if (!isDragging || !scrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5;
+    const walk = (x - startX.current) * 1.35;
     scrollRef.current.scrollLeft = scrollLeftStart.current - walk;
+    checkScroll();
   };
 
   const handleMouseUpOrLeave = () => {
@@ -83,7 +101,7 @@ export default function WorksCarousel() {
   };
 
   return (
-    <section className="relative bg-[#12100e] text-white py-24 md:py-32 overflow-hidden border-t border-white/10">
+    <section id="work" className="relative bg-[#12100e] text-white py-24 md:py-32 overflow-hidden border-t border-white/10 scroll-mt-20">
       {/* Subtle Ambient Radial Backlight */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] pointer-events-none opacity-20"
@@ -145,9 +163,10 @@ export default function WorksCarousel() {
         </div>
       </div>
 
-      {/* Horizontal Carousel Track - Smooth Continuous Scroll + Drag */}
+      {/* Horizontal Carousel Track - Smooth Continuous Scroll + Drag + Wheel */}
       <div
         ref={scrollRef}
+        onWheel={handleWheel}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
           setIsHovered(false);
@@ -156,12 +175,12 @@ export default function WorksCarousel() {
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUpOrLeave}
-        className="flex items-center gap-6 md:gap-8 overflow-x-auto no-scrollbar px-6 md:px-12 py-14 md:py-20 cursor-grab active:cursor-grabbing select-none"
+        className="flex items-center gap-6 md:gap-8 overflow-x-auto no-scrollbar px-6 md:px-12 py-14 md:py-20 cursor-grab active:cursor-grabbing select-none transform-gpu will-change-scroll"
       >
         {allProjects.map((project, idx) => (
           <div
             key={`${project.slug}-${idx}`}
-            className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[420px] origin-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.18] hover:z-40 relative group"
+            className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[420px] origin-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.18] hover:z-40 relative group transform-gpu will-change-transform"
           >
             <Link href={`/work/${project.slug}`} className="block">
               {/* Top Architectural Precision Ruler Ticks */}

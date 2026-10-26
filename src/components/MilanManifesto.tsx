@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function BengalManifesto() {
   return (
-    <section className="relative bg-[#1c1713] text-white py-24 md:py-32 overflow-hidden border-t border-white/10">
+    <section id="about" className="relative bg-[#1c1713] text-white py-24 md:py-32 overflow-hidden border-t border-white/10 scroll-mt-20">
       {/* Background Architectural Canvas */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20 mix-blend-screen"

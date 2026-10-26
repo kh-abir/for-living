@@ -11,11 +11,36 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [isLightSection, setIsLightSection] = useState(false);
   const [lang, setLang] = useState<'En' | 'Bn'>('En');
+  const [activeSection, setActiveSection] = useState('home');
 
+  const navLinks = [
+    { label: 'Home', href: '/', id: 'home' },
+    { label: 'Services', href: '/services', id: 'services' },
+    { label: 'Work', href: '/work', id: 'work' },
+    { label: 'About', href: '/about', id: 'about' },
+  ];
+
+  // Scroll spy & Light/Dark Theme Detection
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
+      // Accurate Section scroll spy on homepage using viewport bounding client rects
+      if (pathname === '/') {
+        const sections = ['home', 'work', 'services', 'about'];
+        for (const id of sections) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 260 && rect.bottom >= 140) {
+              setActiveSection(id);
+              break;
+            }
+          }
+        }
+      }
+
+      // Theme detection for floating navbar contrast
       const lightElements = document.querySelectorAll('[data-theme="light"]');
       let overLight = false;
       const navCenter = 30;
@@ -35,23 +60,23 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: (typeof navLinks)[0]) => {
+    if (pathname === '/') {
+      e.preventDefault();
+      const el = document.getElementById(link.id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(link.id);
+        if (window.history.pushState) {
+          window.history.pushState(null, '', `#${link.id}`);
+        }
+      } else if (link.id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setActiveSection('home');
+      }
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  const navLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Services', href: '/services' },
-    { label: 'Work', href: '/work' },
-    { label: 'About', href: '/about' },
-  ];
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -81,12 +106,16 @@ export default function Navigation() {
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive =
+                pathname === '/'
+                  ? activeSection === link.id
+                  : pathname === link.href || (link.id !== 'home' && pathname.startsWith(link.href));
               return (
                 <Link
                   key={link.href}
-                  href={link.href}
-                  className={`text-xs uppercase tracking-[0.2em] transition-all duration-300 relative py-1.5 px-2 font-medium ${
+                  href={pathname === '/' ? `#${link.id}` : link.href}
+                  onClick={(e) => handleNavClick(e, link)}
+                  className={`text-xs uppercase tracking-[0.2em] transition-all duration-300 relative py-1.5 px-2 font-medium cursor-pointer ${
                     isActive
                       ? isLightSection && scrolled
                         ? 'text-[#221d18] font-semibold'
@@ -194,22 +223,30 @@ export default function Navigation() {
               <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#bd7b58]">
                 PRANGON Studios • Menu
               </span>
-              {navLinks.map((link, idx) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 + idx * 0.08, duration: 0.4 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="font-serif-luxury text-3xl font-light tracking-wide text-white/90 hover:text-white transition-colors"
+              {navLinks.map((link, idx) => {
+                const isActive =
+                  pathname === '/'
+                    ? activeSection === link.id
+                    : pathname === link.href || (link.id !== 'home' && pathname.startsWith(link.href));
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + idx * 0.08, duration: 0.4 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={pathname === '/' ? `#${link.id}` : link.href}
+                      onClick={(e) => handleNavClick(e, link)}
+                      className={`font-serif-luxury text-3xl font-light tracking-wide transition-colors ${
+                        isActive ? 'text-[#bd7b58]' : 'text-white/90 hover:text-white'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
 
             <div className="flex flex-col gap-6 pt-8 border-t border-white/10">

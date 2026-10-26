@@ -8,14 +8,25 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
   const [hasMovedCursor, setHasMovedCursor] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
       if (!hasMovedCursor) setHasMovedCursor(true);
+      setIsPaused(false);
+
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+      pauseTimerRef.current = setTimeout(() => {
+        setIsPaused(true);
+      }, 350); // 350ms of stillness triggers subtle breathing pulse
     };
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+    };
   }, [hasMovedCursor]);
 
   const { scrollYProgress } = useScroll({
@@ -45,6 +56,7 @@ export default function Hero() {
 
   return (
     <section
+      id="home"
       ref={containerRef}
       className="section_hero hp_section_hero relative min-h-[220vh] bg-[#12100e] text-white"
     >
@@ -55,16 +67,26 @@ export default function Hero() {
         }}
         className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center z-0 origin-center"
       >
-        {/* Layer 0: Artisanal Fired Terracotta Clay Texture (Defocused, Darkened, Generous Spatial Depth) */}
+        {/* Layer 0: Cinematic Landscape Architecture Video Loop (Defocussed, Darkened, Wide-Space Depth) */}
         <motion.div
           style={{ opacity: heroBackgroundOpacity }}
           className="absolute inset-0 z-0 overflow-hidden"
         >
-          <img
-            src="/assets/hero-terracotta.avif"
-            alt="Artisanal terracotta fired clay architectural texture"
-            className="w-full h-full object-cover object-center scale-110 select-none filter blur-[2.5px] brightness-[0.58] contrast-[0.92] saturate-[0.85]"
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/assets/hero-landscape-poster.webp"
+            className="w-full h-full object-cover object-center scale-110 select-none pointer-events-none filter blur-[2.5px] brightness-[0.52] contrast-[0.94] saturate-[0.80]"
+          >
+            <source src="/assets/hero-landscape.mp4" type="video/mp4" />
+            <img
+              src="/assets/hero-landscape-poster.webp"
+              alt="Cinematic landscape architecture design"
+              className="w-full h-full object-cover object-center"
+            />
+          </video>
         </motion.div>
 
         {/* Expansive Atmospheric Spatial Vignette (Deep wide-space sensation) */}
@@ -81,10 +103,29 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Layer 1: Architectural Blueprint Line Art - Crisp Matte Linework Revealed Directly Under Cursor */}
+        {/* Layer 1: Architectural Blueprint Line Art - Matte Linework with Breathing Pulse when Cursor Pauses */}
         <motion.div
+          animate={
+            isPaused
+              ? {
+                  opacity: [0.55, 0.92, 0.55],
+                  scale: [1, 1.018, 1],
+                }
+              : {
+                  opacity: 0.68,
+                  scale: 1,
+                }
+          }
+          transition={
+            isPaused
+              ? {
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }
+              : { duration: 0.3 }
+          }
           style={{
-            opacity: heroBackgroundOpacity,
             WebkitMaskImage: hasMovedCursor
               ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.7) 60%, transparent 100%)`
               : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
@@ -92,12 +133,12 @@ export default function Hero() {
               ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.7) 60%, transparent 100%)`
               : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
           }}
-          className="absolute inset-0 z-2 pointer-events-none overflow-hidden transition-[opacity] duration-300"
+          className="absolute inset-0 z-2 pointer-events-none overflow-hidden"
         >
           <img
             src="/assets/hero_line_bg.webp"
             alt=""
-            className="w-full h-full object-cover object-center opacity-65 mix-blend-screen select-none filter contrast-90 brightness-90 sepia-[0.35]"
+            className="w-full h-full object-cover object-center mix-blend-screen select-none filter contrast-90 brightness-90 sepia-[0.35]"
           />
         </motion.div>
 
