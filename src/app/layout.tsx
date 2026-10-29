@@ -20,7 +20,14 @@ export const metadata: Metadata = {
     title: 'PRANGON Studios | Dhaka Atelier',
     description:
       'We turn architectural designs into masterpiece interiors crafted by Bengal’s finest master artisans.',
-    images: ['/assets/founders.avif'],
+    images: ['/assets/hero-terracotta-wall.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PRANGON Studios | Dhaka Atelier',
+    description:
+      'We turn architectural designs into masterpiece interiors crafted by Bengal’s finest master artisans.',
+    images: ['/assets/hero-terracotta-wall.jpg'],
   },
 };
 
