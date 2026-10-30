@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-labelledby="title-c">
+  <title id="title-c">PRANGON — Concept C: Chisel Block</title>
+  <!--
+    Concept C — Chisel Block
+    A solid, near-square block with a single precise angular cut that
+    reveals the letter P in negative space. The block is the "raw
+    material"; the chisel cut is the craft. Premium, bold, works at 16px.
+
+    Construction:
+    - Outer: rounded rectangle 224×224 centered, rx=12
+    - Negative P: carved from the solid mass
+    - P stem: vertical channel 40px wide
+    - P bowl: semicircular counter, radius 40
+    - The cut enters from the right edge, giving the block an open feel
+    - Grid unit: 8px
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 28 16
+    C 21.4 16 16 21.4 16 28
+    L 16 228
+    C 16 234.6 21.4 240 28 240
+    L 228 240
+    C 234.6 240 240 234.6 240 228
+    L 240 28
+    C 240 21.4 234.6 16 228 16
+    Z
+    M 80 48
+    L 120 48
+    L 120 96
+    C 120 96 128 88 144 88
+    C 160 88 176 100 176 128
+    C 176 156 160 168 144 168
+    C 128 168 120 160 120 160
+    L 120 208
+    L 80 208
+    Z
+    M 120 120
+    C 120 120 128 112 140 112
+    C 152 112 152 128 152 128
+    C 152 128 152 144 140 144
+    C 128 144 120 136 120 136
+    Z
+  "/>
+</svg>

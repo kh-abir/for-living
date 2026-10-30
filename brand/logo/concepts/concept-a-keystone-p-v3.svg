@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-labelledby="title-a">
+  <title id="title-a">PRANGON — Concept A: Keystone P (v3)</title>
+  <!--
+    v3: Moderate taper. Top=168 wide, bottom=136 wide. Centered on x=128.
+    Chamfered top corners 45° 8px. Clean P with oval counter.
+    Descender extends to full height for gravitas.
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 52 20
+    L 44 28
+    L 60 236
+    L 108 236
+    L 100 140
+    C 100 136 112 144 136 146
+    C 164 148 188 132 196 104
+    C 204 76 196 52 176 38
+    C 160 28 144 24 144 24
+    L 204 24
+    L 212 20
+    Z
+    M 96 56
+    L 100 112
+    C 100 112 112 120 136 120
+    C 160 120 172 104 172 80
+    C 172 56 160 46 136 46
+    C 112 46 96 56 96 56
+    Z
+  "/>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-labelledby="title-b">
+  <title id="title-b">PRANGON — Concept B: Mortise &amp; Tenon</title>
+  <!--
+    Concept B — Mortise & Tenon
+    Two abstract geometric blocks interlocking at 90° like a woodwork
+    mortise-and-tenon joint. The negative space between them reads as
+    the letter P when viewed as a whole.
+
+    Construction:
+    - Vertical block (mortise): 80×208, positioned left
+    - Horizontal block (tenon): slides in from right at top
+    - The interlock gap is 8px
+    - Together they form an abstract P shape
+    - Grid unit: 8px
+  -->
+  <g fill="#000000">
+    <!-- Vertical stem block (mortise piece) -->
+    <rect x="40" y="24" width="72" height="208" rx="4"/>
+    <!-- Horizontal arm block (tenon piece) - interlocks into stem -->
+    <path d="
+      M 120 24
+      L 192 24
+      C 216 24 232 40 232 64
+      L 232 80
+      C 232 104 216 120 192 120
+      L 120 120
+      L 120 88
+      L 144 88
+      L 144 56
+      L 120 56
+      Z
+    "/>
+  </g>
+</svg>

@@ -16,6 +16,14 @@ export const metadata: Metadata = {
   title: 'PRANGON Studios | Bespoke Architecture & Interior Engineering',
   description:
     'We turn architectural designs into masterpiece interiors crafted by Bengal’s finest master artisans.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'PRANGON Studios | Dhaka Atelier',
     description:

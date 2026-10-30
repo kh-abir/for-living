@@ -19,13 +19,25 @@ export default function Footer() {
           {/* Col 1: Brand Typography & Mission */}
           <div className="md:col-span-5 flex flex-col justify-between">
             <div>
-              <Link href="/" className="inline-block mb-4 group">
-                <span className="font-serif-luxury text-2xl tracking-[0.24em] font-medium uppercase text-white group-hover:text-white/80 transition-colors">
-                  PRANGON
-                </span>
-                <span className="text-[9px] font-mono tracking-[0.35em] text-[#bd7b58] uppercase block mt-1">
-                  Studios • Dhaka
-                </span>
+              <Link href="/" className="inline-flex items-center gap-3 mb-4 group">
+                <div className="w-8 h-8 rounded-[6px] overflow-hidden shrink-0 shadow-md">
+                  <svg viewBox="0 0 256 256" className="w-full h-full" role="img" aria-label="PRANGON Mark">
+                    <rect width="256" height="256" rx="16" fill="#bd7b58" />
+                    <path
+                      fill="#f8f9ee"
+                      fillRule="evenodd"
+                      d="M 72 48 L 112 48 L 112 56 C 112 56 124 48 148 48 C 176 48 192 68 192 96 C 192 124 176 144 148 144 C 124 144 112 136 112 136 L 112 208 L 72 208 Z M 112 80 L 112 112 C 112 112 124 120 144 120 C 160 120 164 108 164 96 C 164 84 160 72 144 72 C 124 72 112 80 112 80 Z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <span className="font-serif-luxury text-2xl tracking-[0.24em] font-medium uppercase text-white group-hover:text-white/80 transition-colors">
+                    PRANGON
+                  </span>
+                  <span className="text-[9px] font-mono tracking-[0.35em] text-[#bd7b58] uppercase block mt-0.5">
+                    Studios • Dhaka
+                  </span>
+                </div>
               </Link>
               <p className="text-xs md:text-sm text-white/60 font-light max-w-sm leading-relaxed mb-6">
                 We turn architectural visions into bespoke interior masterpieces crafted by Bengal’s finest master artisans.

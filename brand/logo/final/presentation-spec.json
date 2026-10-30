@@ -1,0 +1,40 @@
+{
+  "brand": "PRANGON",
+  "tagline": "THE ARCHITECTURE OF CRAFT",
+  "brief": "Bespoke architectural joinery and turnkey interior engineering studio based in Dhaka. Merging visionary architecture with multi-generational artisanal craft mastery across residential, commercial, and marine commissions.",
+  "adjectives": ["structural", "artisanal", "precise", "grounded", "timeless"],
+  "criteria": "Success: distinct from generic construction/real estate clichés, recognizable at 16 px, timeless monogram/emblem, embodies intersection of architectural mass and artisanal carving.",
+  "industry": "services",
+  "mockups": ["signage", "business-card", "website", "box", "tote", "social"],
+  "nav": ["Home", "Services", "Work", "About"],
+  "brand_color": "#bd7b58",
+  "tile_color": "#12100e",
+  "greyscale": false,
+  "final": true,
+  "designer": "Antigravity Identity Studio",
+  "round": 1,
+  "concepts": [
+    {
+      "name": "Chisel Block",
+      "symbol": "prangon-symbol-color.svg",
+      "lockup": "prangon-lockup-horizontal-color.svg",
+      "stacked": "prangon-lockup-stacked.svg",
+      "avatar": "prangon-symbol-color-favicon.svg",
+      "symbol_on_tile": "prangon-symbol-color.svg",
+      "lockup_on_dark": "prangon-lockup-horizontal-dark.svg",
+      "stacked_on_dark": "prangon-lockup-stacked.svg",
+      "idea": "A solid architectural block with a clean, negative-space 'P' carved out — raw structural mass meeting artisanal mastery.",
+      "rationale": [
+        "Monolithic rectangular footprint represents architectural foundation and structural integrity.",
+        "Precision-carved 'P' negative counter reflects high-tolerance woodworking and chisel work.",
+        "Exceptional legibility across 16 px favicon, mobile header, luxury packaging, and embossed architectural bronze plaques."
+      ]
+    }
+  ],
+  "recommendation": "Chisel Block provides an unmistakable silhouette that anchors PRANGON as an authoritative, high-craft atelier.",
+  "next_steps": [
+    "Deploy vector masters into web application and public assets",
+    "Integrate favicon and manifest into site metadata",
+    "Produce architectural sign specs and physical stationery kit"
+  ]
+}

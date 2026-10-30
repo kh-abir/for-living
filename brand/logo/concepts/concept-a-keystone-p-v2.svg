@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-labelledby="title-a">
+  <title id="title-a">PRANGON — Concept A: Keystone P (v2)</title>
+  <!--
+    Concept A v2 — Keystone P
+    Letter P whose outer silhouette is clearly trapezoidal (wider at top,
+    narrower at bottom) like a keystone. The apex has a flat chamfer.
+    The bowl counter uses an arc.
+
+    Construction on 256 grid, unit=8:
+    - Trapezoid: top edge x=48..208 (160 wide), bottom edge x=72..184 (112 wide)
+    - Top y=20, bottom y=236
+    - Bowl bump on right side from y=20 to y=128
+    - Counter: centered at roughly (156, 76), semicircular
+    - Chamfered top-left and top-right corners at 45°, 8px
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 56 20
+    L 48 28
+    L 72 236
+    L 120 236
+    L 108 136
+    L 108 128
+    C 108 128 116 136 136 140
+    C 156 144 180 132 192 108
+    C 204 84 200 56 184 40
+    C 168 24 148 24 148 24
+    L 200 24
+    L 208 20
+    Z
+    M 108 52
+    L 108 108
+    C 108 108 116 116 136 116
+    C 156 116 168 100 168 80
+    C 168 60 156 48 136 48
+    C 116 48 108 52 108 52
+    Z
+  "/>
+</svg>

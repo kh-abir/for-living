@@ -98,12 +98,27 @@ export default function Navigation() {
               : 'bg-[#000000a6] text-white border-white/12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]'
           }`}
         >
-          {/* Brand Logo: Strictly Typographic PRANGON (No icon box) */}
+          {/* Brand Logo: Chisel Block Mark + PRANGON Wordmark */}
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="flex items-center group transition-opacity hover:opacity-90"
+            className="flex items-center gap-3 group transition-opacity hover:opacity-90"
           >
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-[6px] overflow-hidden shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-105">
+              <svg viewBox="0 0 256 256" className="w-full h-full" role="img" aria-label="PRANGON Mark">
+                <rect
+                  width="256"
+                  height="256"
+                  rx="16"
+                  className={isLightSection && scrolled ? 'fill-[#12100e]' : 'fill-[#bd7b58]'}
+                />
+                <path
+                  fill="#f8f9ee"
+                  fillRule="evenodd"
+                  d="M 72 48 L 112 48 L 112 56 C 112 56 124 48 148 48 C 176 48 192 68 192 96 C 192 124 176 144 148 144 C 124 144 112 136 112 136 L 112 208 L 72 208 Z M 112 80 L 112 112 C 112 112 124 120 144 120 C 160 120 164 108 164 96 C 164 84 160 72 144 72 C 124 72 112 80 112 80 Z"
+                />
+              </svg>
+            </div>
             <span
               className={`font-serif-luxury text-xl md:text-2xl tracking-[0.24em] font-medium leading-none uppercase transition-colors duration-300 ${
                 isLightSection && scrolled ? 'text-[#221d18]' : 'text-white'

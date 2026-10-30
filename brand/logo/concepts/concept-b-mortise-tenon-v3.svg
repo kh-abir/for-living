@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-labelledby="title-b">
+  <title id="title-b">PRANGON — Concept B: Mortise &amp; Tenon (v3)</title>
+  <!--
+    v3: Centered horizontally. Stem block centered left, bowl fills right.
+    Gap = 8px clearly visible at joint.
+    Stem: x=24..88 (w=64), y=24..232
+    Notch cut: x=88, y=44..104 (tenon slot)
+    Bowl: x=96 (8px gap from stem right), y=24..120
+    Bowl radius curves back. Counter = tenon slot rectangle.
+  -->
+  <g fill="#000000">
+    <!-- Stem block with mortise notch -->
+    <path d="
+      M 24 24
+      L 88 24
+      L 88 44
+      L 56 44
+      L 56 104
+      L 88 104
+      L 88 232
+      L 24 232
+      Z
+    "/>
+    <!-- Bowl block (tenon) -->
+    <path d="
+      M 96 24
+      L 184 24
+      C 212 24 232 48 232 72
+      C 232 96 212 120 184 120
+      L 96 120
+      L 96 104
+      L 152 104
+      L 152 44
+      L 96 44
+      Z
+    "/>
+  </g>
+</svg>

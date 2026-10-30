@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-labelledby="title-c">
+  <title id="title-c">PRANGON — Concept C: Chisel Block (v2)</title>
+  <!--
+    Concept C v2 — Chisel Block
+    A solid rectangle with one deliberate angular chisel-cut that reveals
+    the letter P in negative space. The P is clearly uppercase with
+    distinct stem and bowl.
+
+    Construction:
+    - Outer block: 16,16 to 240,240, rx=8 (subtle rounding)
+    - P negative space:
+      - Stem: vertical channel from y=48 to y=208, x=72 to x=112 (40 wide)
+      - Bowl: D-shaped counter from y=48 to y=144
+      - Counter opening: semicircular hole in bowl area
+    - Clean right-angle cut at bottom-right of stem extends to block edge
+      to make it feel "chiseled open" — the P is revealed, not contained
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 24 16
+    C 19.6 16 16 19.6 16 24
+    L 16 232
+    C 16 236.4 19.6 240 24 240
+    L 232 240
+    C 236.4 240 240 236.4 240 232
+    L 240 24
+    C 240 19.6 236.4 16 232 16
+    Z
+    M 72 48
+    L 112 48
+    L 112 56
+    C 112 56 124 48 148 48
+    C 176 48 192 68 192 96
+    C 192 124 176 144 148 144
+    C 124 144 112 136 112 136
+    L 112 208
+    L 72 208
+    Z
+    M 112 80
+    L 112 112
+    C 112 112 124 120 144 120
+    C 160 120 164 108 164 96
+    C 164 84 160 72 144 72
+    C 124 72 112 80 112 80
+    Z
+  "/>
+</svg>

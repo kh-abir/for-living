@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-labelledby="title-a">
+  <title id="title-a">PRANGON — Concept A: Keystone P</title>
+  <!--
+    Concept A — Keystone P
+    A geometric letter P shaped as an architectural keystone.
+    The outer silhouette tapers inward from top to bottom (trapezoidal),
+    evoking a keystone's wedge form. The P's counter (bowl hole) is a
+    clean circular negative space. A subtle 2px chamfer at the apex
+    suggests a chisel cut.
+
+    Construction:
+    - Outer shape: symmetric trapezoid, top width 160, bottom width 120,
+      height 224, centered on x=128. Top corners chamfered 8px at 45°.
+    - P stem: integrated into left side of trapezoid
+    - P bowl: right-side bump from y=40 to y=128, arc outward
+    - Counter hole: ellipse centered at (152, 84), rx=28, ry=36
+    - Grid unit: 8px on 256 canvas
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 76 16
+    L 68 24
+    L 68 240
+    L 116 240
+    L 116 136
+    C 116 136 120 140 132 142
+    C 144 144 160 144 176 136
+    C 192 128 200 112 200 88
+    C 200 64 192 48 176 40
+    C 160 32 144 32 132 34
+    C 120 36 116 40 116 40
+    L 116 24
+    L 180 24
+    L 188 16
+    Z
+    M 116 56
+    C 116 56 124 48 140 48
+    C 156 48 168 56 168 84
+    C 168 112 156 120 140 120
+    C 124 120 116 112 116 112
+    Z
+  "/>
+</svg>

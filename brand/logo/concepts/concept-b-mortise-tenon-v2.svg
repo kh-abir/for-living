@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"
+     role="img" aria-labelledby="title-b">
+  <title id="title-b">PRANGON — Concept B: Mortise &amp; Tenon (v2)</title>
+  <!--
+    Concept B v2 — Mortise & Tenon
+    Two distinct blocks that interlock at a visible joint.
+    Block 1 (vertical/stem): tall rectangle, has a rectangular notch cut
+    from its right side where Block 2 slots in.
+    Block 2 (horizontal/bowl): L-shaped piece that interlocks into the notch,
+    forming the bowl of the P with a rounded outer edge.
+    8px gap between pieces visible at the joint.
+
+    Construction:
+    - Stem block: x=40, y=24, w=64, h=208
+    - Notch in stem: cut out from x=104 to right edge, y=48 to y=96
+    - Bowl block: starts at x=112 (8px gap), from y=24, wraps around
+    - Bowl outer radius: curves from right back to joint
+    - Counter visible in bowl
+  -->
+  <g fill="#000000">
+    <!-- Stem block with notch (mortise) -->
+    <path d="
+      M 40 24
+      L 104 24
+      L 104 44
+      L 72 44
+      L 72 104
+      L 104 104
+      L 104 232
+      L 40 232
+      Z
+    "/>
+    <!-- Bowl block (tenon) — interlocks into notch -->
+    <path d="
+      M 112 24
+      L 200 24
+      C 224 24 240 48 240 72
+      C 240 96 224 120 200 120
+      L 112 120
+      L 112 104
+      L 160 104
+      L 160 44
+      L 112 44
+      Z
+    "/>
+  </g>
+</svg>

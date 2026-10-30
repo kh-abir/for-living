@@ -1,0 +1,519 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="984" viewBox="0 0 1600 984"><defs><filter id="grey"><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="1600" height="984" fill="#f7f7f4"/><text x="60" y="78" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#161616">Logo concepts</text><text x="60" y="116" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="20" fill="#6b6b6b">Concepts for review — pick a direction (or tell me what you like in each).</text><rect x="60" y="150" width="474.667" height="774" rx="18" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-a" viewBox="0 0 256 256" x="90" y="190" width="414.667" height="300" preserveAspectRatio="xMidYMid meet">
+  <title id="c0-title-a">PRANGON — Concept A: Keystone P (v3)</title>
+  <!--
+    v3: Moderate taper. Top=168 wide, bottom=136 wide. Centered on x=128.
+    Chamfered top corners 45° 8px. Clean P with oval counter.
+    Descender extends to full height for gravitas.
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 52 20
+    L 44 28
+    L 60 236
+    L 108 236
+    L 100 140
+    C 100 136 112 144 136 146
+    C 164 148 188 132 196 104
+    C 204 76 196 52 176 38
+    C 160 28 144 24 144 24
+    L 204 24
+    L 212 20
+    Z
+    M 96 56
+    L 100 112
+    C 100 112 112 120 136 120
+    C 160 120 172 104 172 80
+    C 172 56 160 46 136 46
+    C 112 46 96 56 96 56
+    Z
+  "/>
+</svg>
+</g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="lockup-a" viewBox="0 0 800 256" x="90" y="514" width="414.667" height="120" preserveAspectRatio="xMidYMid meet">
+  <title id="l0-lockup-a">PRANGON — Lockup A: Keystone P</title>
+  <!-- Horizontal lockup: symbol left + wordmark right. Text uses Instrument Sans as exploration; must outline for production. -->
+  <g id="l0-symbol" transform="translate(16, 0)">
+    <path fill="#000000" fill-rule="evenodd" d="
+      M 52 20 L 44 28 L 60 236 L 108 236 L 100 140
+      C 100 136 112 144 136 146 C 164 148 188 132 196 104
+      C 204 76 196 52 176 38 C 160 28 144 24 144 24
+      L 204 24 L 212 20 Z
+      M 96 56 L 100 112 C 100 112 112 120 136 120
+      C 160 120 172 104 172 80 C 172 56 160 46 136 46
+      C 112 46 96 56 96 56 Z
+    "/>
+  </g>
+  <g id="l0-wordmark">
+    <text x="280" y="152" font-family="'Instrument Sans', sans-serif" font-size="72" font-weight="500" letter-spacing="12" fill="#000000">PRANGON</text>
+    <text x="280" y="192" font-family="'Instrument Sans', sans-serif" font-size="14" font-weight="300" letter-spacing="8" fill="#000000" opacity="0.55">THE ARCHITECTURE OF CRAFT</text>
+  </g>
+</svg>
+</g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-a" viewBox="0 0 256 256" x="90" y="660" width="64" height="64" preserveAspectRatio="xMidYMid meet">
+  <title id="s064-title-a">PRANGON — Concept A: Keystone P (v3)</title>
+  <!--
+    v3: Moderate taper. Top=168 wide, bottom=136 wide. Centered on x=128.
+    Chamfered top corners 45° 8px. Clean P with oval counter.
+    Descender extends to full height for gravitas.
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 52 20
+    L 44 28
+    L 60 236
+    L 108 236
+    L 100 140
+    C 100 136 112 144 136 146
+    C 164 148 188 132 196 104
+    C 204 76 196 52 176 38
+    C 160 28 144 24 144 24
+    L 204 24
+    L 212 20
+    Z
+    M 96 56
+    L 100 112
+    C 100 112 112 120 136 120
+    C 160 120 172 104 172 80
+    C 172 56 160 46 136 46
+    C 112 46 96 56 96 56
+    Z
+  "/>
+</svg>
+</g><text x="122" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">64px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-a" viewBox="0 0 256 256" x="180" y="692" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+  <title id="s032-title-a">PRANGON — Concept A: Keystone P (v3)</title>
+  <!--
+    v3: Moderate taper. Top=168 wide, bottom=136 wide. Centered on x=128.
+    Chamfered top corners 45° 8px. Clean P with oval counter.
+    Descender extends to full height for gravitas.
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 52 20
+    L 44 28
+    L 60 236
+    L 108 236
+    L 100 140
+    C 100 136 112 144 136 146
+    C 164 148 188 132 196 104
+    C 204 76 196 52 176 38
+    C 160 28 144 24 144 24
+    L 204 24
+    L 212 20
+    Z
+    M 96 56
+    L 100 112
+    C 100 112 112 120 136 120
+    C 160 120 172 104 172 80
+    C 172 56 160 46 136 46
+    C 112 46 96 56 96 56
+    Z
+  "/>
+</svg>
+</g><text x="196" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">32px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-a" viewBox="0 0 256 256" x="238" y="708" width="16" height="16" preserveAspectRatio="xMidYMid meet">
+  <title id="s016-title-a">PRANGON — Concept A: Keystone P (v3)</title>
+  <!--
+    v3: Moderate taper. Top=168 wide, bottom=136 wide. Centered on x=128.
+    Chamfered top corners 45° 8px. Clean P with oval counter.
+    Descender extends to full height for gravitas.
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 52 20
+    L 44 28
+    L 60 236
+    L 108 236
+    L 100 140
+    C 100 136 112 144 136 146
+    C 164 148 188 132 196 104
+    C 204 76 196 52 176 38
+    C 160 28 144 24 144 24
+    L 204 24
+    L 212 20
+    Z
+    M 96 56
+    L 100 112
+    C 100 112 112 120 136 120
+    C 160 120 172 104 172 80
+    C 172 56 160 46 136 46
+    C 112 46 96 56 96 56
+    Z
+  "/>
+</svg>
+</g><text x="246" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">16px</text><text x="90.0" y="780" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#161616">A · Keystone P</text><text x="90.0" y="814" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">P shaped as architectural keystone with</text><text x="90.0" y="840" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">chisel-cut apex — structure meets craft</text><rect x="562.667" y="150" width="474.667" height="774" rx="18" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-b" viewBox="0 0 256 256" x="592.667" y="190" width="414.667" height="300" preserveAspectRatio="xMidYMid meet">
+  <title id="c1-title-b">PRANGON — Concept B: Mortise &amp; Tenon (v3)</title>
+  <!--
+    v3: Centered horizontally. Stem block centered left, bowl fills right.
+    Gap = 8px clearly visible at joint.
+    Stem: x=24..88 (w=64), y=24..232
+    Notch cut: x=88, y=44..104 (tenon slot)
+    Bowl: x=96 (8px gap from stem right), y=24..120
+    Bowl radius curves back. Counter = tenon slot rectangle.
+  -->
+  <g fill="#000000">
+    <!-- Stem block with mortise notch -->
+    <path d="
+      M 24 24
+      L 88 24
+      L 88 44
+      L 56 44
+      L 56 104
+      L 88 104
+      L 88 232
+      L 24 232
+      Z
+    "/>
+    <!-- Bowl block (tenon) -->
+    <path d="
+      M 96 24
+      L 184 24
+      C 212 24 232 48 232 72
+      C 232 96 212 120 184 120
+      L 96 120
+      L 96 104
+      L 152 104
+      L 152 44
+      L 96 44
+      Z
+    "/>
+  </g>
+</svg>
+</g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="lockup-b" viewBox="0 0 800 256" x="592.667" y="514" width="414.667" height="120" preserveAspectRatio="xMidYMid meet">
+  <title id="l1-lockup-b">PRANGON — Lockup B: Mortise &amp; Tenon</title>
+  <g id="l1-symbol" transform="translate(16, 0)">
+    <g fill="#000000">
+      <path d="M 24 24 L 88 24 L 88 44 L 56 44 L 56 104 L 88 104 L 88 232 L 24 232 Z"/>
+      <path d="M 96 24 L 184 24 C 212 24 232 48 232 72 C 232 96 212 120 184 120 L 96 120 L 96 104 L 152 104 L 152 44 L 96 44 Z"/>
+    </g>
+  </g>
+  <g id="l1-wordmark">
+    <text x="280" y="152" font-family="'Instrument Sans', sans-serif" font-size="72" font-weight="500" letter-spacing="12" fill="#000000">PRANGON</text>
+    <text x="280" y="192" font-family="'Instrument Sans', sans-serif" font-size="14" font-weight="300" letter-spacing="8" fill="#000000" opacity="0.55">THE ARCHITECTURE OF CRAFT</text>
+  </g>
+</svg>
+</g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-b" viewBox="0 0 256 256" x="592.667" y="660" width="64" height="64" preserveAspectRatio="xMidYMid meet">
+  <title id="s164-title-b">PRANGON — Concept B: Mortise &amp; Tenon (v3)</title>
+  <!--
+    v3: Centered horizontally. Stem block centered left, bowl fills right.
+    Gap = 8px clearly visible at joint.
+    Stem: x=24..88 (w=64), y=24..232
+    Notch cut: x=88, y=44..104 (tenon slot)
+    Bowl: x=96 (8px gap from stem right), y=24..120
+    Bowl radius curves back. Counter = tenon slot rectangle.
+  -->
+  <g fill="#000000">
+    <!-- Stem block with mortise notch -->
+    <path d="
+      M 24 24
+      L 88 24
+      L 88 44
+      L 56 44
+      L 56 104
+      L 88 104
+      L 88 232
+      L 24 232
+      Z
+    "/>
+    <!-- Bowl block (tenon) -->
+    <path d="
+      M 96 24
+      L 184 24
+      C 212 24 232 48 232 72
+      C 232 96 212 120 184 120
+      L 96 120
+      L 96 104
+      L 152 104
+      L 152 44
+      L 96 44
+      Z
+    "/>
+  </g>
+</svg>
+</g><text x="624.667" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">64px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-b" viewBox="0 0 256 256" x="682.667" y="692" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+  <title id="s132-title-b">PRANGON — Concept B: Mortise &amp; Tenon (v3)</title>
+  <!--
+    v3: Centered horizontally. Stem block centered left, bowl fills right.
+    Gap = 8px clearly visible at joint.
+    Stem: x=24..88 (w=64), y=24..232
+    Notch cut: x=88, y=44..104 (tenon slot)
+    Bowl: x=96 (8px gap from stem right), y=24..120
+    Bowl radius curves back. Counter = tenon slot rectangle.
+  -->
+  <g fill="#000000">
+    <!-- Stem block with mortise notch -->
+    <path d="
+      M 24 24
+      L 88 24
+      L 88 44
+      L 56 44
+      L 56 104
+      L 88 104
+      L 88 232
+      L 24 232
+      Z
+    "/>
+    <!-- Bowl block (tenon) -->
+    <path d="
+      M 96 24
+      L 184 24
+      C 212 24 232 48 232 72
+      C 232 96 212 120 184 120
+      L 96 120
+      L 96 104
+      L 152 104
+      L 152 44
+      L 96 44
+      Z
+    "/>
+  </g>
+</svg>
+</g><text x="698.667" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">32px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-b" viewBox="0 0 256 256" x="740.667" y="708" width="16" height="16" preserveAspectRatio="xMidYMid meet">
+  <title id="s116-title-b">PRANGON — Concept B: Mortise &amp; Tenon (v3)</title>
+  <!--
+    v3: Centered horizontally. Stem block centered left, bowl fills right.
+    Gap = 8px clearly visible at joint.
+    Stem: x=24..88 (w=64), y=24..232
+    Notch cut: x=88, y=44..104 (tenon slot)
+    Bowl: x=96 (8px gap from stem right), y=24..120
+    Bowl radius curves back. Counter = tenon slot rectangle.
+  -->
+  <g fill="#000000">
+    <!-- Stem block with mortise notch -->
+    <path d="
+      M 24 24
+      L 88 24
+      L 88 44
+      L 56 44
+      L 56 104
+      L 88 104
+      L 88 232
+      L 24 232
+      Z
+    "/>
+    <!-- Bowl block (tenon) -->
+    <path d="
+      M 96 24
+      L 184 24
+      C 212 24 232 48 232 72
+      C 232 96 212 120 184 120
+      L 96 120
+      L 96 104
+      L 152 104
+      L 152 44
+      L 96 44
+      Z
+    "/>
+  </g>
+</svg>
+</g><text x="748.667" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">16px</text><text x="592.6666666666667" y="780" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#161616">B · Mortise &amp; Tenon</text><text x="592.6666666666667" y="814" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">Two blocks interlocking at a visible joint,</text><text x="592.6666666666667" y="840" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">forming P — joinery as identity</text><rect x="1065.33" y="150" width="474.667" height="774" rx="18" fill="#fff" stroke="#161616" stroke-width="2"/><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-c" viewBox="0 0 256 256" x="1095.33" y="190" width="414.667" height="300" preserveAspectRatio="xMidYMid meet">
+  <title id="c2-title-c">PRANGON — Concept C: Chisel Block (v2)</title>
+  <!--
+    Concept C v2 — Chisel Block
+    A solid rectangle with one deliberate angular chisel-cut that reveals
+    the letter P in negative space. The P is clearly uppercase with
+    distinct stem and bowl.
+
+    Construction:
+    - Outer block: 16,16 to 240,240, rx=8 (subtle rounding)
+    - P negative space:
+      - Stem: vertical channel from y=48 to y=208, x=72 to x=112 (40 wide)
+      - Bowl: D-shaped counter from y=48 to y=144
+      - Counter opening: semicircular hole in bowl area
+    - Clean right-angle cut at bottom-right of stem extends to block edge
+      to make it feel "chiseled open" — the P is revealed, not contained
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 24 16
+    C 19.6 16 16 19.6 16 24
+    L 16 232
+    C 16 236.4 19.6 240 24 240
+    L 232 240
+    C 236.4 240 240 236.4 240 232
+    L 240 24
+    C 240 19.6 236.4 16 232 16
+    Z
+    M 72 48
+    L 112 48
+    L 112 56
+    C 112 56 124 48 148 48
+    C 176 48 192 68 192 96
+    C 192 124 176 144 148 144
+    C 124 144 112 136 112 136
+    L 112 208
+    L 72 208
+    Z
+    M 112 80
+    L 112 112
+    C 112 112 124 120 144 120
+    C 160 120 164 108 164 96
+    C 164 84 160 72 144 72
+    C 124 72 112 80 112 80
+    Z
+  "/>
+</svg>
+</g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="lockup-c" viewBox="0 0 800 256" x="1095.33" y="514" width="414.667" height="120" preserveAspectRatio="xMidYMid meet">
+  <title id="l2-lockup-c">PRANGON — Lockup C: Chisel Block</title>
+  <g id="l2-symbol" transform="translate(16, 0)">
+    <path fill="#000000" fill-rule="evenodd" d="
+      M 24 16 C 19.6 16 16 19.6 16 24 L 16 232 C 16 236.4 19.6 240 24 240
+      L 232 240 C 236.4 240 240 236.4 240 232 L 240 24 C 240 19.6 236.4 16 232 16 Z
+      M 72 48 L 112 48 L 112 56 C 112 56 124 48 148 48
+      C 176 48 192 68 192 96 C 192 124 176 144 148 144
+      C 124 144 112 136 112 136 L 112 208 L 72 208 Z
+      M 112 80 L 112 112 C 112 112 124 120 144 120
+      C 160 120 164 108 164 96 C 164 84 160 72 144 72
+      C 124 72 112 80 112 80 Z
+    "/>
+  </g>
+  <g id="l2-wordmark">
+    <text x="290" y="152" font-family="'Instrument Sans', sans-serif" font-size="72" font-weight="500" letter-spacing="12" fill="#000000">PRANGON</text>
+    <text x="290" y="192" font-family="'Instrument Sans', sans-serif" font-size="14" font-weight="300" letter-spacing="8" fill="#000000" opacity="0.55">THE ARCHITECTURE OF CRAFT</text>
+  </g>
+</svg>
+</g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-c" viewBox="0 0 256 256" x="1095.33" y="660" width="64" height="64" preserveAspectRatio="xMidYMid meet">
+  <title id="s264-title-c">PRANGON — Concept C: Chisel Block (v2)</title>
+  <!--
+    Concept C v2 — Chisel Block
+    A solid rectangle with one deliberate angular chisel-cut that reveals
+    the letter P in negative space. The P is clearly uppercase with
+    distinct stem and bowl.
+
+    Construction:
+    - Outer block: 16,16 to 240,240, rx=8 (subtle rounding)
+    - P negative space:
+      - Stem: vertical channel from y=48 to y=208, x=72 to x=112 (40 wide)
+      - Bowl: D-shaped counter from y=48 to y=144
+      - Counter opening: semicircular hole in bowl area
+    - Clean right-angle cut at bottom-right of stem extends to block edge
+      to make it feel "chiseled open" — the P is revealed, not contained
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 24 16
+    C 19.6 16 16 19.6 16 24
+    L 16 232
+    C 16 236.4 19.6 240 24 240
+    L 232 240
+    C 236.4 240 240 236.4 240 232
+    L 240 24
+    C 240 19.6 236.4 16 232 16
+    Z
+    M 72 48
+    L 112 48
+    L 112 56
+    C 112 56 124 48 148 48
+    C 176 48 192 68 192 96
+    C 192 124 176 144 148 144
+    C 124 144 112 136 112 136
+    L 112 208
+    L 72 208
+    Z
+    M 112 80
+    L 112 112
+    C 112 112 124 120 144 120
+    C 160 120 164 108 164 96
+    C 164 84 160 72 144 72
+    C 124 72 112 80 112 80
+    Z
+  "/>
+</svg>
+</g><text x="1127.33" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">64px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-c" viewBox="0 0 256 256" x="1185.33" y="692" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+  <title id="s232-title-c">PRANGON — Concept C: Chisel Block (v2)</title>
+  <!--
+    Concept C v2 — Chisel Block
+    A solid rectangle with one deliberate angular chisel-cut that reveals
+    the letter P in negative space. The P is clearly uppercase with
+    distinct stem and bowl.
+
+    Construction:
+    - Outer block: 16,16 to 240,240, rx=8 (subtle rounding)
+    - P negative space:
+      - Stem: vertical channel from y=48 to y=208, x=72 to x=112 (40 wide)
+      - Bowl: D-shaped counter from y=48 to y=144
+      - Counter opening: semicircular hole in bowl area
+    - Clean right-angle cut at bottom-right of stem extends to block edge
+      to make it feel "chiseled open" — the P is revealed, not contained
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 24 16
+    C 19.6 16 16 19.6 16 24
+    L 16 232
+    C 16 236.4 19.6 240 24 240
+    L 232 240
+    C 236.4 240 240 236.4 240 232
+    L 240 24
+    C 240 19.6 236.4 16 232 16
+    Z
+    M 72 48
+    L 112 48
+    L 112 56
+    C 112 56 124 48 148 48
+    C 176 48 192 68 192 96
+    C 192 124 176 144 148 144
+    C 124 144 112 136 112 136
+    L 112 208
+    L 72 208
+    Z
+    M 112 80
+    L 112 112
+    C 112 112 124 120 144 120
+    C 160 120 164 108 164 96
+    C 164 84 160 72 144 72
+    C 124 72 112 80 112 80
+    Z
+  "/>
+</svg>
+</g><text x="1201.33" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">32px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="title-c" viewBox="0 0 256 256" x="1243.33" y="708" width="16" height="16" preserveAspectRatio="xMidYMid meet">
+  <title id="s216-title-c">PRANGON — Concept C: Chisel Block (v2)</title>
+  <!--
+    Concept C v2 — Chisel Block
+    A solid rectangle with one deliberate angular chisel-cut that reveals
+    the letter P in negative space. The P is clearly uppercase with
+    distinct stem and bowl.
+
+    Construction:
+    - Outer block: 16,16 to 240,240, rx=8 (subtle rounding)
+    - P negative space:
+      - Stem: vertical channel from y=48 to y=208, x=72 to x=112 (40 wide)
+      - Bowl: D-shaped counter from y=48 to y=144
+      - Counter opening: semicircular hole in bowl area
+    - Clean right-angle cut at bottom-right of stem extends to block edge
+      to make it feel "chiseled open" — the P is revealed, not contained
+  -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 24 16
+    C 19.6 16 16 19.6 16 24
+    L 16 232
+    C 16 236.4 19.6 240 24 240
+    L 232 240
+    C 236.4 240 240 236.4 240 232
+    L 240 24
+    C 240 19.6 236.4 16 232 16
+    Z
+    M 72 48
+    L 112 48
+    L 112 56
+    C 112 56 124 48 148 48
+    C 176 48 192 68 192 96
+    C 192 124 176 144 148 144
+    C 124 144 112 136 112 136
+    L 112 208
+    L 72 208
+    Z
+    M 112 80
+    L 112 112
+    C 112 112 124 120 144 120
+    C 160 120 164 108 164 96
+    C 164 84 160 72 144 72
+    C 124 72 112 80 112 80
+    Z
+  "/>
+</svg>
+</g><text x="1251.33" y="744" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">16px</text><text x="1095.3333333333335" y="780" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#161616">C · Chisel Block</text><text x="1095.3333333333335" y="808" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#161616" letter-spacing="1.5">RECOMMENDED</text><text x="1095.3333333333335" y="842" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">Solid block with precise negative-space P</text><text x="1095.3333333333335" y="868" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">carved out — raw material meets mastery</text></svg>
