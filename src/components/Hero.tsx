@@ -86,7 +86,7 @@ export default function Hero() {
             <img
               src="/assets/hero-terracotta-wall.jpg"
               alt="Artisanal terracotta boho architectural wall texture"
-              className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[0.84] contrast-[1.04] saturate-[1.04]"
+              className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[0.72] contrast-[1.04] saturate-[1.02]"
             />
           </picture>
         </motion.div>
@@ -141,7 +141,7 @@ export default function Hero() {
             }
             className="absolute inset-0 z-2 pointer-events-none overflow-hidden origin-center"
           >
-            {/* Non-circular organic ellipse wash: very delicate brightness lift (0.84 -> 0.94) */}
+            {/* Non-circular organic ellipse wash: very delicate brightness lift (0.72 -> 0.84) */}
             <div
               style={{
                 WebkitMaskImage: `radial-gradient(ellipse 520px 290px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.25) 45%, transparent 75%)`,
@@ -154,7 +154,7 @@ export default function Hero() {
                 <img
                   src="/assets/hero-terracotta-wall.jpg"
                   alt=""
-                  className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[0.94] contrast-[1.04] saturate-[1.04]"
+                  className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[0.84] contrast-[1.04] saturate-[1.04]"
                 />
               </picture>
             </div>
