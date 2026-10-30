@@ -10,6 +10,7 @@ export default function WorksCarousel() {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
 
@@ -31,12 +32,27 @@ export default function WorksCarousel() {
     if (el) {
       el.addEventListener('scroll', checkScroll, { passive: true });
       checkScroll();
-      return () => el.removeEventListener('scroll', checkScroll);
+
+      // Only run auto-scroll rAF when carousel is actually intersecting viewport
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsInView(entry.isIntersecting);
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(el);
+
+      return () => {
+        el.removeEventListener('scroll', checkScroll);
+        observer.disconnect();
+      };
     }
   }, []);
 
-  // Smooth continuous auto-scroll drift (faster 80px/s, subpixel accumulator, pause on hover/drag)
+  // Smooth continuous auto-scroll drift (pause when offscreen, hovered, or dragged)
   useEffect(() => {
+    if (!isInView) return;
+
     let animId: number;
     let lastTime = performance.now();
 
@@ -63,7 +79,7 @@ export default function WorksCarousel() {
 
     animId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animId);
-  }, [isHovered, isDragging]);
+  }, [isInView, isHovered, isDragging]);
 
   const scrollByAmount = (amount: number) => {
     if (scrollRef.current) {

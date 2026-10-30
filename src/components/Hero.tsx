@@ -12,8 +12,15 @@ export default function Hero() {
   const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    let ticking = false;
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setMousePos({ x: e.clientX, y: e.clientY });
+          ticking = false;
+        });
+        ticking = true;
+      }
       if (!hasMovedCursor) setHasMovedCursor(true);
       setIsPaused(false);
 
@@ -22,7 +29,7 @@ export default function Hero() {
         setIsPaused(true);
       }, 350); // 350ms of stillness triggers subtle breathing pulse
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
@@ -34,31 +41,33 @@ export default function Hero() {
     offset: ['start start', 'end end'],
   });
 
-  // Phase 1 (Scroll 0 -> 0.08): Brand statement dissolves early and fast on initial scroll
-  const textOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.08], [0, -35]);
-  const textScale = useTransform(scrollYProgress, [0, 0.08], [1, 0.96]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.08], ['blur(0px)', 'blur(8px)']);
-  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.06 ? 'none' : 'auto'));
+  // Phase 1: Brand statement dissolves smoothly with blur as user begins scrolling
+  const textOpacity = useTransform(scrollYProgress, [0, 0.28], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.28], [0, -50]);
+  const textScale = useTransform(scrollYProgress, [0, 0.28], [1, 0.95]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.28], ['blur(0px)', 'blur(8px)']);
+  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.20 ? 'none' : 'auto'));
 
-  // Phase 2 (Scroll 0.02 -> 0.12): 3 Living Cards glide up to dead center on much shorter scroll!
-  // Stay centered, interactive, and completely unobstructed from 0.12 to 0.38
-  const cardsOpacity = useTransform(scrollYProgress, [0.02, 0.08], [0, 1]);
-  const cardsPointerEvents = useTransform(scrollYProgress, (v) => (v < 0.03 ? 'none' : 'auto'));
-  const cardCommercialY = useTransform(scrollYProgress, [0.02, 0.12], ['100vh', '0vh']);
-  const cardResidentialY = useTransform(scrollYProgress, [0.02, 0.12], ['115vh', '-5vh']);
-  const cardMarineY = useTransform(scrollYProgress, [0.02, 0.12], ['105vh', '3vh']);
+  // Phase 2: 3 Living Cards emerge linearly from bottom edge (100% solid opacity like original For Living)
+  // Scroll directly controls how much of the card is revealed: stop scrolling = stays exactly that portion revealed
+  const cardsContainerY = useTransform(scrollYProgress, [0.18, 0.70], ['85vh', '0vh']);
+  const cardsPointerEvents = useTransform(scrollYProgress, (v) => (v >= 0.50 && v <= 0.82 ? 'auto' : 'none'));
 
-  // Phase 3 (Scroll 0.38 -> 0.85): Hero stays pinned at top: 0, progressively fading away as bottom content stacks over
-  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.38, 0.82], [1, 0.15]);
-  const heroOverlayDark = useTransform(scrollYProgress, [0.05, 0.82], [0.25, 0.92]);
-  const heroRecedeScale = useTransform(scrollYProgress, [0.38, 0.90], [1, 0.93]);
+  // Subtle organic parallax stagger on individual cards (like original For Living)
+  const cardCommercialY = useTransform(scrollYProgress, [0.18, 0.70], ['4vh', '0vh']);
+  const cardResidentialY = useTransform(scrollYProgress, [0.18, 0.70], ['10vh', '-4vh']);
+  const cardMarineY = useTransform(scrollYProgress, [0.18, 0.70], ['6vh', '2vh']);
+
+  // Phase 3 (Scroll 0.80 -> 0.98): Hero dims and gently recedes as downstream content stacks over
+  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.80, 0.98], [1, 0.15]);
+  const heroOverlayDark = useTransform(scrollYProgress, [0.15, 0.80], [0.12, 0.85]);
+  const heroRecedeScale = useTransform(scrollYProgress, [0.80, 0.98], [1, 0.93]);
 
   return (
     <section
       id="home"
       ref={containerRef}
-      className="section_hero hp_section_hero relative min-h-[220vh] bg-[#12100e] text-white"
+      className="section_hero hp_section_hero relative min-h-[260vh] bg-[#12100e] text-white"
     >
       {/* Pinned 100vh Viewport that stays completely still while next section stacks over */}
       <motion.div
@@ -77,12 +86,12 @@ export default function Hero() {
             <img
               src="/assets/hero-terracotta-wall.jpg"
               alt="Artisanal terracotta boho architectural wall texture"
-              className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[0.62] contrast-[1.06] saturate-[0.96]"
+              className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[0.84] contrast-[1.04] saturate-[1.04]"
             />
           </picture>
         </motion.div>
 
-        {/* Layer 0.5: Cinematic Directional & Radial Shadow Overlays (Darkened for text & button focus) */}
+        {/* Layer 0.5: Cinematic Directional & Radial Shadow Overlays (Softened for greater background visibility) */}
         <motion.div
           style={{ opacity: heroBackgroundOpacity }}
           className="absolute inset-0 z-1 pointer-events-none"
@@ -92,7 +101,7 @@ export default function Hero() {
             className="absolute inset-0"
             style={{
               background:
-                'linear-gradient(180deg, rgba(18, 16, 14, 0.78) 0%, rgba(18, 16, 14, 0.38) 28%, rgba(18, 16, 14, 0.52) 62%, rgba(18, 16, 14, 0.94) 100%)',
+                'linear-gradient(180deg, rgba(18, 16, 14, 0.68) 0%, rgba(18, 16, 14, 0.12) 28%, rgba(18, 16, 14, 0.24) 62%, rgba(18, 16, 14, 0.88) 100%)',
             }}
           />
           {/* Spatial vignette framing the central statement */}
@@ -100,33 +109,78 @@ export default function Hero() {
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse 90% 82% at 50% 48%, rgba(18, 16, 14, 0.35) 0%, rgba(18, 16, 14, 0.68) 65%, rgba(18, 16, 14, 0.96) 100%)',
+                'radial-gradient(ellipse 90% 82% at 50% 48%, rgba(18, 16, 14, 0.08) 0%, rgba(18, 16, 14, 0.48) 65%, rgba(18, 16, 14, 0.92) 100%)',
             }}
           />
         </motion.div>
 
-        {/* Layer 1: Architectural Blueprint Line Art - Matte Linework with Breathing Pulse when Cursor Pauses */}
+        {/* Layer 1: Dynamic Cursor Spotlight - Warm Architectural Illumination on Background */}
+        {/* Blueprint line art is temporarily hidden per user request */}
+        {hasMovedCursor && (
+          <motion.div
+            style={{ opacity: heroBackgroundOpacity }}
+            animate={
+              isPaused
+                ? {
+                    opacity: [0.88, 1, 0.88],
+                    scale: [1, 1.015, 1],
+                  }
+                : {
+                    opacity: 0.95,
+                    scale: 1,
+                  }
+            }
+            transition={
+              isPaused
+                ? {
+                    duration: 2.4,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }
+                : { duration: 0.25 }
+            }
+            className="absolute inset-0 z-2 pointer-events-none overflow-hidden origin-center"
+          >
+            {/* Luminous high-clarity reveal of the terracotta wall texture under cursor */}
+            <div
+              style={{
+                WebkitMaskImage: `radial-gradient(420px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.65) 50%, transparent 100%)`,
+                maskImage: `radial-gradient(420px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.65) 50%, transparent 100%)`,
+              }}
+              className="absolute inset-0 w-full h-full pointer-events-none"
+            >
+              <picture>
+                <source srcSet="/assets/hero-terracotta-wall.webp" type="image/webp" />
+                <img
+                  src="/assets/hero-terracotta-wall.jpg"
+                  alt=""
+                  className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[1.38] contrast-[1.12] saturate-[1.18]"
+                />
+              </picture>
+            </div>
+
+            {/* Ambient warm incandescent light halo following cursor */}
+            <div
+              className="absolute inset-0 mix-blend-screen pointer-events-none"
+              style={{
+                background: `radial-gradient(460px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 240, 215, 0.32) 0%, rgba(228, 150, 95, 0.18) 38%, rgba(189, 100, 60, 0.05) 68%, transparent 100%)`,
+              }}
+            />
+
+            {/* Specular soft core glow */}
+            <div
+              className="absolute inset-0 mix-blend-screen pointer-events-none"
+              style={{
+                background: `radial-gradient(200px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 250, 240, 0.24) 0%, rgba(255, 218, 180, 0.10) 60%, transparent 100%)`,
+              }}
+            />
+          </motion.div>
+        )}
+
+        {/* Blueprint line art (hidden for now on cursor area per user request):
         <motion.div
-          animate={
-            isPaused
-              ? {
-                  opacity: [0.55, 0.92, 0.55],
-                  scale: [1, 1.018, 1],
-                }
-              : {
-                  opacity: 0.68,
-                  scale: 1,
-                }
-          }
-          transition={
-            isPaused
-              ? {
-                  duration: 2.2,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }
-              : { duration: 0.3 }
-          }
+          animate={isPaused ? { opacity: [0.30, 0.50, 0.30], scale: [1, 1.018, 1] } : { opacity: 0.38, scale: 1 }}
+          transition={isPaused ? { duration: 2.2, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.3 }}
           style={{
             WebkitMaskImage: hasMovedCursor
               ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.7) 60%, transparent 100%)`
@@ -140,9 +194,10 @@ export default function Hero() {
           <img
             src="/assets/hero_line_bg.webp"
             alt=""
-            className="w-full h-full object-cover object-center mix-blend-screen select-none filter contrast-90 brightness-90 sepia-[0.35]"
+            className="w-full h-full object-cover object-center mix-blend-screen select-none filter contrast-90 brightness-[0.50] sepia-[0.35]"
           />
         </motion.div>
+        */}
 
         {/* Layer 2: Warm Subtle Terracotta Atmospheric Core Glow */}
         <motion.div
@@ -251,16 +306,17 @@ export default function Hero() {
         </motion.div>
 
         {/* Layer 5: Parallax Floating Living Categories Cards */}
-        {/* On page load (scroll = 0), cards are 100vh down (offscreen). As user scrolls, they glide up into view on short scroll! */}
+        {/* On page load (scroll = 0), cards are 100vh down (offscreen). As user scrolls, they progressively rise from bottom edge */}
+        {/* 100% solid opacity: stop scrolling anywhere and cards stay visible at exactly that portion, just like For Living */}
         <motion.div
-          style={{ opacity: cardsOpacity, pointerEvents: cardsPointerEvents }}
-          className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
+          style={{ y: cardsContainerY, pointerEvents: cardsPointerEvents }}
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
         >
-          <div className="max-w-[1360px] w-full mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center pointer-events-none">
+          <div className="max-w-[1360px] w-full mx-auto px-5 sm:px-8 md:px-12 flex md:grid md:grid-cols-3 gap-4 md:gap-8 items-center overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory justify-start md:justify-center py-4 pointer-events-auto">
             {/* Card 1: Commercial Living (Left) */}
             <motion.div
               style={{ y: cardCommercialY }}
-              className="section_hero_followup_content_card pointer-events-auto group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer"
+              className="section_hero_followup_content_card pointer-events-auto group relative w-[76vw] max-w-[290px] sm:w-[320px] md:w-full shrink-0 md:shrink aspect-[4/5] max-h-[50vh] md:max-h-none rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer snap-center"
             >
               <Link href="/work/?category=Commercial" className="block w-full h-full relative">
                 <img
@@ -284,7 +340,7 @@ export default function Hero() {
             {/* Card 2: Residential Living (Center - Offset) */}
             <motion.div
               style={{ y: cardResidentialY }}
-              className="section_hero_followup_content_card card-1 pointer-events-auto group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer"
+              className="section_hero_followup_content_card card-1 pointer-events-auto group relative w-[76vw] max-w-[290px] sm:w-[320px] md:w-full shrink-0 md:shrink aspect-[4/5] max-h-[50vh] md:max-h-none rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer snap-center"
             >
               <Link href="/work/?category=Residential" className="block w-full h-full relative">
                 <img
@@ -308,7 +364,7 @@ export default function Hero() {
             {/* Card 3: Marine Living (Right) */}
             <motion.div
               style={{ y: cardMarineY }}
-              className="section_hero_followup_content_card pointer-events-auto group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer"
+              className="section_hero_followup_content_card pointer-events-auto group relative w-[76vw] max-w-[290px] sm:w-[320px] md:w-full shrink-0 md:shrink aspect-[4/5] max-h-[50vh] md:max-h-none rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer snap-center"
             >
               <Link href="/work/?category=Marine" className="block w-full h-full relative">
                 <img
@@ -328,6 +384,11 @@ export default function Hero() {
                 </div>
               </Link>
             </motion.div>
+          </div>
+
+          {/* Mobile Swipe Hint Pills */}
+          <div className="flex md:hidden items-center justify-center gap-1.5 mt-2 pointer-events-none opacity-70">
+            <span className="text-[10px] uppercase font-mono tracking-widest text-white/50">← Swipe Living Spaces →</span>
           </div>
         </motion.div>
       </motion.div>

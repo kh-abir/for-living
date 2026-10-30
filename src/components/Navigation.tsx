@@ -20,39 +20,49 @@ export default function Navigation() {
     { label: 'About', href: '/about', id: 'about' },
   ];
 
-  // Scroll spy & Light/Dark Theme Detection
+  // Scroll spy & Light/Dark Theme Detection (rAF Throttled for 60/120fps Mobile Scrolling)
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+    let ticking = false;
 
-      // Accurate Section scroll spy on homepage using viewport bounding client rects
-      if (pathname === '/') {
-        const sections = ['home', 'work', 'services', 'about'];
-        for (const id of sections) {
-          const el = document.getElementById(id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 260 && rect.bottom >= 140) {
-              setActiveSection(id);
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const nextScrolled = window.scrollY > 40;
+          setScrolled((prev) => (prev !== nextScrolled ? nextScrolled : prev));
+
+          // Accurate Section scroll spy on homepage using viewport bounding client rects
+          if (pathname === '/') {
+            const sections = ['home', 'work', 'services', 'about'];
+            for (const id of sections) {
+              const el = document.getElementById(id);
+              if (el) {
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= 260 && rect.bottom >= 140) {
+                  setActiveSection((prev) => (prev !== id ? id : prev));
+                  break;
+                }
+              }
+            }
+          }
+
+          // Theme detection for floating navbar contrast
+          const lightElements = document.querySelectorAll('[data-theme="light"]');
+          let overLight = false;
+          const navCenter = 30;
+
+          for (let i = 0; i < lightElements.length; i++) {
+            const rect = lightElements[i].getBoundingClientRect();
+            if (rect.top <= navCenter && rect.bottom >= navCenter) {
+              overLight = true;
               break;
             }
           }
-        }
+
+          setIsLightSection((prev) => (prev !== overLight ? overLight : prev));
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      // Theme detection for floating navbar contrast
-      const lightElements = document.querySelectorAll('[data-theme="light"]');
-      let overLight = false;
-      const navCenter = 30;
-
-      lightElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= navCenter && rect.bottom >= navCenter) {
-          overLight = true;
-        }
-      });
-
-      setIsLightSection(overLight);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
