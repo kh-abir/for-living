@@ -6,35 +6,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
-  const [hasMovedCursor, setHasMovedCursor] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    let ticking = false;
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setMousePos({ x: e.clientX, y: e.clientY });
-          ticking = false;
-        });
-        ticking = true;
-      }
-      if (!hasMovedCursor) setHasMovedCursor(true);
-      setIsPaused(false);
-
-      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
-      pauseTimerRef.current = setTimeout(() => {
-        setIsPaused(true);
-      }, 350); // 350ms of stillness triggers subtle breathing pulse
-    };
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
-    };
-  }, [hasMovedCursor]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -119,83 +90,6 @@ export default function Hero() {
             }}
           />
         </motion.div>
-
-        {/* Layer 1: Dynamic Cursor Spotlight - Ultra-Subtle Elliptical Ambient Wash */}
-        {/* Blueprint line art is temporarily hidden per user request */}
-        {hasMovedCursor && (
-          <motion.div
-            style={{ opacity: heroBackgroundOpacity }}
-            animate={
-              isPaused
-                ? {
-                    opacity: [0.96, 1, 0.96],
-                    scale: [1, 1.003, 1],
-                  }
-                : {
-                    opacity: 0.98,
-                    scale: 1,
-                  }
-            }
-            transition={
-              isPaused
-                ? {
-                    duration: 3.2,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }
-                : { duration: 0.25 }
-            }
-            className="absolute inset-0 z-2 pointer-events-none overflow-hidden origin-center"
-          >
-            {/* Non-circular organic ellipse wash: generous architectural brightness lift */}
-            <div
-              style={{
-                WebkitMaskImage: `radial-gradient(ellipse 850px 480px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.12) 68%, transparent 85%)`,
-                maskImage: `radial-gradient(ellipse 850px 480px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.12) 68%, transparent 85%)`,
-              }}
-              className="absolute inset-0 w-full h-full pointer-events-none"
-            >
-              <picture>
-                <source srcSet="/assets/hero-terracotta-wall.webp" type="image/webp" />
-                <img
-                  src="/assets/hero-terracotta-wall.jpg"
-                  alt=""
-                  className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[0.84] contrast-[1.04] saturate-[1.04]"
-                />
-              </picture>
-            </div>
-
-            {/* Ultra-subtle non-circular warm ambient reflection with broader coverage */}
-            <div
-              className="absolute inset-0 mix-blend-screen pointer-events-none"
-              style={{
-                background: `radial-gradient(ellipse 880px 500px at ${mousePos.x}px ${mousePos.y}px, rgba(255, 235, 210, 0.04) 0%, rgba(220, 140, 90, 0.018) 55%, transparent 85%)`,
-              }}
-            />
-          </motion.div>
-        )}
-
-        {/* Blueprint line art (hidden for now on cursor area per user request):
-        <motion.div
-          animate={isPaused ? { opacity: [0.30, 0.50, 0.30], scale: [1, 1.018, 1] } : { opacity: 0.38, scale: 1 }}
-          transition={isPaused ? { duration: 2.2, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.3 }}
-          style={{
-            WebkitMaskImage: hasMovedCursor
-              ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.7) 60%, transparent 100%)`
-              : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
-            maskImage: hasMovedCursor
-              ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.7) 60%, transparent 100%)`
-              : 'radial-gradient(0px circle at 0px 0px, transparent 0%, transparent 100%)',
-          }}
-          className="absolute inset-0 z-2 pointer-events-none overflow-hidden"
-        >
-          <img
-            src="/assets/hero_line_bg.webp"
-            alt=""
-            className="w-full h-full object-cover object-center mix-blend-screen select-none filter contrast-90 brightness-[0.50] sepia-[0.35]"
-          />
-        </motion.div>
-        */}
 
         {/* Layer 2: Warm Subtle Terracotta Atmospheric Core Glow */}
         <motion.div

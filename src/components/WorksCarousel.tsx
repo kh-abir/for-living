@@ -8,7 +8,10 @@ export default function WorksCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const hoveredCardRef = useRef<number | null>(null);
+  const isHoveredRef = useRef(false);
+  const isDraggingRef = useRef(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const startX = useRef(0);
@@ -49,7 +52,7 @@ export default function WorksCarousel() {
     }
   }, []);
 
-  // Smooth continuous auto-scroll drift (pause when offscreen, hovered, or dragged)
+  // Smooth continuous auto-scroll drift (strictly pinned while card is hovered or dragged)
   useEffect(() => {
     if (!isInView) return;
 
@@ -60,7 +63,12 @@ export default function WorksCarousel() {
       const delta = Math.min((time - lastTime) / 1000, 0.1); // clamp delta to prevent jump
       lastTime = time;
 
-      if (!isHovered && !isDragging && scrollRef.current) {
+      // Card hover or track hover or drag: PIN POSITION!
+      const isPinned = hoveredCardRef.current !== null || isHoveredRef.current || isDraggingRef.current;
+
+      if (isPinned) {
+        driftAccumulator.current = 0; // zero out accumulator so zero residual drift
+      } else if (scrollRef.current) {
         driftAccumulator.current += delta * 80; // 80px per second lively smooth flow
 
         if (Math.abs(driftAccumulator.current) >= 1) {
@@ -74,12 +82,13 @@ export default function WorksCarousel() {
           }
         }
       }
+
       animId = requestAnimationFrame(step);
     };
 
     animId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animId);
-  }, [isInView, isHovered, isDragging]);
+  }, [isInView]);
 
   const scrollByAmount = (amount: number) => {
     if (scrollRef.current) {
@@ -87,24 +96,31 @@ export default function WorksCarousel() {
     }
   };
 
-  // Trackpad / Mouse Wheel smooth horizontal scroll conversion
+  // Trackpad / Mouse Wheel smooth horizontal scroll conversion (only when not hovering a card)
   const handleWheel = (e: React.WheelEvent) => {
     if (!scrollRef.current) return;
-    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-    scrollRef.current.scrollLeft += delta * 0.9;
-    checkScroll();
+    // On hover of a card, card position is strictly pinned:
+    if (hoveredCardRef.current !== null) {
+      return;
+    }
+    // Only respond to horizontal gesture, let vertical scroll pass through to page
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      scrollRef.current.scrollLeft += e.deltaX * 0.9;
+      checkScroll();
+    }
   };
 
   // Mouse Drag to Scroll handlers with smooth tracking
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollRef.current) return;
+    isDraggingRef.current = true;
     setIsDragging(true);
     startX.current = e.pageX - scrollRef.current.offsetLeft;
     scrollLeftStart.current = scrollRef.current.scrollLeft;
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollRef.current) return;
+    if (!isDraggingRef.current || !scrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
     const walk = (x - startX.current) * 1.35;
@@ -113,6 +129,7 @@ export default function WorksCarousel() {
   };
 
   const handleMouseUpOrLeave = () => {
+    isDraggingRef.current = false;
     setIsDragging(false);
   };
 
@@ -183,9 +200,14 @@ export default function WorksCarousel() {
       <div
         ref={scrollRef}
         onWheel={handleWheel}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={() => {
+          isHoveredRef.current = true;
+          driftAccumulator.current = 0;
+        }}
         onMouseLeave={() => {
-          setIsHovered(false);
+          isHoveredRef.current = false;
+          hoveredCardRef.current = null;
+          setHoveredCard(null);
           handleMouseUpOrLeave();
         }}
         onMouseDown={handleMouseDown}
@@ -193,70 +215,94 @@ export default function WorksCarousel() {
         onMouseUp={handleMouseUpOrLeave}
         className="flex items-center gap-6 md:gap-8 overflow-x-auto no-scrollbar px-8 sm:px-16 md:px-28 py-14 md:py-20 cursor-grab active:cursor-grabbing select-none transform-gpu will-change-scroll"
       >
-        {allProjects.map((project, idx) => (
-          <div
-            key={`${project.slug}-${idx}`}
-            className="flex-shrink-0 relative w-[280px] sm:w-[320px] md:w-[360px] h-[450px] sm:h-[500px] md:h-[550px] group z-10 hover:z-30"
-          >
-            {/* Center-anchored card expands symmetrically left and right into landscape frame on hover */}
-            <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[280px] sm:w-[320px] md:w-[360px] group-hover:w-[380px] sm:group-hover:w-[480px] md:group-hover:w-[580px] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[width]">
-              <Link href={`/work/${project.slug}`} className="flex flex-col h-full justify-between">
-                {/* Top Architectural Precision Ruler Ticks */}
-                <div className="flex items-center justify-between mb-2.5 px-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                  <span className="w-1.5 h-[1px] bg-white/40" />
-                  <span className="w-1.5 h-[1px] bg-white/40" />
-                  <span className="w-3 h-[1px] bg-[#bd7b58]" />
-                  <span className="w-1.5 h-[1px] bg-white/40" />
-                  <span className="w-1.5 h-[1px] bg-white/40" />
-                </div>
-
-                {/* Constant-Height Landscape Frame Image Container */}
-                <div className="relative flex-1 w-full rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.04] border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7)] group-hover:border-white/60 group-hover:shadow-[0_40px_100px_rgba(0,0,0,0.95)] transition-all duration-500">
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent transition-opacity duration-300" />
-
-                  {/* Glassmorphic Category Pill */}
-                  <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] uppercase font-mono tracking-widest text-white/90 shadow-md">
-                    {project.category}
+        {allProjects.map((project, idx) => {
+          const isThisCardHovered = hoveredCard === idx;
+          return (
+            <div
+              key={`${project.slug}-${idx}`}
+              onMouseEnter={() => {
+                hoveredCardRef.current = idx;
+                setHoveredCard(idx);
+                isHoveredRef.current = true;
+                driftAccumulator.current = 0;
+              }}
+              onMouseLeave={() => {
+                if (hoveredCardRef.current === idx) {
+                  hoveredCardRef.current = null;
+                  setHoveredCard(null);
+                  isHoveredRef.current = false;
+                }
+              }}
+              className={`flex-shrink-0 relative w-[280px] sm:w-[320px] md:w-[360px] h-[450px] sm:h-[500px] md:h-[550px] group transition-all duration-300 ${
+                isThisCardHovered ? 'z-30' : 'z-10'
+              }`}
+            >
+              {/* Center-anchored card expands symmetrically left and right into landscape frame on hover */}
+              <div
+                className={`absolute inset-y-0 left-1/2 -translate-x-1/2 transition-[width,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[width] ${
+                  isThisCardHovered
+                    ? 'w-[380px] sm:w-[480px] md:w-[580px] z-30'
+                    : 'w-[280px] sm:w-[320px] md:w-[360px] group-hover:w-[380px] sm:group-hover:w-[480px] md:group-hover:w-[580px]'
+                }`}
+              >
+                <Link href={`/work/${project.slug}`} className="flex flex-col h-full justify-between">
+                  {/* Top Architectural Precision Ruler Ticks */}
+                  <div className="flex items-center justify-between mb-2.5 px-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <span className="w-1.5 h-[1px] bg-white/40" />
+                    <span className="w-1.5 h-[1px] bg-white/40" />
+                    <span className="w-3 h-[1px] bg-[#bd7b58]" />
+                    <span className="w-1.5 h-[1px] bg-white/40" />
+                    <span className="w-1.5 h-[1px] bg-white/40" />
                   </div>
 
-                  {/* Floating Glassmorphic Location & Title Badge */}
-                  <div className="absolute bottom-4 left-4 right-4 z-10 backdrop-blur-md bg-black/60 border border-white/15 rounded-xl p-4 transition-all duration-300 group-hover:bg-black/80 group-hover:border-white/35">
-                    <div className="text-[10px] font-mono text-[#bd7b58] uppercase tracking-wider mb-1">
-                      {project.location} • {project.year}
+                  {/* Constant-Height Landscape Frame Image Container */}
+                  <div className="relative flex-1 w-full rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.04] border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7)] group-hover:border-white/60 group-hover:shadow-[0_40px_100px_rgba(0,0,0,0.95)] transition-all duration-500">
+                    <img
+                      src={project.img}
+                      alt={project.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent transition-opacity duration-300" />
+
+                    {/* Glassmorphic Category Pill */}
+                    <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] uppercase font-mono tracking-widest text-white/90 shadow-md">
+                      {project.category}
                     </div>
-                    <div className="text-base font-serif-luxury font-normal tracking-wide text-white group-hover:text-white transition-colors line-clamp-1">
-                      {project.title}
+
+                    {/* Floating Glassmorphic Location & Title Badge */}
+                    <div className="absolute bottom-4 left-4 right-4 z-10 backdrop-blur-md bg-black/60 border border-white/15 rounded-xl p-4 transition-all duration-300 group-hover:bg-black/80 group-hover:border-white/35">
+                      <div className="text-[10px] font-mono text-[#bd7b58] uppercase tracking-wider mb-1">
+                        {project.location} • {project.year}
+                      </div>
+                      <div className="text-base font-serif-luxury font-normal tracking-wide text-white group-hover:text-white transition-colors line-clamp-1">
+                        {project.title}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Bottom Architectural Precision Ruler Ticks */}
-                <div className="flex items-center justify-between mt-2.5 px-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                  <span className="w-1.5 h-[1px] bg-white/40" />
-                  <span className="w-1.5 h-[1px] bg-white/40" />
-                  <span className="w-3 h-[1px] bg-[#bd7b58]" />
-                  <span className="w-1.5 h-[1px] bg-white/40" />
-                  <span className="w-1.5 h-[1px] bg-white/40" />
-                </div>
+                  {/* Bottom Architectural Precision Ruler Ticks */}
+                  <div className="flex items-center justify-between mt-2.5 px-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <span className="w-1.5 h-[1px] bg-white/40" />
+                    <span className="w-1.5 h-[1px] bg-white/40" />
+                    <span className="w-3 h-[1px] bg-[#bd7b58]" />
+                    <span className="w-1.5 h-[1px] bg-white/40" />
+                    <span className="w-1.5 h-[1px] bg-white/40" />
+                  </div>
 
-                {/* Initials & Explore Prompt */}
-                <div className="flex items-center justify-between text-xs font-mono text-white/40 px-2 mt-1.5">
-                  <span>{project.initials}</span>
-                  <span className="text-[10px] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity text-white font-sans">
-                    Case Study →
-                  </span>
-                </div>
-              </Link>
+                  {/* Initials & Explore Prompt */}
+                  <div className="flex items-center justify-between text-xs font-mono text-white/40 px-2 mt-1.5">
+                    <span>{project.initials}</span>
+                    <span className="text-[10px] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity text-white font-sans">
+                      Case Study →
+                    </span>
+                  </div>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
