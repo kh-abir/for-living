@@ -131,19 +131,20 @@ export default function ProcessWorkflow() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6, delay: idx * 0.12 }}
+              whileHover={{ y: -6, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
               onMouseEnter={() => setActiveStep(idx)}
               onMouseLeave={() => setActiveStep(null)}
-              className="relative flex flex-col justify-between p-7 rounded-2xl backdrop-blur-2xl bg-white/[0.03] border border-white/10 group hover:border-[#bd7b58]/60 hover:bg-white/[0.06] hover:shadow-[0_25px_60px_rgba(0,0,0,0.7)] transition-all duration-500"
+              className="relative flex flex-col justify-between p-7 rounded-2xl backdrop-blur-2xl bg-white/[0.03] border border-white/10 group hover:border-[#bd7b58]/80 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(189,123,88,0.22),0_25px_60px_rgba(0,0,0,0.85)] transition-all duration-500 overflow-hidden"
             >
-              {/* Top Accent Indicator */}
-              <div className="w-0 group-hover:w-full h-[2px] bg-gradient-to-r from-[#bd7b58] to-[#e2c5a7]/60 transition-all duration-500 absolute top-0 left-0 rounded-t-2xl" />
+              {/* Top Accent Indicator with Brand Clay Gradient */}
+              <div className="w-0 group-hover:w-full h-[2px] bg-gradient-to-r from-[#bd7b58] via-[#e2c5a7] to-[#bd7b58] transition-all duration-500 absolute top-0 left-0" />
 
               <div>
                 <div className="flex items-center justify-between mb-5">
                   <span className="font-mono text-3xl font-light text-[#bd7b58] group-hover:text-white transition-colors">
                     {step.number}
                   </span>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 border border-white/10 px-2.5 py-0.5 rounded-full backdrop-blur-sm">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 border border-white/10 px-2.5 py-0.5 rounded-full backdrop-blur-sm group-hover:border-[#bd7b58]/50 group-hover:bg-[#bd7b58]/10 group-hover:text-white/90 transition-all duration-300">
                     {step.discipline}
                   </span>
                 </div>
@@ -160,16 +161,16 @@ export default function ProcessWorkflow() {
               </div>
 
               {/* Technical Metric & Deliverables */}
-              <div className="pt-4 border-t border-white/10 mt-auto">
+              <div className="pt-4 border-t border-white/10 group-hover:border-[#bd7b58]/30 transition-colors duration-500 mt-auto">
                 {/* Metric pill */}
-                <div className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[10px] font-mono text-white/80">
+                <div className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 group-hover:border-[#bd7b58]/50 group-hover:bg-[#bd7b58]/10 text-[10px] font-mono text-white/80 group-hover:text-white transition-all duration-300">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#bd7b58]" />
                   <span>{step.metric}</span>
                 </div>
 
                 <div className="space-y-2">
                   {step.deliverables.map((d, i) => (
-                    <div key={i} className="flex items-start gap-2 text-[11px] text-white/70">
+                    <div key={i} className="flex items-start gap-2 text-[11px] text-white/70 group-hover:text-white/85 transition-colors">
                       <span className="text-[#bd7b58] leading-tight mt-0.5">✦</span>
                       <span>{d}</span>
                     </div>
