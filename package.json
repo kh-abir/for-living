@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "next build && NODE_OPTIONS='--dns-result-order=ipv4first' npx wrangler pages deploy out --project-name prangon --branch main"
+    "deploy": "next build && NODE_OPTIONS='--dns-result-order=ipv4first' npx -y wrangler pages deploy out --project-name prangon --branch main"
   },
   "dependencies": {
     "clsx": "^2.1.1",
