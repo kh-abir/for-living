@@ -24,9 +24,9 @@ export default function Hero() {
   const cardsContainerY = useTransform(scrollYProgress, [0.12, 0.38], ['100vh', '0vh']);
 
   // Subtle organic parallax stagger on individual cards
-  const cardCommercialY = useTransform(scrollYProgress, [0.12, 0.38], ['4vh', '0vh']);
-  const cardResidentialY = useTransform(scrollYProgress, [0.12, 0.38], ['10vh', '-4vh']);
-  const cardMarineY = useTransform(scrollYProgress, [0.12, 0.38], ['6vh', '2vh']);
+  const cardInteriorY = useTransform(scrollYProgress, [0.12, 0.38], ['4vh', '0vh']);
+  const cardLandscapeY = useTransform(scrollYProgress, [0.12, 0.38], ['10vh', '-4vh']);
+  const cardExteriorY = useTransform(scrollYProgress, [0.12, 0.38], ['6vh', '2vh']);
 
   // Phase 3 & 4: Cards stay docked in center from 0.38 to 0.60,
   // then recede deep into background as "Provenance & Guilds" scrolls up over them (0.60 -> 0.98)
@@ -183,72 +183,72 @@ export default function Hero() {
           className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none origin-center"
         >
           <div className="max-w-[1360px] w-full mx-auto px-5 sm:px-8 md:px-12 flex md:grid md:grid-cols-3 gap-4 md:gap-8 items-center overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory justify-start md:justify-center py-4 pointer-events-auto">
-            {/* Card 1: Commercial Living (Left) */}
+            {/* Card 1: Interior (Left) */}
             <motion.div
-              style={{ y: cardCommercialY }}
+              style={{ y: cardInteriorY }}
               className="section_hero_followup_content_card pointer-events-auto group relative w-[76vw] max-w-[290px] sm:w-[320px] md:w-full shrink-0 md:shrink aspect-[4/5] max-h-[50vh] md:max-h-none rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer snap-center"
             >
-              <Link href="/work/?category=Commercial" className="block w-full h-full relative">
+              <Link href="/work" className="block w-full h-full relative">
                 <img
                   src="/assets/feat-commercial.avif"
-                  alt="Interior view of luxury commercial boutique space"
+                  alt="Interior architectural design and bespoke joinery"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
 
-                {/* Original Interactive Hover Tag with Glassmorphism */}
+                {/* Interactive Glassmorphic Tag */}
                 <div className="for_living_feat_tag_container">
                   <div className="for_living_feat_tag_container_inner backdrop-blur-md bg-black/50 border border-white/15 shadow-xl">
                     <span className="for-living-display-text for-prefix">For</span>
-                    <div className="for_living_feat_tag">Commercial</div>
+                    <div className="for_living_feat_tag">Interior</div>
                     <span className="for-living-display-text living-suffix">Living</span>
                   </div>
                 </div>
               </Link>
             </motion.div>
 
-            {/* Card 2: Residential Living (Center - Offset) */}
+            {/* Card 2: Landscape (Center - Offset) */}
             <motion.div
-              style={{ y: cardResidentialY }}
+              style={{ y: cardLandscapeY }}
               className="section_hero_followup_content_card card-1 pointer-events-auto group relative w-[76vw] max-w-[290px] sm:w-[320px] md:w-full shrink-0 md:shrink aspect-[4/5] max-h-[50vh] md:max-h-none rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer snap-center"
             >
-              <Link href="/work/?category=Residential" className="block w-full h-full relative">
+              <Link href="/work" className="block w-full h-full relative">
                 <img
-                  src="/assets/feat-residential.avif"
-                  alt="Modern luxury residence with illuminated waters at dusk"
+                  src="/assets/hero-landscape-poster.webp"
+                  alt="Landscape architecture and botanical courtyards"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
 
-                {/* Original Interactive Hover Tag with Glassmorphism */}
+                {/* Interactive Glassmorphic Tag */}
                 <div className="for_living_feat_tag_container">
                   <div className="for_living_feat_tag_container_inner backdrop-blur-md bg-black/50 border border-white/15 shadow-xl">
                     <span className="for-living-display-text for-prefix">For</span>
-                    <div className="for_living_feat_tag">Residential</div>
+                    <div className="for_living_feat_tag">Landscape</div>
                     <span className="for-living-display-text living-suffix">Living</span>
                   </div>
                 </div>
               </Link>
             </motion.div>
 
-            {/* Card 3: Marine Living (Right) */}
+            {/* Card 3: Exterior (Right) */}
             <motion.div
-              style={{ y: cardMarineY }}
+              style={{ y: cardExteriorY }}
               className="section_hero_followup_content_card pointer-events-auto group relative w-[76vw] max-w-[290px] sm:w-[320px] md:w-full shrink-0 md:shrink aspect-[4/5] max-h-[50vh] md:max-h-none rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] backdrop-blur-md bg-[#221d18]/80 border border-white/15 transition-all duration-500 hover:border-white/40 hover:shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-pointer snap-center"
             >
-              <Link href="/work/?category=Marine" className="block w-full h-full relative">
+              <Link href="/work" className="block w-full h-full relative">
                 <img
-                  src="/assets/feat-marine.avif"
-                  alt="Aerial view of luxury expedition yacht floating at night"
+                  src="/assets/feat-residential.avif"
+                  alt="Exterior facade and modern tropical architectural form"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
 
-                {/* Original Interactive Hover Tag with Glassmorphism */}
+                {/* Interactive Glassmorphic Tag */}
                 <div className="for_living_feat_tag_container">
                   <div className="for_living_feat_tag_container_inner backdrop-blur-md bg-black/50 border border-white/15 shadow-xl">
                     <span className="for-living-display-text for-prefix">For</span>
-                    <div className="for_living_feat_tag">Marine</div>
+                    <div className="for_living_feat_tag">Exterior</div>
                     <span className="for-living-display-text living-suffix">Living</span>
                   </div>
                 </div>
