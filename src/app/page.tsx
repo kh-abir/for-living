@@ -9,8 +9,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      {/* Downstream content stacks directly over the pinned, fading hero */}
-      <div className="-mt-[100vh] relative z-30 shadow-[0_-30px_70px_rgba(0,0,0,0.6)]">
+      {/* Downstream content stacks smoothly after pinned hero sequence */}
+      <div className="relative z-30 shadow-[0_-30px_70px_rgba(0,0,0,0.6)]">
         <CraftHeritage />
         <WorksCarousel />
         <ProcessWorkflow />

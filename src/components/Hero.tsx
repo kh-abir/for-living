@@ -42,26 +42,26 @@ export default function Hero() {
   });
 
   // Phase 1: Brand statement dissolves smoothly with blur as user begins scrolling
-  const textOpacity = useTransform(scrollYProgress, [0, 0.28], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.28], [0, -50]);
-  const textScale = useTransform(scrollYProgress, [0, 0.28], [1, 0.95]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.28], ['blur(0px)', 'blur(8px)']);
-  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.20 ? 'none' : 'auto'));
+  const textOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.22], [0, -50]);
+  const textScale = useTransform(scrollYProgress, [0, 0.22], [1, 0.95]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.22], ['blur(0px)', 'blur(8px)']);
+  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.18 ? 'none' : 'auto'));
 
-  // Phase 2: 3 Living Cards emerge linearly from bottom edge (100% solid opacity like original For Living)
-  // Scroll directly controls how much of the card is revealed: stop scrolling = stays exactly that portion revealed
-  const cardsContainerY = useTransform(scrollYProgress, [0.18, 0.70], ['85vh', '0vh']);
-  const cardsPointerEvents = useTransform(scrollYProgress, (v) => (v >= 0.50 && v <= 0.82 ? 'auto' : 'none'));
+  // Phase 2: 3 Living Cards emerge linearly from bottom edge
+  // Offscreen at 100vh when headline dissolves, perfectly docked in center by 0.52
+  const cardsContainerY = useTransform(scrollYProgress, [0.15, 0.52], ['100vh', '0vh']);
+  const cardsPointerEvents = useTransform(scrollYProgress, (v) => (v >= 0.45 && v <= 0.88 ? 'auto' : 'none'));
 
   // Subtle organic parallax stagger on individual cards (like original For Living)
-  const cardCommercialY = useTransform(scrollYProgress, [0.18, 0.70], ['4vh', '0vh']);
-  const cardResidentialY = useTransform(scrollYProgress, [0.18, 0.70], ['10vh', '-4vh']);
-  const cardMarineY = useTransform(scrollYProgress, [0.18, 0.70], ['6vh', '2vh']);
+  const cardCommercialY = useTransform(scrollYProgress, [0.15, 0.52], ['4vh', '0vh']);
+  const cardResidentialY = useTransform(scrollYProgress, [0.15, 0.52], ['10vh', '-4vh']);
+  const cardMarineY = useTransform(scrollYProgress, [0.15, 0.52], ['6vh', '2vh']);
 
-  // Phase 3 (Scroll 0.80 -> 0.98): Hero dims and gently recedes as downstream content stacks over
-  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.80, 0.98], [1, 0.15]);
-  const heroOverlayDark = useTransform(scrollYProgress, [0.15, 0.80], [0.12, 0.85]);
-  const heroRecedeScale = useTransform(scrollYProgress, [0.80, 0.98], [1, 0.93]);
+  // Phase 3 (Scroll 0.82 -> 1.00): Hero dims and gently recedes as downstream content stacks over
+  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.82, 0.98], [1, 0.15]);
+  const heroOverlayDark = useTransform(scrollYProgress, [0.15, 0.82], [0.12, 0.85]);
+  const heroRecedeScale = useTransform(scrollYProgress, [0.82, 1.0], [1, 0.94]);
 
   return (
     <section
