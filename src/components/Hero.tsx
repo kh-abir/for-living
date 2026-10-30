@@ -147,11 +147,11 @@ export default function Hero() {
             }
             className="absolute inset-0 z-2 pointer-events-none overflow-hidden origin-center"
           >
-            {/* Non-circular organic ellipse wash: very delicate brightness lift (0.72 -> 0.84) */}
+            {/* Non-circular organic ellipse wash: generous architectural brightness lift */}
             <div
               style={{
-                WebkitMaskImage: `radial-gradient(ellipse 520px 290px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.25) 45%, transparent 75%)`,
-                maskImage: `radial-gradient(ellipse 520px 290px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.25) 45%, transparent 75%)`,
+                WebkitMaskImage: `radial-gradient(ellipse 850px 480px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.12) 68%, transparent 85%)`,
+                maskImage: `radial-gradient(ellipse 850px 480px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.12) 68%, transparent 85%)`,
               }}
               className="absolute inset-0 w-full h-full pointer-events-none"
             >
@@ -165,11 +165,11 @@ export default function Hero() {
               </picture>
             </div>
 
-            {/* Ultra-subtle non-circular warm ambient reflection without any circle or hotspot */}
+            {/* Ultra-subtle non-circular warm ambient reflection with broader coverage */}
             <div
               className="absolute inset-0 mix-blend-screen pointer-events-none"
               style={{
-                background: `radial-gradient(ellipse 540px 300px at ${mousePos.x}px ${mousePos.y}px, rgba(255, 235, 210, 0.035) 0%, rgba(220, 140, 90, 0.015) 50%, transparent 80%)`,
+                background: `radial-gradient(ellipse 880px 500px at ${mousePos.x}px ${mousePos.y}px, rgba(255, 235, 210, 0.04) 0%, rgba(220, 140, 90, 0.018) 55%, transparent 85%)`,
               }}
             />
           </motion.div>
