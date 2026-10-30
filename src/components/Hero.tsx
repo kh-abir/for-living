@@ -41,40 +41,46 @@ export default function Hero() {
     offset: ['start start', 'end end'],
   });
 
-  // Phase 1: Brand statement dissolves smoothly with blur as user begins scrolling
-  const textOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.22], [0, -50]);
-  const textScale = useTransform(scrollYProgress, [0, 0.22], [1, 0.95]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.22], ['blur(0px)', 'blur(8px)']);
-  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.18 ? 'none' : 'auto'));
+  // Phase 1: Brand statement dissolves smoothly with blur as user begins scrolling (0 -> 0.16)
+  const textOpacity = useTransform(scrollYProgress, [0, 0.16], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.16], [0, -40]);
+  const textScale = useTransform(scrollYProgress, [0, 0.16], [1, 0.95]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.16], ['blur(0px)', 'blur(8px)']);
+  const textPointerEvents = useTransform(scrollYProgress, (v) => (v > 0.14 ? 'none' : 'auto'));
 
-  // Phase 2: 3 Living Cards emerge linearly from bottom edge
-  // Offscreen at 100vh when headline dissolves, perfectly docked in center by 0.52
-  const cardsContainerY = useTransform(scrollYProgress, [0.15, 0.52], ['100vh', '0vh']);
-  const cardsPointerEvents = useTransform(scrollYProgress, (v) => (v >= 0.45 && v <= 0.88 ? 'auto' : 'none'));
+  // Phase 2: 3 Living Cards emerge linearly from bottom edge (0.12 -> 0.38)
+  // Reaches optical center by 0.38
+  const cardsContainerY = useTransform(scrollYProgress, [0.12, 0.38], ['100vh', '0vh']);
 
-  // Subtle organic parallax stagger on individual cards (like original For Living)
-  const cardCommercialY = useTransform(scrollYProgress, [0.15, 0.52], ['4vh', '0vh']);
-  const cardResidentialY = useTransform(scrollYProgress, [0.15, 0.52], ['10vh', '-4vh']);
-  const cardMarineY = useTransform(scrollYProgress, [0.15, 0.52], ['6vh', '2vh']);
+  // Subtle organic parallax stagger on individual cards
+  const cardCommercialY = useTransform(scrollYProgress, [0.12, 0.38], ['4vh', '0vh']);
+  const cardResidentialY = useTransform(scrollYProgress, [0.12, 0.38], ['10vh', '-4vh']);
+  const cardMarineY = useTransform(scrollYProgress, [0.12, 0.38], ['6vh', '2vh']);
 
-  // Phase 3 (Scroll 0.82 -> 1.00): Hero dims and gently recedes as downstream content stacks over
-  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.82, 0.98], [1, 0.15]);
-  const heroOverlayDark = useTransform(scrollYProgress, [0.15, 0.82], [0.12, 0.85]);
-  const heroRecedeScale = useTransform(scrollYProgress, [0.82, 1.0], [1, 0.94]);
+  // Phase 3 & 4: Cards stay docked in center from 0.38 to 0.60,
+  // then recede deep into background as "Provenance & Guilds" scrolls up over them (0.60 -> 0.98)
+  const cardsScale = useTransform(scrollYProgress, [0.60, 0.96], [1, 0.88]);
+  const cardsOpacity = useTransform(scrollYProgress, [0.60, 0.96], [1, 0.25]);
+  const cardsBlur = useTransform(scrollYProgress, [0.60, 0.96], ['blur(0px)', 'blur(5px)']);
+  const cardsPointerEvents = useTransform(scrollYProgress, (v) => (v >= 0.36 && v <= 0.64 ? 'auto' : 'none'));
+
+  // Hero background wall recedes into depth as next section stacks over
+  const heroBackgroundOpacity = useTransform(scrollYProgress, [0.60, 0.98], [1, 0.15]);
+  const heroOverlayDark = useTransform(scrollYProgress, [0.10, 0.60, 0.95], [0.12, 0.82, 0.96]);
+  const heroRecedeScale = useTransform(scrollYProgress, [0.60, 0.98], [1, 0.86]);
 
   return (
     <section
       id="home"
       ref={containerRef}
-      className="section_hero hp_section_hero relative min-h-[260vh] bg-[#12100e] text-white"
+      className="section_hero hp_section_hero relative min-h-[350vh] bg-[#12100e] text-white"
     >
       {/* Pinned 100vh Viewport that stays completely still while next section stacks over */}
       <motion.div
         style={{
           scale: heroRecedeScale,
         }}
-        className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center z-0 origin-center"
+        className="sticky top-0 h-screen h-[100dvh] w-full overflow-hidden flex flex-col justify-center items-center z-0 origin-center"
       >
         {/* Layer 0: Aesthetic Boho Terracotta Wall Photographic Background */}
         <motion.div
@@ -271,11 +277,16 @@ export default function Hero() {
         </motion.div>
 
         {/* Layer 5: Parallax Floating Living Categories Cards */}
-        {/* On page load (scroll = 0), cards are 100vh down (offscreen). As user scrolls, they progressively rise from bottom edge */}
-        {/* 100% solid opacity: stop scrolling anywhere and cards stay visible at exactly that portion, just like For Living */}
+        {/* Rises into center, stays pinned and steady, then recedes deep into background as Provenance & Guilds scrolls above */}
         <motion.div
-          style={{ y: cardsContainerY, pointerEvents: cardsPointerEvents }}
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none"
+          style={{
+            y: cardsContainerY,
+            scale: cardsScale,
+            opacity: cardsOpacity,
+            filter: cardsBlur,
+            pointerEvents: cardsPointerEvents,
+          }}
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none origin-center"
         >
           <div className="max-w-[1360px] w-full mx-auto px-5 sm:px-8 md:px-12 flex md:grid md:grid-cols-3 gap-4 md:gap-8 items-center overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory justify-start md:justify-center py-4 pointer-events-auto">
             {/* Card 1: Commercial Living (Left) */}
