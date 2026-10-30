@@ -114,7 +114,7 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Layer 1: Dynamic Cursor Spotlight - Subtle Architectural Illumination on Background */}
+        {/* Layer 1: Dynamic Cursor Spotlight - Ultra-Subtle Elliptical Ambient Wash */}
         {/* Blueprint line art is temporarily hidden per user request */}
         {hasMovedCursor && (
           <motion.div
@@ -122,18 +122,18 @@ export default function Hero() {
             animate={
               isPaused
                 ? {
-                    opacity: [0.94, 1, 0.94],
-                    scale: [1, 1.006, 1],
+                    opacity: [0.96, 1, 0.96],
+                    scale: [1, 1.003, 1],
                   }
                 : {
-                    opacity: 0.96,
+                    opacity: 0.98,
                     scale: 1,
                   }
             }
             transition={
               isPaused
                 ? {
-                    duration: 3,
+                    duration: 3.2,
                     repeat: Infinity,
                     ease: 'easeInOut',
                   }
@@ -141,11 +141,11 @@ export default function Hero() {
             }
             className="absolute inset-0 z-2 pointer-events-none overflow-hidden origin-center"
           >
-            {/* Soft, slight brighten of the terracotta wall texture under cursor */}
+            {/* Non-circular organic ellipse wash: very delicate brightness lift (0.84 -> 0.94) */}
             <div
               style={{
-                WebkitMaskImage: `radial-gradient(380px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.4) 55%, transparent 100%)`,
-                maskImage: `radial-gradient(380px circle at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.4) 55%, transparent 100%)`,
+                WebkitMaskImage: `radial-gradient(ellipse 520px 290px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.25) 45%, transparent 75%)`,
+                maskImage: `radial-gradient(ellipse 520px 290px at ${mousePos.x}px ${mousePos.y}px, black 0%, rgba(0,0,0,0.25) 45%, transparent 75%)`,
               }}
               className="absolute inset-0 w-full h-full pointer-events-none"
             >
@@ -154,16 +154,16 @@ export default function Hero() {
                 <img
                   src="/assets/hero-terracotta-wall.jpg"
                   alt=""
-                  className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[1.08] contrast-[1.05] saturate-[1.06]"
+                  className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-[0.94] contrast-[1.04] saturate-[1.04]"
                 />
               </picture>
             </div>
 
-            {/* Whisper-soft warm ambient glow without harsh hotspot */}
+            {/* Ultra-subtle non-circular warm ambient reflection without any circle or hotspot */}
             <div
               className="absolute inset-0 mix-blend-screen pointer-events-none"
               style={{
-                background: `radial-gradient(420px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 235, 210, 0.08) 0%, rgba(220, 140, 90, 0.04) 45%, transparent 75%)`,
+                background: `radial-gradient(ellipse 540px 300px at ${mousePos.x}px ${mousePos.y}px, rgba(255, 235, 210, 0.035) 0%, rgba(220, 140, 90, 0.015) 50%, transparent 80%)`,
               }}
             />
           </motion.div>
